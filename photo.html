@@ -392,5 +392,10 @@ footer .copy{margin-top:24px;font-size:11.5px;color:#b7a98f;letter-spacing:.12em
   <p class="copy">郭宇飞 · AI 产品经理 · 2026 ｜ Vibe Coding · Codex ｜ 空山新雨后，天气晚来秋</p>
 </footer>
 
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } }), {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>
