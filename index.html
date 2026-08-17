@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="郭宇飞 · AI产品经理 · 从0到1做过知识付费产品的文科产品人，懂内容、懂教育、也懂AI">
+<title>郭宇飞 · AI 产品经理</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23BC563D'/><text x='16' y='22' font-size='17' fill='%23F7F2E9' text-anchor='middle' font-family='serif'>飞</text></svg>">
+<style>
+:root{
+  --paper:#FBF8F1; --paper2:#F2EDE0; --ink:#2B2A26; --terra:#BC563D;
+  --sage:#4E6B58; --mist:#8FA39B; --line:#E6DCC9; --gold:#B99A5A; --jade:#A9BCB0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Songti SC","STSong","SimSun",serif;line-height:1.9;
+  background-image:radial-gradient(rgba(185,154,90,.04) 1px,transparent 1px);
+  background-size:30px 30px;}
+h1,h2,h3,.kai{font-family:"Kaiti SC","STKaiti","KaiTi",serif;font-weight:600}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1060px;margin:0 auto;padding:0 28px}
+section{padding:96px 0 76px;position:relative}
+.sec-head{margin-bottom:40px}
+.sec-head .no{display:inline-block;font-size:12.5px;letter-spacing:.32em;color:var(--sage);border:1px solid var(--jade);padding:2px 12px;border-radius:2px;margin-bottom:14px}
+.sec-head h2{font-size:29px;letter-spacing:.14em}
+.sec-head .poem{margin-top:8px;font-size:13.5px;color:var(--mist);letter-spacing:.22em}
+.sec-head .en{font-size:10.5px;color:#B7A98F;letter-spacing:.4em;margin-top:2px;text-transform:uppercase}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(251,248,241,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;height:60px;gap:26px}
+nav .brand{font-family:"Kaiti SC","STKaiti",serif;font-size:18px;letter-spacing:.2em;margin-right:auto}
+nav .brand i{display:inline-block;width:22px;height:22px;background:var(--terra);color:var(--paper);font-style:normal;font-size:12px;text-align:center;line-height:22px;border-radius:3px;margin-right:8px;vertical-align:2px}
+nav a{font-size:13.5px;color:#4a463f;letter-spacing:.1em;transition:color .3s}
+nav a:hover{color:var(--terra)}
+@media(max-width:720px){nav a.lbl{display:none}}
+
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 70px}
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-bg svg.hero-scene{width:100%;height:100%;display:block}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(251,248,241,0) 0%,rgba(251,248,241,0) 55%,rgba(251,248,241,.5) 100%)}
+
+/* 山水装饰 · 各分区 */
+.land{position:absolute;left:0;right:0;bottom:0;height:0;pointer-events:none;z-index:0}
+section .wrap{position:relative;z-index:1}
+.land svg{position:absolute;left:0;width:100%;display:block}
+.land .l-far{bottom:0;height:120px;opacity:.6;filter:blur(2.2px)}
+.land .l-mid{bottom:-6px;height:132px;opacity:.72;filter:blur(1.4px)}
+.land .l-near{bottom:-14px;height:148px;opacity:.85;filter:blur(.7px)}
+.land .l-moon{left:auto;right:7%;bottom:122px;width:76px;height:76px}
+.land .l-birds{left:10%;bottom:152px;width:104px;height:42px}
+.land.softer{opacity:.38}
+.land.deep{opacity:.8}
+.hero-inner{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center;position:relative;z-index:2}
+.kicker{font-size:13px;letter-spacing:.44em;color:var(--sage);margin-bottom:18px}
+h1{font-size:62px;letter-spacing:.3em;line-height:1.15}
+.role{font-size:18px;letter-spacing:.12em;margin-top:18px;color:var(--ink)}
+.role b{color:var(--terra)}
+.tagline{margin-top:10px;font-size:13.5px;color:#7a7266;letter-spacing:.16em}
+.meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 2px}
+.meta span{font-size:13px;color:#5d574c;letter-spacing:.12em;padding:0 18px}
+.meta span+span{border-left:1px solid var(--line)}
+.meta b{color:var(--terra);font-weight:600}
+.chips{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+.chips span{font-size:12.5px;border:1px solid var(--line);background:#fffdf8;padding:5px 15px;border-radius:999px;color:#5d574c;letter-spacing:.06em}
+.cta{margin-top:32px;display:flex;gap:38px;flex-wrap:wrap;align-items:center;position:relative}
+.cta-contact{font-size:13px;letter-spacing:.22em;color:var(--sage);border-bottom:1px solid var(--jade);padding:4px 2px;cursor:pointer;transition:color .3s}
+.cta-contact:hover{color:var(--terra)}
+.contact-pop{position:absolute;top:calc(100% + 12px);left:0;display:none;flex-direction:column;gap:4px;background:#fffdf8;border:1px solid var(--line);box-shadow:0 10px 28px rgba(43,42,38,.10);padding:14px 20px;z-index:60;min-width:250px}
+.contact-pop.open{display:flex}
+.contact-pop a{font-size:13.5px;color:var(--ink);letter-spacing:.05em;padding:8px 2px;border-bottom:1px dashed var(--line);display:flex;gap:12px;align-items:baseline;text-decoration:none}
+.contact-pop a:last-child{border-bottom:none}
+.contact-pop a:hover{color:var(--terra)}
+.contact-pop b{color:var(--terra);font-weight:600;font-size:12px;letter-spacing:.2em;min-width:46px}
+.btn{display:inline-block;padding:11px 26px;border:1px solid var(--ink);font-size:14px;letter-spacing:.16em;transition:all .3s;cursor:pointer;background:transparent}
+.btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn.primary:hover{background:var(--terra);border-color:var(--terra)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+.hero-visual{position:relative;display:flex;justify-content:center}
+.avatar{width:min(280px,66vw);aspect-ratio:3/4;border-radius:8px 8px 42px 8px;overflow:hidden;border:1px solid var(--line);box-shadow:0 12px 36px rgba(43,42,38,.10);position:relative}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.94)}
+.avatar::before{content:"";position:absolute;inset:9px;border:1px solid rgba(251,248,241,.55);border-radius:5px 5px 36px 5px;z-index:2;pointer-events:none}
+.seal{position:absolute;top:-16px;right:-12px;width:50px;height:50px;background:var(--terra);color:var(--paper);font-family:"Kaiti SC","STKaiti",serif;font-size:25px;display:flex;align-items:center;justify-content:center;border-radius:6px;box-shadow:0 6px 14px rgba(188,86,61,.3);z-index:3}
+.vertical{position:absolute;right:-40px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-size:12.5px;letter-spacing:.5em;color:var(--mist);white-space:nowrap}
+@media(max-width:820px){
+  .hero-inner{grid-template-columns:1fr;gap:38px}
+  .hero-visual{order:-1}
+  .vertical{display:none}
+  h1{font-size:42px}
+}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px}
+.stat{background:#fffdf8;border:1px solid var(--line);padding:18px 12px;text-align:center}
+.stat b{display:block;font-family:"Kaiti SC","STKaiti",serif;font-size:29px;color:var(--terra);font-weight:600}
+.stat span{font-size:12.5px;color:#7a7266;letter-spacing:.1em}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px}
+.about-grid p{font-size:14.5px;color:#3f3b34;text-indent:2em;margin-bottom:14px}
+.about-quote{border-left:2px solid var(--terra);padding:6px 0 6px 18px;font-family:"Kaiti SC","STKaiti",serif;font-size:16.5px;color:var(--sage);line-height:2}
+.about-list li{list-style:none;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.about-list li b{color:var(--terra);font-weight:600;margin-right:8px}
+@media(max-width:720px){.about-grid{grid-template-columns:1fr}}
+
+.timeline{position:relative;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.tl{position:relative;padding:0 0 36px 0}
+.tl::before{content:"";position:absolute;left:-31px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--paper);border:2px solid var(--terra)}
+.tl .date{display:inline-block;font-size:12.5px;color:var(--terra);border:1px solid var(--line);background:#fffdf8;padding:2px 12px;border-radius:999px;letter-spacing:.1em;margin-bottom:10px}
+.tl h3{font-size:18.5px;letter-spacing:.05em}
+.tl .sub{font-size:13px;color:var(--sage);letter-spacing:.1em;margin:4px 0 9px}
+.tl p{font-size:14px;color:#4a463f;max-width:820px}
+.tl .tag{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.tl .tag span{font-size:11.5px;color:var(--sage);border:1px solid var(--jade);border-radius:999px;padding:2px 10px}
+
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.work{background:#fffdf8;border:1px solid var(--line);overflow:hidden;transition:transform .35s,box-shadow .35s;display:flex;flex-direction:column}
+.work:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(43,42,38,.08)}
+.work .img{aspect-ratio:4/3;overflow:hidden;position:relative;background:#F5F3EA}
+.work .img::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);transition:transform .6s;filter:saturate(.78) brightness(1.05) contrast(.95)}
+.work .img::after{content:"";position:absolute;inset:0;background:linear-gradient(108deg,rgba(255,253,248,.97) 3%,rgba(255,253,248,.82) 27%,rgba(255,253,248,.42) 57%,rgba(255,253,248,.08) 100%)}
+.work:hover .img::before{transform:scale(1.06)}
+.work .img.cv-xueling::before{background-image:url('assets/covers/cv_xueling.jpg')}
+.work .img.cv-web::before{background-image:url('assets/covers/cv_web.jpg')}
+.work .img.cv-ip::before{background-image:url('assets/covers/cv_ip.jpg')}
+.work .img.cv-app::before{background-image:url('assets/covers/cv_app.jpg')}
+.work .img.cv-paper::before{background-image:url('assets/covers/cv_paper.jpg')}
+.work .img.cv-ai::before{background-image:url('assets/covers/cv_ai.jpg')}
+.work .img>*{position:relative;z-index:1}
+.work .wtitle{position:absolute;left:22px;bottom:36px;font-family:"Kaiti SC","STKaiti",serif;font-size:26px;font-weight:600;letter-spacing:.18em;color:var(--ink)}
+.work .wsub{position:absolute;left:23px;bottom:14px;font-size:11px;letter-spacing:.24em;color:#5d584d}
+.work .img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.work .img video{width:100%;height:100%;object-fit:cover;display:block}
+.playbadge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(20,18,14,.55);border:1px solid rgba(247,242,233,.6);color:#f7f2e9;font-size:12.5px;letter-spacing:.2em;padding:8px 18px;border-radius:999px;pointer-events:none}
+.vmodal{position:fixed;inset:0;z-index:140;background:rgba(18,16,13,.92);display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px}
+.vmodal.open{display:flex}
+.vmodal video{max-height:78vh;max-width:100%;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.vmodal .vmtabs{display:flex;gap:10px;margin-bottom:14px}
+.vmodal .vmtabs button{background:rgba(232,223,207,.14);color:#e8dfcf;border:1px solid rgba(232,223,207,.35);font-family:inherit;font-size:13px;letter-spacing:.18em;padding:7px 18px;border-radius:20px;cursor:pointer}
+.vmodal .vmtabs button.on{background:var(--terra);border-color:var(--terra);color:#fbf8f1}
+.vmodal .vmcap{margin-top:16px;color:#e8dfcf;font-size:13px;letter-spacing:.2em}
+.vmodal .x{position:absolute;top:18px;right:26px;color:#e8dfcf;font-size:30px;cursor:pointer;z-index:2}
+.work:hover .img img{transform:scale(1.04)}
+.work .img .tagv{position:absolute;left:0;top:0;background:var(--terra);color:var(--paper);font-size:11px;letter-spacing:.14em;padding:3px 12px}
+.work .body{padding:17px 20px 20px;display:flex;flex-direction:column;flex:1}
+.work h3{font-size:16.5px;letter-spacing:.05em}
+.work .desc{font-size:13px;color:#6b6458;margin-top:8px;flex:1}
+.work .links{margin-top:13px;display:flex;gap:14px;flex-wrap:wrap}
+.work .links a{font-size:12.5px;color:var(--terra);border-bottom:1px solid var(--line);padding-bottom:2px;letter-spacing:.06em}
+.work .links a:hover{border-color:var(--terra)}
+@media(max-width:820px){.works{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.works{grid-template-columns:1fr}}
+
+.photo-note{font-size:13.5px;color:#7a7266;letter-spacing:.1em;text-align:center;margin-bottom:30px}
+#photo-gallery{scroll-margin-top:96px}
+.photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.photo-card{margin:0;position:relative;overflow:hidden;border:1px solid var(--line);background:#fffdf8}
+.photo-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .6s;filter:saturate(.9)}
+.photo-card:hover img{transform:scale(1.05)}
+.photo-card figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;padding:26px 8px 10px;background:linear-gradient(transparent,rgba(43,42,38,.68));color:var(--paper);font-size:11px;letter-spacing:.24em}
+.photo-card figcaption b{font-family:"Kaiti SC","STKaiti",serif;font-size:16px;font-weight:600;letter-spacing:.3em}
+.photo-card figcaption span{opacity:.85;margin-top:2px}
+@media(max-width:820px){.photo-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.photo-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
+
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.edu{position:relative;overflow:hidden;isolation:isolate;background:#fffdf8;border:1px solid var(--line);padding:30px 28px 26px;transition:box-shadow .4s,border-color .4s}
+.edu::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;opacity:.78;filter:saturate(1.05);transform:scale(1.03);transition:opacity .5s ease,transform .6s ease}
+.edu.bg-a::before{background-image:url('assets/edu_bg1.jpg')}
+.edu.bg-b::before{background-image:url('assets/edu_bg2.jpg')}
+.edu::after{content:"";position:absolute;inset:0;background:linear-gradient(112deg,rgba(251,248,241,.96) 6%,rgba(251,248,241,.72) 40%,rgba(251,248,241,.34) 74%,rgba(251,248,241,.14) 100%)}
+.edu.bg-b::after{background:linear-gradient(68deg,rgba(251,248,241,.96) 6%,rgba(251,248,241,.72) 40%,rgba(251,248,241,.34) 74%,rgba(251,248,241,.14) 100%)}
+.edu:hover{box-shadow:0 14px 30px rgba(60,55,45,.14);border-color:var(--gold)}
+.edu:hover::before{opacity:1;transform:scale(1.05)}
+.edu > *{position:relative;z-index:1}
+.edu .yr{font-size:12.5px;color:var(--terra);letter-spacing:.14em}
+.edu .yr::before{content:"";display:inline-block;width:9px;height:9px;background:var(--terra);margin-right:9px;border-radius:50% 50% 50% 2px;transform:rotate(45deg)}
+.edu .sch::before{content:"·";color:var(--gold);margin-right:8px}
+.edu h3{font-size:18.5px;margin:6px 0 2px}
+.edu .sch{font-size:14px;color:var(--sage);letter-spacing:.1em}
+.edu ul{margin-top:12px;font-size:13.5px;color:#4a463f;list-style:none}
+.edu li{padding:5px 0;border-bottom:1px dashed var(--line)}
+.edu li:last-child{border-bottom:none}
+@media(max-width:720px){.edu-grid{grid-template-columns:1fr}}
+
+.deck{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{perspective:1000px;height:185px;cursor:pointer}
+.card .inner{position:relative;width:100%;height:100%;transition:transform .65s;transform-style:preserve-3d}
+.card.flipped .inner{transform:rotateY(180deg)}
+.card .face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--line);background:#fffdf8;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center}
+.card .face.back{transform:rotateY(180deg);background:var(--paper2)}
+.card .face .cn{font-family:"Kaiti SC","STKaiti",serif;font-size:23px;letter-spacing:.1em}
+.card .face .ft{font-size:10.5px;letter-spacing:.3em;color:var(--mist);margin-bottom:10px}
+.card .face.back p{font-family:"Kaiti SC","STKaiti",serif;font-size:14.5px;color:var(--ink);line-height:1.8}
+.card .face.back p a{color:var(--terra);text-decoration:none;border-bottom:1px dashed var(--terra);letter-spacing:.06em;font-size:13px}
+.card.skill .face{border-top:3px solid var(--sage)}
+.card.hobby .face{border-top:3px solid var(--terra)}
+.card .face .poemline{position:absolute;bottom:10px;font-size:10.5px;color:var(--mist);letter-spacing:.2em}
+.card .face .enter{position:absolute;top:12px;right:12px;font-size:10.5px;color:var(--terra);letter-spacing:.14em;border:1px solid var(--line);background:var(--paper);padding:2px 8px;border-radius:2px}
+
+.method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:46px}
+.mcard{background:#fffdf8;border:1px solid var(--line);border-top:3px solid var(--sage);padding:20px 22px 16px}
+.mcard h4{font-family:"Kaiti SC","STKaiti",serif;font-size:17px;color:var(--sage);letter-spacing:.08em;margin-bottom:9px}
+.mcard p{font-size:13.5px;color:#3f3b34;line-height:1.9}
+.think{margin-top:80px}
+.think .sec-head{text-align:center;margin-bottom:10px}
+.think .sec-sub{text-align:center;font-size:12px;letter-spacing:.34em;color:var(--mist);margin:34px 0 18px}
+.think .sec-sub::before,.think .sec-sub::after{content:"——";margin:0 14px;color:var(--line)}
+.method{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:14px}
+.method .m-item{border:1px solid var(--line);background:#fffdf8;border-top:3px solid var(--jade);padding:24px 16px 20px;text-align:center}
+.method .m-item b{font-family:"Kaiti SC","STKaiti",serif;font-size:15px;color:var(--sage);letter-spacing:.14em}
+.method .m-item p{font-size:12px;color:var(--mist);line-height:2;margin-top:10px;letter-spacing:.04em}
+.think-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:6px}
+.think-card{background:#fffdf8;border:1px solid var(--line);border-top:3px solid var(--sage);padding:26px 24px 22px;position:relative}
+.think-card .tno{position:absolute;top:15px;right:18px;font-size:10.5px;letter-spacing:.22em;color:var(--mist)}
+.think-card h5{font-family:"Kaiti SC","STKaiti",serif;font-size:16.5px;color:var(--terra);letter-spacing:.1em;margin-bottom:9px}
+.think-card p{font-size:12.8px;color:#3f3b34;line-height:1.95}
+.think-card.wide{grid-column:1/-1;border-top-color:var(--terra);background:linear-gradient(180deg,#fffdf8,#f7f1e3)}
+@media(max-width:820px){.method{grid-template-columns:repeat(2,1fr)}.think-grid{grid-template-columns:1fr}.think-card.wide{grid-column:auto}}
+@media(max-width:520px){.method{grid-template-columns:1fr}}
+
+.hint{font-size:12.5px;color:#a29681;text-align:center;margin-top:16px;letter-spacing:.1em}
+@media(max-width:820px){.deck{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.deck{grid-template-columns:1fr}}
+
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.gallery .ph{position:relative;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--line);cursor:zoom-in;background:var(--paper2)}
+.gallery .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.gallery .ph:hover img{transform:scale(1.07)}
+.gallery .ph .cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(43,42,38,.62));color:var(--paper);font-size:10.5px;letter-spacing:.2em;padding:22px 10px 6px;opacity:0;transition:opacity .4s}
+.gallery .ph:hover .cap{opacity:1}
+@media(max-width:820px){.gallery{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.gallery{grid-template-columns:repeat(2,1fr)}}
+
+.honors{display:flex;flex-wrap:wrap;gap:13px;justify-content:center}
+.honor{font-size:13px;border:1px solid var(--line);background:#fffdf8;padding:8px 18px;letter-spacing:.1em;color:#4a463f}
+
+footer{position:relative;border-top:1px solid var(--line);padding:54px 0 40px;text-align:center}
+footer>*:not(.land){position:relative;z-index:1}
+footer .slogan{font-family:"Kaiti SC","STKaiti",serif;font-size:17.5px;letter-spacing:.3em;color:var(--sage)}
+footer .poem{font-size:12.5px;color:var(--mist);letter-spacing:.4em;margin:10px 0 22px}
+footer .links a{margin:0 14px;font-size:13.5px;color:var(--terra);letter-spacing:.1em}
+footer .copy{margin-top:24px;font-size:11.5px;color:#b7a98f;letter-spacing:.12em}
+
+.wave{display:block;width:100%;height:100px;margin:-50px 0 0;pointer-events:none;position:relative;z-index:1}
+.wave path{fill:none}
+@media(max-width:720px){.wave{height:36px}}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+.reveal.on{opacity:1;transform:none}
+
+.modal{position:fixed;inset:0;z-index:120;background:rgba(43,42,38,.55);display:none;align-items:flex-start;justify-content:center;padding:5vh 18px;overflow:auto}
+.modal.open{display:flex}
+.modal-card{background:var(--paper);max-width:820px;width:100%;padding:44px 46px;box-shadow:0 30px 80px rgba(0,0,0,.3);position:relative}
+.modal-card .close{position:absolute;top:14px;right:18px;font-size:22px;cursor:pointer;color:#7a7266}
+.modal-card .mhead{text-align:center;margin-bottom:22px}
+.modal-card .mhead h3{font-size:26px;letter-spacing:.2em}
+.modal-card .mhead p{font-size:12.5px;color:#7a7266;letter-spacing:.16em;margin-top:4px}
+.modal-card h4{font-size:15px;color:var(--terra);letter-spacing:.12em;margin:20px 0 8px;border-bottom:1px solid var(--line);padding-bottom:5px}
+.modal-card .mrow{font-size:13.5px;line-height:1.8;color:#3f3b34}
+.modal-card .mrow b{color:var(--ink)}
+.mtools{position:sticky;bottom:0;background:var(--paper);padding:12px 0;display:flex;gap:12px;justify-content:center}
+
+.lightbox{position:fixed;inset:0;z-index:130;background:rgba(20,18,14,.9);display:none;align-items:center;justify-content:center;flex-direction:column;padding:24px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw;max-height:78vh;border:1px solid rgba(247,242,233,.25)}
+.lightbox .lbcap{margin-top:14px;color:#e8dfcf;font-size:13px;letter-spacing:.2em}
+.lightbox .x{position:absolute;top:18px;right:26px;color:#e8dfcf;font-size:30px;cursor:pointer;z-index:2}
+.lightbox .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(247,242,233,.12);border:1px solid rgba(247,242,233,.35);color:#e8dfcf;font-size:34px;width:52px;height:64px;cursor:pointer;z-index:2;line-height:1}
+.lightbox .lb-nav.prev{left:20px}.lightbox .lb-nav.next{right:20px}
+.lightbox .lb-nav:hover{background:rgba(188,86,61,.55)}
+
+@media print{
+  nav,footer,.cta,.mtools,.modal .close,.hint{display:none!important}
+  body{background:#fff}
+  .modal{position:static;display:block;background:#fff;padding:0}
+  .modal-card{box-shadow:none;max-width:100%;padding:0;background:#fff}
+  section:not(.resume-sec){display:none}
+  .resume-sec{display:block!important}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-far" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E3E9E1" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#E3E9E1" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g-mid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D4DDD3" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#D4DDD3" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g-near" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C4D1C7" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#C4D1C7" stop-opacity="0"/>
+    </linearGradient>
+    <symbol id="mnt-far" viewBox="0 0 1440 160"><path d="M0 152 C 140 92 240 96 360 66 C 500 30 620 74 780 52 C 900 36 1020 70 1160 50 C 1290 32 1380 66 1440 52 L 1440 160 L 0 160 Z" fill="url(#g-far)"/></symbol>
+    <symbol id="mnt-mid" viewBox="0 0 1440 180"><path d="M0 172 C 160 116 300 122 460 88 C 620 56 780 112 940 84 C 1080 62 1210 104 1440 82 L 1440 180 L 0 180 Z" fill="url(#g-mid)"/></symbol>
+    <symbol id="mnt-near" viewBox="0 0 1440 200"><path d="M0 192 C 220 138 420 150 640 116 C 840 86 1060 138 1440 112 L 1440 200 L 0 200 Z" fill="url(#g-near)"/></symbol>
+    <symbol id="mnt-moon" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="#FDFCF7" opacity=".4"/><circle cx="60" cy="60" r="23" fill="#FBF8EE" opacity=".95"/></symbol>
+    <symbol id="mnt-birds" viewBox="0 0 120 48"><g stroke="#8A9489" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".5"><path d="M8 30 q6 -7 12 0 M34 22 q6 -7 12 0 M60 34 q6 -7 12 0 M86 26 q6 -7 12 0"/></g></symbol>
+  </defs>
+</svg>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><i>飞</i>郭宇飞</div>
+    <a href="#about" class="lbl">关于我</a>
+    <a href="#education" class="lbl">教育背景</a>
+    <a href="#experience" class="lbl">工作经历</a>
+    <a href="#works">个人作品</a>
+    <a href="#skills">技能与爱好</a>
+    <a href="#honors" class="lbl">荣誉印记</a>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true">
+    <svg class="hero-scene" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="hpaper" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FBF8F1"/>
+          <stop offset="0.5" stop-color="#F5F4EE"/>
+          <stop offset="1" stop-color="#EAEEE7"/>
+        </linearGradient>
+        <linearGradient id="hfar" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#E2E8E0" stop-opacity=".95"/>
+          <stop offset="1" stop-color="#E2E8E0" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="hmid" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#D2DCD2" stop-opacity=".92"/>
+          <stop offset="1" stop-color="#D2DCD2" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="hnear" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#C2CFC5" stop-opacity=".9"/>
+          <stop offset="1" stop-color="#C2CFC5" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="hfront" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ADBEB2" stop-opacity=".8"/>
+          <stop offset="1" stop-color="#ADBEB2" stop-opacity="0"/>
+        </linearGradient>
+        <radialGradient id="hmist" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stop-color="#FCFBF7" stop-opacity=".75"/>
+          <stop offset="1" stop-color="#FCFBF7" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="hf8" x="-15%" y="-40%" width="130%" height="240%"><feGaussianBlur stdDeviation="9"/></filter>
+        <filter id="hf5" x="-15%" y="-40%" width="130%" height="240%"><feGaussianBlur stdDeviation="5.5"/></filter>
+        <filter id="hf3" x="-15%" y="-40%" width="130%" height="240%"><feGaussianBlur stdDeviation="3"/></filter>
+        <filter id="hf2" x="-15%" y="-40%" width="130%" height="240%"><feGaussianBlur stdDeviation="1.6"/></filter>
+      </defs>
+      <rect width="1600" height="1000" fill="url(#hpaper)"/>
+      <circle cx="1150" cy="170" r="110" fill="#FDFCF8" opacity=".5"/>
+      <circle cx="1150" cy="170" r="46" fill="#FDFBF3"/>
+      <g stroke="#87917F" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".55">
+        <path d="M1078 268 q9 -8 18 0"/>
+        <path d="M1108 236 q8 -7 16 0"/>
+        <path d="M1144 292 q8 -7 16 0"/>
+      </g>
+      <ellipse cx="430" cy="565" rx="400" ry="75" fill="url(#hmist)"/>
+      <ellipse cx="1180" cy="605" rx="430" ry="85" fill="url(#hmist)"/>
+      <ellipse cx="830" cy="665" rx="560" ry="95" fill="url(#hmist)"/>
+      <g filter="url(#hf8)"><path d="M-60 590 C 150 505 310 520 480 468 C 630 422 780 498 970 448 C 1120 408 1340 470 1660 440 L 1660 800 L -60 800 Z" fill="url(#hfar)"/></g>
+      <g filter="url(#hf5)"><path d="M-60 690 C 190 622 350 644 550 592 C 730 546 920 636 1120 584 C 1280 542 1420 620 1660 584 L 1660 880 L -60 880 Z" fill="url(#hmid)"/></g>
+      <g filter="url(#hf3)"><path d="M-60 800 C 210 740 400 768 620 716 C 820 670 1030 764 1270 712 C 1440 674 1560 742 1660 712 L 1660 950 L -60 950 Z" fill="url(#hnear)"/></g>
+      <g filter="url(#hf2)"><path d="M-60 900 C 240 844 480 880 740 832 C 1020 780 1330 866 1660 824 L 1660 1000 L -60 1000 Z" fill="url(#hfront)"/></g>
+      <g stroke="#B7C4BA" stroke-width="1.8" fill="none" opacity=".5" stroke-linecap="round">
+        <path d="M140 940 Q 340 932 540 940 T 940 938 T 1340 940 T 1560 938"/>
+        <path d="M260 958 Q 460 950 660 958 T 1060 956 T 1460 958"/>
+      </g>
+    </svg>
+  </div>
+  <div class="wrap hero-inner">
+    <div>
+      <p class="kicker">文艺学硕士 · 内容产品实践者</p>
+      <h1>郭 宇 飞</h1>
+      <p class="role"><b>AI 产品经理</b> · 从 0 到 1 做过知识付费产品的文科产品人</p>
+      <p class="tagline">懂内容 · 懂教育 · 也懂 AI</p>
+      <div class="meta">
+        <span>22 岁</span>
+        <span>杭州 · 上海 · 深圳</span>
+        <span>可立即到岗</span>
+        <span><b>可实习三个月以上</b></span>
+      </div>
+      <div class="chips">
+        <span>内容型产品落地</span><span>AIGC 工具链</span><span>数据驱动迭代</span>
+        <span>知识付费 0→1</span><span>文学理论纵深</span><span>Vibe Coding</span>
+      </div>
+      <div class="cta">
+        <button class="btn primary" onclick="openResume()">一键查看简历</button>
+        <a class="cta-contact" href="javascript:void(0)" onclick="toggleContact(event)">联系我</a>
+        <div class="contact-pop" id="contactPop">
+          <a href="tel:19058141302"><b>电话</b>190 5814 1302</a>
+          <a href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank"><b>小红书</b>@Zoey快去学习</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="avatar"><img src="assets/photos/site_02.jpg" alt="郭宇飞"></div>
+      <div class="seal">飞</div>
+      <div class="vertical">Zoey 快去学习</div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="no">壹 · 关于我</span>
+      <h2>关于我</h2>
+          </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>我是把「内容」当产品来做的人。从校园新媒体到知识付费 IP，完整跑通过「需求调研 — MVP 上线 — 数据迭代 — 商业转化」的全流程；硕士阶段的学术训练，让我在生成式 AI 时代既懂模型能做什么，也懂用户为何被打动。</p>
+        <p>对 AI 产品的理解：好的 AI 产品不是「工具 + 内容」的简单拼装，而是重新理解人如何学习、如何被内容触动——这正是我的内容能力、教育经验与 AI 工具实践能交汇的地方。</p>
+        <div class="about-quote">知识是被品尝的，产品是被使用的。</div>
+      </div>
+      <ul class="about-list reveal">
+        <li><b>内容产品</b>从 0 搭建小红书考研知识付费 IP，3 天收益 5k+</li>
+        <li><b>教育实战</b>辅导学生 15+，上岸率 85%，新东方签约考研讲师</li>
+        <li><b>数据习惯</b>Excel + SQL + AIGC 复盘内容数据，点赞量提升 50%</li>
+        <li><b>AI 纵深</b>文艺学硕士，关注 AI 时代审美判断与内容生产伦理</li>
+        <li><b>执行力</b>零基础自学 Vibe Coding，把简历「聊」成上线网站，独立跑通需求到交付</li>
+      </ul>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><b>300+</b><span>全网粉丝</span></div>
+      <div class="stat"><b>8000+</b><span>笔记浏览量</span></div>
+      <div class="stat"><b>22.7万</b><span>公众号内容浏览</span></div>
+      <div class="stat"><b>85%</b><span>学员上岸率</span></div>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 110" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <path d="M0 106 C 160 58 300 62 470 36 C 620 14 760 58 940 32 C 1090 12 1230 52 1440 28 L 1440 110 L 0 110 Z" fill="#E2E8E0" opacity=".65"/>
+  <path d="M0 106 C 240 76 420 82 660 60 C 880 40 1120 78 1440 58 L 1440 110 L 0 110 Z" fill="#D3DCD2" opacity=".7"/>
+  <circle cx="1190" cy="24" r="6.5" fill="#BC563D" opacity=".85"/>
+</svg>
+
+
+<section id="education">
+    <div class="land softer" aria-hidden="true">
+      <svg class="l-far" viewBox="0 0 1440 160" preserveAspectRatio="none"><use href="#mnt-far"/></svg>
+      <svg class="l-mid" viewBox="0 0 1440 180" preserveAspectRatio="none"><use href="#mnt-mid"/></svg>
+      <svg class="l-near" viewBox="0 0 1440 200" preserveAspectRatio="none"><use href="#mnt-near"/></svg>
+      <svg class="l-birds" viewBox="0 0 120 48"><use href="#mnt-birds"/></svg>
+    </div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="no">贰 · 教育背景</span>
+      <h2>教育背景</h2>
+          </div>
+    <div class="edu-grid">
+      <div class="edu reveal bg-a">
+        <div class="yr">2025.09 — 2028.06（在读）</div>
+        <h3>文艺学 · 学术型硕士</h3>
+        <p class="sch">浙江师范大学</p>
+        <ul>
+          <li>研究方向：中国文论与身体美学、AI 时代内容生产的审美与伦理</li>
+          <li>关注「内容—技术—人」三者关系，兼具文论训练与 AI 内容生产实践</li>
+          <li>研究案例：中国文论「味」范畴的具身性考察（现象学进路）</li>
+        </ul>
+      </div>
+      <div class="edu reveal bg-b">
+        <div class="yr">2021.09 — 2025.06</div>
+        <h3>汉语言文学 · 学士</h3>
+        <p class="sch">长春理工大学</p>
+        <ul>
+          <li>GPA 3.85，专业前 7%</li>
+          <li>国家级、校级奖学金共 7 次（校 1%—10%）</li>
+          <li>省级、校级学科竞赛奖 4 次；主修文学理论、新闻采访与写作</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="experience" style="background:var(--paper2)">
+    <div class="land" aria-hidden="true">
+      <svg class="l-far" viewBox="0 0 1440 160" preserveAspectRatio="none"><use href="#mnt-far"/></svg>
+      <svg class="l-mid" viewBox="0 0 1440 180" preserveAspectRatio="none"><use href="#mnt-mid"/></svg>
+      <svg class="l-near" viewBox="0 0 1440 200" preserveAspectRatio="none"><use href="#mnt-near"/></svg>
+      <svg class="l-moon" viewBox="0 0 120 120"><use href="#mnt-moon"/></svg>
+    </div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="no">叁 · 工作经历</span>
+      <h2>工作经历</h2>
+          </div>
+    <div class="timeline">
+      <div class="tl reveal">
+        <span class="date">2025.07 — 至今</span>
+        <h3>小红书考研知识付费 IP「Zoey快去学习」· 产品运营</h3>
+        <p class="sub">账号定位 · 内容策略 · 定制交易 · 真题产品化</p>
+        <p>从 0 到 1 搭建账号，独立负责内容策划、撰写、编辑与发布；以经验分享与知识点整理引流，通过个性化复习规划定制交易，后期面向院校真题出品模拟题，以订金预付、试卷批改完成需求闭环。深度分析后台数据，优化发布时间、标题与封面，点赞量提升 50%。现任新东方签约考研讲师。</p>
+        <div class="tag"><span>需求调研</span><span>MVP</span><span>数据迭代</span><span>商业闭环</span></div>
+      </div>
+      <div class="tl reveal">
+        <span class="date">2023.08 — 2024.08</span>
+        <h3>文学院党委与理论宣传中心 · 主任 / 内容运营</h3>
+        <p class="sub">选题策划 · 视觉呈现 · 活动拉新 · 平台运营</p>
+        <p>主导选题策划、内容创作与视觉呈现，制作推文、海报与短视频 20+ 项；策划执行线上活动完成拉新促活，拉动用户增长 200+；负责公众号运营，粉丝增长至 3260+，累计内容浏览量超 22.75 万，互动量超 5.04 万，单篇最高点赞 1104。</p>
+        <div class="tag"><span>用户洞察</span><span>活动策划</span><span>增长运营</span></div>
+      </div>
+      <div class="tl reveal">
+        <span class="date">2022.04 — 2022.07</span>
+        <h3>校园快递代取项目 · 联合创始人 / 产品运营</h3>
+        <p class="sub">需求验证 · 模式创新 · 团队管理 · 社群运营</p>
+        <p>问卷调研与试运行验证需求，提出「快递代取 + 微信群半预购」创新模式；组建并管理 10 人团队，搭建社群 3 个（600+ 人），朋友圈拉新转化率 70%；以 Excel 与 AIGC 工具做周/月数据分析。实现校内用户覆盖率 40%，月利润 5k+。</p>
+        <div class="tag"><span>需求验证</span><span>团队管理</span><span>数据分析</span></div>
+      </div>
+      <div class="tl reveal">
+        <span class="date">2021.09 — 2023.05</span>
+        <h3>紫薇应用文杂志社新媒体运营部 · 负责人</h3>
+        <p class="sub">内容策划 · 活动组织 · 平台运营</p>
+        <p>主导内容策划与创意构思，审阅与创作稿件 100+；策划组织「紫薇杯」征文竞赛等线上线下活动，单次活动参与 500+ 人，整理参赛稿件 200+ 份。</p>
+        <div class="tag"><span>内容策划</span><span>活动统筹</span></div>
+      </div>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:56px">
+      <span class="no">运营方法论</span>
+      <h2>从内容到闭环</h2>
+    </div>
+    <div class="method-grid">
+      <div class="mcard reveal">
+        <h4>底层逻辑 · 内容即产品</h4>
+        <p>笔记是引流品，真题是核心品，定制批改是增值品。流量只是入口，「需求调研 — MVP — 数据迭代 — 商业闭环」才是完整链路。不做一次性爆款，只做可复利的内容资产。</p>
+      </div>
+      <div class="mcard reveal">
+        <h4>平台规则 · 搜索与推荐双引擎</h4>
+        <p>小红书笔记生命周期长，搜索流量占比高。在标题、正文与话题中系统布局「839」「华师」「文学理论」等关键词，让每篇笔记都成为长尾入口；封面与标题决定点击率，收藏率是算法分发的核心信号。</p>
+      </div>
+      <div class="mcard reveal">
+        <h4>获客逻辑 · 垂类精准</h4>
+        <p>用经验贴与真题解析锚定华师文学考研人群，用免费资料做钩子，私域承接转化。不做泛流量，只做「高意向、强刚需」的精准用户；辅导 15+ 人、上岸率 85%，全部来自内容自带的信任。</p>
+      </div>
+      <div class="mcard reveal">
+        <h4>投流逻辑 · 数据先行</h4>
+        <p>先让自然流量验证内容：点击率、收藏率、私信咨询量达标后再放大。测试期小额投放，只投数据最好的笔记，以咨询成本与成交转化为目标，不做无效曝光。</p>
+      </div>
+      <div class="mcard reveal" style="grid-column:1/-1">
+        <h4>行业看法 · AI 时代的价值锚点</h4>
+        <p>考研知识付费的本质是「信息差 + 陪伴感」。AI 会让资料越来越便宜，但真题判断、复习规划、批改反馈与情绪陪伴无法被标准化替代——这也是我把 App 与真人服务结合的原因：工具负责提效，人负责给出确定性。</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="works">
+    <div class="land softer" aria-hidden="true">
+      <svg class="l-far" viewBox="0 0 1440 160" preserveAspectRatio="none"><use href="#mnt-far"/></svg>
+      <svg class="l-mid" viewBox="0 0 1440 180" preserveAspectRatio="none"><use href="#mnt-mid"/></svg>
+      <svg class="l-near" viewBox="0 0 1440 200" preserveAspectRatio="none"><use href="#mnt-near"/></svg>
+      <svg class="l-birds" viewBox="0 0 120 48"><use href="#mnt-birds"/></svg>
+    </div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="no">肆 · 个人作品</span>
+      <h2>个人作品</h2>
+          </div>
+    <div class="works">
+      <div class="work reveal">
+        <div class="img cv-xueling">
+          <span class="tagv">治愈短剧</span>
+          <span class="playbadge">暂不支持观看</span>
+          <div class="wtitle">雪岭狐归</div>
+          <div class="wsub">地方特色 × 动物元素 · 第一话</div>
+        </div>
+        <div class="body">
+          <h3>治愈系短剧《雪岭狐归》</h3>
+          <p class="desc">「地方特色 × 动物元素」系列第一话：长白山雪狐 × 东北民俗。5 分钟完整版含 7 场戏、对白配音与逐句字幕——灵堂守夜、门外有灵、翻箱揭秘、老猎户的话；附 70 秒小红书快剪版。从脚本、分镜到配音成片全流程产出。</p>
+          <div class="links"><span style="font-size:12px;color:#6E675B;background:#EFE7D6;padding:6px 10px;border-radius:8px;letter-spacing:1px">暂不支持观看 · 敬请期待</span></div>
+        </div>
+      </div>
+      <div class="work reveal">
+                <div class="img cv-web">
+          <span class="tagv">Vibe Coding</span>
+          <div class="wtitle">本网站</div>
+          <div class="wsub">Codex · 自然语言 · 从对话到上线</div>
+        </div>
+        <div class="body">
+          <h3>个人网站 · Vibe Coding 作品</h3>
+          <p class="desc">用 Codex 以自然语言把简历「聊」成网站：实习时间轴、作品集、技能抽卡，全程无手工写代码。AI 时代的作品集，本身就是作品。</p>
+          <div class="links"><a href="tel:19058141302">电话联系 ↗</a></div>
+        </div>
+      </div>
+      <div class="work reveal">
+                <div class="img cv-ip">
+          <span class="tagv">从 0 到 1</span>
+          <div class="wtitle">Zoey 快去学习</div>
+          <div class="wsub">小红书考研知识付费 IP</div>
+        </div>
+        <div class="body">
+          <h3>小红书考研知识付费 IP</h3>
+          <p class="desc">「Zoey快去学习」：引流—定制—预订三阶段迭代，3 天收益 5k+，辅导 15+ 人、上岸率 85%，现任新东方签约讲师。</p>
+          <div class="links"><a href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">主页链接 ↗</a></div>
+        </div>
+      </div>
+      <div class="work reveal">
+                <div class="img cv-app">
+          <span class="tagv">产品 App</span>
+          <div class="wtitle">华师文研</div>
+          <div class="wsub">真题 · 思路 · 模拟 · 闯关</div>
+        </div>
+        <div class="body">
+          <h3>「华师文研」知识付费 App</h3>
+          <p class="desc">把考研 IP 产品化：历年真题（2022—2026 全题型）、三科复习思路、考前模拟（限时自测＋答题要点）、题目闯关小游戏（30 关自动存档），内置 Zoey 联系通道。</p>
+          <div class="links"><a href="华师文研/index.html" target="_blank">打开 App ↗</a></div>
+        </div>
+      </div>
+      <div class="work reveal">
+                <div class="img cv-paper">
+          <span class="tagv">学术论文</span>
+          <div class="wtitle">味从身出</div>
+          <div class="wsub">中国文论「味」范畴的具身性考察</div>
+        </div>
+        <div class="body">
+          <h3>论文《味从身出》</h3>
+          <p class="desc">以现象学方法考察中国文论「味」范畴的具身性，8000+ 字，贯通童庆炳文论、梅洛-庞蒂知觉现象学与「身心关系」哲学脉络。</p>
+          <div class="links"><span style="font-size:12px;color:#6E675B;background:#EFE7D6;padding:6px 10px;border-radius:8px;letter-spacing:1px">打磨中 · 敬请期待</span></div>
+        </div>
+      </div>
+      <div class="work reveal">
+                <div class="img cv-ai">
+          <span class="tagv">AI 生图</span>
+          <div class="wtitle">沉舟侧畔千帆过</div>
+          <div class="wsub">文论 × AIGC 视觉实验</div>
+        </div>
+        <div class="body">
+          <h3>AI 生图实验 · 沉舟侧畔千帆过</h3>
+          <p class="desc">用生成式 AI 将古诗意境转译为图像，探索「文论 × AIGC」的视觉表达——技术与审美判断力如何协同，是我持续实践的课题。</p>
+          <div class="links"><a href="javascript:void(0)" onclick="alert('欢迎交流 AIGC 创作方法')">交流 ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+                        <div class="think reveal">
+      <div class="sec-head">
+        <span class="no">产品思考</span>
+        <h2>华师文研 · 产品设计思考</h2>
+        <p class="poem">从洞察到闭环：一个知识付费产品的完整思考</p>
+      </div>
+
+      <div class="sec-sub">运营方法论</div>
+      <div class="method">
+        <div class="m-item">
+          <b>底层逻辑</b>
+          <p>内容是信任入口，信任是转化前提——先给价值，再谈付费。</p>
+        </div>
+        <div class="m-item">
+          <b>平台规则</b>
+          <p>小红书「搜索 + 推荐」双流量：干货靠收藏率进搜索池。</p>
+        </div>
+        <div class="m-item">
+          <b>获客逻辑</b>
+          <p>免费资料做钩子，评论区答疑沉淀信任，私域承接。</p>
+        </div>
+        <div class="m-item">
+          <b>投流逻辑</b>
+          <p>小预算测选题，跑出高赞藏内容再放大，不盲目投放。</p>
+        </div>
+        <div class="m-item">
+          <b>行业看法</b>
+          <p>知识付费从「卖资料」走向「卖服务与结果」：工具化 + 真人交付。</p>
+        </div>
+      </div>
+
+      <div class="sec-sub">产品设计</div>
+      <div class="think-grid">
+        <div class="think-card">
+          <span class="tno">01</span>
+          <h5>为什么做</h5>
+          <p>考研最大痛点是信息过载、路径缺失——真题散落，不知道考什么、怎么背、时间怎么排。要的不是更多资料，而是一条真题导向的复习路径。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">02</span>
+          <h5>目标人群</h5>
+          <p>华南师大文研考研生：一战 / 二战 / 跨考。时间紧、信息焦虑、决策慎重，认「真题 + 路径」，不认铺天盖地的 PDF。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">03</span>
+          <h5>需求验证</h5>
+          <p>小红书真题笔记获赞收藏 1800+，评论区高频「有真题吗」「怎么背」；15+ 位定制学员的使用反馈驱动逐轮迭代。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">04</span>
+          <h5>价值主张</h5>
+          <p>真题（2022—2026 全题型）答「考什么」；五论四坐标统一三科教材答「怎么学」；限时模拟（150 分 / 3 小时）答「怎么练」；闯关 1000 题自动存档答「怎么坚持」。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">05</span>
+          <h5>转化路径</h5>
+          <p>内容种草 → 私域咨询 → 订金预订 → 批改交付 → 复购转介绍。每一步都有明确的信任节点与付费节点，不靠硬推销。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">06</span>
+          <h5>增长闭环</h5>
+          <p>内容引流 → 免费资料与真人答疑建立信任 → 定制与模拟题转化 → 批改与上岸反馈交付 → 85% 上岸率形成口碑 → 学员案例反哺新选题，自增长。</p>
+        </div>
+        <div class="think-card wide">
+          <span class="tno">07</span>
+          <h5>竞争壁垒</h5>
+          <p>同类产品多为「资料堆叠」或「录播课程」。我的差异：真题导向，所有内容锚定 839 真题；体系化，用「五论四坐标」统一三科教材；工具 + 真人，App 解决「练」与「坚持」，真人批改解决「对错与方向」。</p>
+        </div>
+      </div>
+    </div>
+</section>
+<section id="skills" style="background:var(--paper2)">
+    <div class="land" aria-hidden="true">
+      <svg class="l-far" viewBox="0 0 1440 160" preserveAspectRatio="none"><use href="#mnt-far"/></svg>
+      <svg class="l-mid" viewBox="0 0 1440 180" preserveAspectRatio="none"><use href="#mnt-mid"/></svg>
+      <svg class="l-near" viewBox="0 0 1440 200" preserveAspectRatio="none"><use href="#mnt-near"/></svg>
+      <svg class="l-moon" viewBox="0 0 120 120"><use href="#mnt-moon"/></svg>
+    </div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="no">伍 · 技能与爱好</span>
+      <h2>技能与爱好</h2>
+          </div>
+    <div class="deck">
+      <div class="card skill" onclick="this.classList.toggle('flipped')">
+        <div class="inner">
+          <div class="face"><p class="ft">SKILL · 技能</p><span class="cn">内容运营</span><span class="poemline">小红书 · 公众号 · 剪映</span></div>
+          <div class="face back"><p>文案策划 · 排版设计 · 海报与短视频（秀米/剪映/PS）· 小红书实战</p></div>
+        </div>
+      </div>
+      <div class="card skill" onclick="this.classList.toggle('flipped')">
+        <div class="inner">
+          <div class="face"><p class="ft">SKILL · 技能</p><span class="cn">AIGC 工具链</span><span class="poemline">Codex · Claude · Coze</span></div>
+          <div class="face back"><p>Codex / Claude / Coze / 即梦等，理解模型能力边界，Vibe Coding 交付产品</p></div>
+        </div>
+      </div>
+      <div class="card skill" onclick="this.classList.toggle('flipped')">
+        <div class="inner">
+          <div class="face"><p class="ft">SKILL · 技能</p><span class="cn">数据分析</span><span class="poemline">Excel · SQL · 数据看板</span></div>
+          <div class="face back"><p>Excel 熟练 · 基础 SQL · 运营数据看板与复盘，数据驱动内容与产品决策</p></div>
+        </div>
+      </div>
+      <div class="card skill" onclick="this.classList.toggle('flipped')">
+        <div class="inner">
+          <div class="face"><p class="ft">SKILL · 技能</p><span class="cn">产品思维</span><span class="poemline">0 到 1 · 商业闭环</span></div>
+          <div class="face back"><p>需求调研 → MVP → 数据迭代 → 商业闭环，两次从 0 到 1 的完整实践</p></div>
+        </div>
+      </div>
+      <div class="card skill" onclick="this.classList.toggle('flipped')">
+        <div class="inner">
+          <div class="face"><p class="ft">SKILL · 技能</p><span class="cn">文学理论纵深</span><span class="poemline">中西文论 · 现象学</span></div>
+          <div class="face back"><p>中西文论 · 现象学方法 · 审美判断力，论文《味从身出》</p></div>
+        </div>
+      </div>
+      <div class="card hobby" onclick="this.classList.toggle('flipped')">
+        <div class="inner">
+          <div class="face"><p class="ft">HOBBY · 兴趣</p><span class="cn">写作与表达</span><span class="poemline">写作 · 主持 · 辩论</span></div>
+          <div class="face back"><p>写作 · 主持（校主持人大赛 3/200）· 朗诵 · 辩论（校辩论赛冠军）</p></div>
+        </div>
+      </div>
+      <div class="card hobby" onclick="this.classList.toggle('flipped')">
+        <div class="inner">
+          <div class="face"><p class="ft">HOBBY · 兴趣</p><span class="cn">山水与美</span><span class="poemline">茶 · 酒 · 新中式美学</span></div>
+          <div class="face back"><p>中国文论 · 山水诗 · 茶与酒文化 · 禅宗道家 · 新中式美学</p></div>
+        </div>
+      </div>
+      <a class="card hobby" href="photo.html" style="display:block;text-decoration:none">
+        <div class="inner">
+          <div class="face"><p class="ft">HOBBY · 兴趣</p><span class="cn">摄影与生活</span><span class="poemline">山水摄影 · 逛展 · 茶席</span><span class="enter">进入山水页 →</span></div>
+          <div class="face back"><p>山水摄影 · 逛展 · 茶席 · 人间烟火与山色空蒙</p></div>
+        </div>
+      </a>
+      <div class="card hobby" onclick="this.classList.toggle('flipped')">
+        <div class="inner">
+          <div class="face"><p class="ft">HOBBY · 兴趣</p><span class="cn">身心即道场</span><span class="poemline">羽毛球 · 健身 · 尤克里里</span></div>
+          <div class="face back"><p>羽毛球 · 健身 · 穿搭 · 尤克里里——每周球场、日拱一卒的汗水、衣以载道与四弦一唱，身体是长期主义的作品。</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="hint">☾ 点击卡片翻转 · 技能为青，兴趣为赭 · 摄影与生活可进入山水页</p>
+  </div>
+</section>
+<section id="honors">
+    <div class="land" aria-hidden="true">
+      <svg class="l-far" viewBox="0 0 1440 160" preserveAspectRatio="none"><use href="#mnt-far"/></svg>
+      <svg class="l-mid" viewBox="0 0 1440 180" preserveAspectRatio="none"><use href="#mnt-mid"/></svg>
+      <svg class="l-near" viewBox="0 0 1440 200" preserveAspectRatio="none"><use href="#mnt-near"/></svg>
+      <svg class="l-moon" viewBox="0 0 120 120"><use href="#mnt-moon"/></svg>
+    </div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="no">陆 · 荣誉</span>
+      <h2>荣誉印记</h2>
+      <p class="poem">随意春芳歇，王孙自可留。</p>
+    </div>
+    <div class="honors reveal">
+      <span class="honor">国家级 / 校级奖学金 7 次</span>
+      <span class="honor">校主持人大赛 3 / 200</span>
+      <span class="honor">校辩论赛冠军</span>
+      <span class="honor">中华诵写讲大赛省级二等奖</span>
+      <span class="honor">省级、校级学科竞赛奖 4 次</span>
+      <span class="honor">高中语文教师资格证</span>
+      <span class="honor">普通话二甲（90.4）</span>
+      <span class="honor">英语四六级证书</span>
+      <span class="honor">C1 驾照</span>
+    </div>
+  </div>
+</section>
+
+
+
+<footer>
+    <div class="land" aria-hidden="true">
+      <svg class="l-far" viewBox="0 0 1440 160" preserveAspectRatio="none"><use href="#mnt-far"/></svg>
+      <svg class="l-mid" viewBox="0 0 1440 180" preserveAspectRatio="none"><use href="#mnt-mid"/></svg>
+      <svg class="l-near" viewBox="0 0 1440 200" preserveAspectRatio="none"><use href="#mnt-near"/></svg>
+      <svg class="l-moon" viewBox="0 0 120 120"><use href="#mnt-moon"/></svg>
+    </div>
+  <p class="slogan">知 识 是 被 品 尝 的 ， 产 品 是 被 使 用 的 。</p>
+  <p class="poem">随意春芳歇 · 王孙自可留</p>
+    <div class="links">
+    <a href="tel:19058141302">190 5814 1302</a>
+    <a href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">小红书 @Zoey快去学习</a>
+  </div>
+  <p class="copy">郭宇飞 · AI 产品经理 · 2026 ｜ Vibe Coding · Codex ｜ 空山新雨后，天气晚来秋</p>
+</footer>
+
+<div class="modal" id="resumeModal">
+  <div class="modal-card">
+    <span class="close" onclick="closeResume()">×</span>
+    <div class="mhead">
+      <h3>郭宇飞</h3>
+      <p>AI 产品经理 ｜ 杭州 · 上海 · 深圳 ｜ 22 岁 · 可立即到岗 · 可实习三个月以上 ｜ 190 5814 1302</p>
+    </div>
+    <h4>核心优势</h4>
+    <div class="mrow">从 0 到 1 的产品落地：校园快递代取项目，需求调研 → 模式创新 → 10 人团队 → 校内覆盖率 40%、月利润 5k+。<br>
+    内容型产品实战：小红书考研知识付费 IP，完成「引流—定制—预订」三阶段迭代，3 天收益 5k+，辅导 15+ 人、上岸率 85%。<br>
+    数据驱动迭代：Excel + SQL + AIGC 分析后台数据，优化发布时间与标题封面，点赞量提升 50%。<br>
+    AI 时代理论纵深：文艺学硕士，关注 AI 时代审美判断、内容生产与人的发展，熟悉 AIGC 生产的逻辑与边界。</div>
+    <h4>教育背景</h4>
+    <div class="mrow"><b>浙江师范大学</b> · 文艺学学术型硕士（2025.09—2028.06）｜ 研究方向：中国文论与身体美学、AI 时代内容生产的审美与伦理<br>
+    <b>长春理工大学</b> · 汉语言文学学士（2021.09—2025.06）｜ GPA 3.85（前 7%），奖学金 7 次，学科竞赛奖 4 次</div>
+    <h4>实习与项目经历</h4>
+    <div class="mrow">    <b>小红书考研知识付费 IP「Zoey快去学习」</b> · 产品运营（2025.07—至今）｜ 需求调研、MVP、三阶段迭代、数据优化、商业闭环；现任新东方签约考研讲师<br>
+    <b>文学院党委与理论宣传中心</b> · 主任/内容运营（2023.08—2024.08）｜ 公众号粉丝 3260+，内容浏览 22.75 万+，互动 5.04 万+，单篇最高点赞 1104<br>
+    <b>校园快递代取项目</b> · 联合创始人/产品运营（2022.04—2022.07）｜ 10 人团队、覆盖率 40%、月利润 5k+<br>
+    <b>紫薇应用文杂志社新媒体运营部</b> · 负责人（2021.09—2023.05）｜ 稿件 100+、单场活动参与 500+ 人</div>
+    <h4>作品集</h4>
+    <div class="mrow">个人网站（Vibe Coding · Codex）｜ 治愈系短剧《雪岭狐归》（5 分钟完整版 · 对白配音 · 地方特色×动物）｜ 华师文研 App（真题 / 思路 / 模拟 / 闯关）｜ 山水摄影｜ 论文《味从身出》｜ AI 生图实验</div>
+    <h4>技能与证书</h4>
+    <div class="mrow">内容创作（文案/排版/海报/短视频）｜ 数据分析（Excel、基础 SQL）｜ AIGC 工具链（Codex/Claude/Coze/即梦）｜ 英语四六级 · 普通话二甲（90.4）· 高中语文教师资格证 · C1 驾照</div>
+    <div class="mtools">
+      <button class="btn primary" onclick="window.print()">打印 / 存为 PDF</button>
+      <button class="btn ghost" onclick="closeResume()">返回</button>
+    </div>
+  </div>
+</div>
+
+<div class="vmodal" id="videoModal">
+  <span class="x" onclick="closeVideo()">×</span>
+  <div class="vmtabs"><button class="on" onclick="switchVideo('full')">完整版 · 5 分钟</button><button onclick="switchVideo('quick')">快速版 · 70 秒</button></div>
+  <video id="vmVideo" controls playsinline preload="none"></video>
+  <div class="vmcap">《雪岭狐归》· 治愈系短剧 · 地方特色 × 动物 · 第一话</div>
+</div>
+
+
+
+<script>
+
+
+var VMS = {full:['assets/video/雪岭狐归_完整版_网页版.mp4'], quick:['assets/video/雪岭狐归_网页版.mp4']};
+function openVideo(ver){ ver = ver || 'full'; document.getElementById('videoModal').classList.add('open'); switchVideo(ver); }
+function switchVideo(ver){
+  const v = document.getElementById('vmVideo'); v.pause();
+  v.src = VMS[ver][0]; v.currentTime = 0; v.play();
+  document.querySelectorAll('.vmtabs button').forEach(b => b.classList.toggle('on', b.textContent.indexOf(ver === 'full' ? '完整版' : '快速版') > -1));
+}
+function closeVideo(){ document.getElementById('videoModal').classList.remove('open'); document.getElementById('vmVideo').pause(); }
+document.getElementById('videoModal').addEventListener('click', e => { if(e.target === document.getElementById('videoModal')) closeVideo(); });
+
+function toggleContact(e){ e.stopPropagation(); document.getElementById('contactPop').classList.toggle('open'); }
+document.addEventListener('click', function(e){ var p=document.getElementById('contactPop'); if(p && !p.contains(e.target)) p.classList.remove('open'); });
+function openResume(){ document.getElementById('resumeModal').classList.add('open'); }
+function closeResume(){ document.getElementById('resumeModal').classList.remove('open'); }
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ closeResume(); } });
+
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } }), {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
