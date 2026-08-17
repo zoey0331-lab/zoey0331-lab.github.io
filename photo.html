@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="郭宇飞 · 山水摄影：高远、深远、平远，一卷浅绛山水">
+<title>山水 · 摄影｜郭宇飞</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23BC563D'/><text x='16' y='22' font-size='17' fill='%23F7F2E9' text-anchor='middle' font-family='serif'>飞</text></svg>">
+<style>
+:root{
+  --paper:#FBF8F1; --paper2:#F2EDE0; --ink:#2B2A26; --terra:#BC563D;
+  --sage:#4E6B58; --mist:#8FA39B; --line:#E6DCC9; --gold:#B99A5A; --jade:#A9BCB0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);
+  font-family:"Songti SC","STSong","SimSun",serif;line-height:1.9;
+  background-image:radial-gradient(rgba(185,154,90,.04) 1px,transparent 1px);
+  background-size:30px 30px;}
+h1,h2,h3,.kai{font-family:"Kaiti SC","STKaiti","KaiTi",serif;font-weight:600}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1060px;margin:0 auto;padding:0 28px}
+section{padding:96px 0 76px;position:relative}
+.sec-head{margin-bottom:40px}
+.sec-head .no{display:inline-block;font-size:12.5px;letter-spacing:.32em;color:var(--sage);border:1px solid var(--jade);padding:2px 12px;border-radius:2px;margin-bottom:14px}
+.sec-head h2{font-size:29px;letter-spacing:.14em}
+.sec-head .poem{margin-top:8px;font-size:13.5px;color:var(--mist);letter-spacing:.22em}
+.sec-head .en{font-size:10.5px;color:#B7A98F;letter-spacing:.4em;margin-top:2px;text-transform:uppercase}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(251,248,241,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;height:60px;gap:26px}
+nav .brand{font-family:"Kaiti SC","STKaiti",serif;font-size:18px;letter-spacing:.2em;margin-right:auto}
+nav .brand i{display:inline-block;width:22px;height:22px;background:var(--terra);color:var(--paper);font-style:normal;font-size:12px;text-align:center;line-height:22px;border-radius:3px;margin-right:8px;vertical-align:2px}
+nav a{font-size:13.5px;color:#4a463f;letter-spacing:.1em;transition:color .3s}
+nav a:hover{color:var(--terra)}
+@media(max-width:720px){nav a.lbl{display:none}}
+
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 70px}
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-bg svg.hero-scene{width:100%;height:100%;display:block}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(251,248,241,0) 0%,rgba(251,248,241,0) 55%,rgba(251,248,241,.5) 100%)}
+
+/* 山水装饰 · 各分区 */
+.land{position:absolute;left:0;right:0;bottom:0;height:0;pointer-events:none;z-index:0}
+section .wrap{position:relative;z-index:1}
+.land svg{position:absolute;left:0;width:100%;display:block}
+.land .l-far{bottom:0;height:120px;opacity:.6;filter:blur(2.2px)}
+.land .l-mid{bottom:-6px;height:132px;opacity:.72;filter:blur(1.4px)}
+.land .l-near{bottom:-14px;height:148px;opacity:.85;filter:blur(.7px)}
+.land .l-moon{left:auto;right:7%;bottom:122px;width:76px;height:76px}
+.land .l-birds{left:10%;bottom:152px;width:104px;height:42px}
+.land.softer{opacity:.38}
+.land.deep{opacity:.8}
+.hero-inner{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center;position:relative;z-index:2}
+.kicker{font-size:13px;letter-spacing:.44em;color:var(--sage);margin-bottom:18px}
+h1{font-size:62px;letter-spacing:.3em;line-height:1.15}
+.role{font-size:18px;letter-spacing:.12em;margin-top:18px;color:var(--ink)}
+.role b{color:var(--terra)}
+.tagline{margin-top:10px;font-size:13.5px;color:#7a7266;letter-spacing:.16em}
+.meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 2px}
+.meta span{font-size:13px;color:#5d574c;letter-spacing:.12em;padding:0 18px}
+.meta span+span{border-left:1px solid var(--line)}
+.meta b{color:var(--terra);font-weight:600}
+.chips{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+.chips span{font-size:12.5px;border:1px solid var(--line);background:#fffdf8;padding:5px 15px;border-radius:999px;color:#5d574c;letter-spacing:.06em}
+.cta{margin-top:32px;display:flex;gap:38px;flex-wrap:wrap;align-items:center;position:relative}
+.cta-contact{font-size:13px;letter-spacing:.22em;color:var(--sage);border-bottom:1px solid var(--jade);padding:4px 2px;cursor:pointer;transition:color .3s}
+.cta-contact:hover{color:var(--terra)}
+.contact-pop{position:absolute;top:calc(100% + 12px);left:0;display:none;flex-direction:column;gap:4px;background:#fffdf8;border:1px solid var(--line);box-shadow:0 10px 28px rgba(43,42,38,.10);padding:14px 20px;z-index:60;min-width:250px}
+.contact-pop.open{display:flex}
+.contact-pop a{font-size:13.5px;color:var(--ink);letter-spacing:.05em;padding:8px 2px;border-bottom:1px dashed var(--line);display:flex;gap:12px;align-items:baseline;text-decoration:none}
+.contact-pop a:last-child{border-bottom:none}
+.contact-pop a:hover{color:var(--terra)}
+.contact-pop b{color:var(--terra);font-weight:600;font-size:12px;letter-spacing:.2em;min-width:46px}
+.btn{display:inline-block;padding:11px 26px;border:1px solid var(--ink);font-size:14px;letter-spacing:.16em;transition:all .3s;cursor:pointer;background:transparent}
+.btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn.primary:hover{background:var(--terra);border-color:var(--terra)}
+.btn.ghost:hover{background:var(--ink);color:var(--paper)}
+.hero-visual{position:relative;display:flex;justify-content:center}
+.avatar{width:min(280px,66vw);aspect-ratio:3/4;border-radius:8px 8px 42px 8px;overflow:hidden;border:1px solid var(--line);box-shadow:0 12px 36px rgba(43,42,38,.10);position:relative}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.94)}
+.avatar::before{content:"";position:absolute;inset:9px;border:1px solid rgba(251,248,241,.55);border-radius:5px 5px 36px 5px;z-index:2;pointer-events:none}
+.seal{position:absolute;top:-16px;right:-12px;width:50px;height:50px;background:var(--terra);color:var(--paper);font-family:"Kaiti SC","STKaiti",serif;font-size:25px;display:flex;align-items:center;justify-content:center;border-radius:6px;box-shadow:0 6px 14px rgba(188,86,61,.3);z-index:3}
+.vertical{position:absolute;right:-40px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-size:12.5px;letter-spacing:.5em;color:var(--mist);white-space:nowrap}
+@media(max-width:820px){
+  .hero-inner{grid-template-columns:1fr;gap:38px}
+  .hero-visual{order:-1}
+  .vertical{display:none}
+  h1{font-size:42px}
+}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:44px}
+.stat{background:#fffdf8;border:1px solid var(--line);padding:18px 12px;text-align:center}
+.stat b{display:block;font-family:"Kaiti SC","STKaiti",serif;font-size:29px;color:var(--terra);font-weight:600}
+.stat span{font-size:12.5px;color:#7a7266;letter-spacing:.1em}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px}
+.about-grid p{font-size:14.5px;color:#3f3b34;text-indent:2em;margin-bottom:14px}
+.about-quote{border-left:2px solid var(--terra);padding:6px 0 6px 18px;font-family:"Kaiti SC","STKaiti",serif;font-size:16.5px;color:var(--sage);line-height:2}
+.about-list li{list-style:none;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.about-list li b{color:var(--terra);font-weight:600;margin-right:8px}
+@media(max-width:720px){.about-grid{grid-template-columns:1fr}}
+
+.timeline{position:relative;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.tl{position:relative;padding:0 0 36px 0}
+.tl::before{content:"";position:absolute;left:-31px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--paper);border:2px solid var(--terra)}
+.tl .date{display:inline-block;font-size:12.5px;color:var(--terra);border:1px solid var(--line);background:#fffdf8;padding:2px 12px;border-radius:999px;letter-spacing:.1em;margin-bottom:10px}
+.tl h3{font-size:18.5px;letter-spacing:.05em}
+.tl .sub{font-size:13px;color:var(--sage);letter-spacing:.1em;margin:4px 0 9px}
+.tl p{font-size:14px;color:#4a463f;max-width:820px}
+.tl .tag{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+.tl .tag span{font-size:11.5px;color:var(--sage);border:1px solid var(--jade);border-radius:999px;padding:2px 10px}
+
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.work{background:#fffdf8;border:1px solid var(--line);overflow:hidden;transition:transform .35s,box-shadow .35s;display:flex;flex-direction:column}
+.work:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(43,42,38,.08)}
+.work .img{aspect-ratio:4/3;overflow:hidden;position:relative;background:#F5F3EA}
+.work .img::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);transition:transform .6s;filter:saturate(.78) brightness(1.05) contrast(.95)}
+.work .img::after{content:"";position:absolute;inset:0;background:linear-gradient(108deg,rgba(255,253,248,.97) 3%,rgba(255,253,248,.82) 27%,rgba(255,253,248,.42) 57%,rgba(255,253,248,.08) 100%)}
+.work:hover .img::before{transform:scale(1.06)}
+.work .img.cv-xueling::before{background-image:url('assets/covers/cv_xueling.jpg')}
+.work .img.cv-web::before{background-image:url('assets/covers/cv_web.jpg')}
+.work .img.cv-ip::before{background-image:url('assets/covers/cv_ip.jpg')}
+.work .img.cv-app::before{background-image:url('assets/covers/cv_app.jpg')}
+.work .img.cv-paper::before{background-image:url('assets/covers/cv_paper.jpg')}
+.work .img.cv-ai::before{background-image:url('assets/covers/cv_ai.jpg')}
+.work .img>*{position:relative;z-index:1}
+.work .wtitle{position:absolute;left:22px;bottom:36px;font-family:"Kaiti SC","STKaiti",serif;font-size:26px;font-weight:600;letter-spacing:.18em;color:var(--ink)}
+.work .wsub{position:absolute;left:23px;bottom:14px;font-size:11px;letter-spacing:.24em;color:#5d584d}
+.work .img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.work .img video{width:100%;height:100%;object-fit:cover;display:block}
+.playbadge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(20,18,14,.55);border:1px solid rgba(247,242,233,.6);color:#f7f2e9;font-size:12.5px;letter-spacing:.2em;padding:8px 18px;border-radius:999px;pointer-events:none}
+.vmodal{position:fixed;inset:0;z-index:140;background:rgba(18,16,13,.92);display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px}
+.vmodal.open{display:flex}
+.vmodal video{max-height:78vh;max-width:100%;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.vmodal .vmtabs{display:flex;gap:10px;margin-bottom:14px}
+.vmodal .vmtabs button{background:rgba(232,223,207,.14);color:#e8dfcf;border:1px solid rgba(232,223,207,.35);font-family:inherit;font-size:13px;letter-spacing:.18em;padding:7px 18px;border-radius:20px;cursor:pointer}
+.vmodal .vmtabs button.on{background:var(--terra);border-color:var(--terra);color:#fbf8f1}
+.vmodal .vmcap{margin-top:16px;color:#e8dfcf;font-size:13px;letter-spacing:.2em}
+.vmodal .x{position:absolute;top:18px;right:26px;color:#e8dfcf;font-size:30px;cursor:pointer;z-index:2}
+.work:hover .img img{transform:scale(1.04)}
+.work .img .tagv{position:absolute;left:0;top:0;background:var(--terra);color:var(--paper);font-size:11px;letter-spacing:.14em;padding:3px 12px}
+.work .body{padding:17px 20px 20px;display:flex;flex-direction:column;flex:1}
+.work h3{font-size:16.5px;letter-spacing:.05em}
+.work .desc{font-size:13px;color:#6b6458;margin-top:8px;flex:1}
+.work .links{margin-top:13px;display:flex;gap:14px;flex-wrap:wrap}
+.work .links a{font-size:12.5px;color:var(--terra);border-bottom:1px solid var(--line);padding-bottom:2px;letter-spacing:.06em}
+.work .links a:hover{border-color:var(--terra)}
+@media(max-width:820px){.works{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.works{grid-template-columns:1fr}}
+
+.photo-note{font-size:13.5px;color:#7a7266;letter-spacing:.1em;text-align:center;margin-bottom:30px}
+#photo-gallery{scroll-margin-top:96px}
+.photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.photo-card{margin:0;position:relative;overflow:hidden;border:1px solid var(--line);background:#fffdf8}
+.photo-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .6s;filter:saturate(.9)}
+.photo-card:hover img{transform:scale(1.05)}
+.photo-card figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;padding:26px 8px 10px;background:linear-gradient(transparent,rgba(43,42,38,.68));color:var(--paper);font-size:11px;letter-spacing:.24em}
+.photo-card figcaption b{font-family:"Kaiti SC","STKaiti",serif;font-size:16px;font-weight:600;letter-spacing:.3em}
+.photo-card figcaption span{opacity:.85;margin-top:2px}
+@media(max-width:820px){.photo-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.photo-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
+
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.edu{position:relative;overflow:hidden;isolation:isolate;background:#fffdf8;border:1px solid var(--line);padding:30px 28px 26px;transition:box-shadow .4s,border-color .4s}
+.edu::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;opacity:.78;filter:saturate(1.05);transform:scale(1.03);transition:opacity .5s ease,transform .6s ease}
+.edu.bg-a::before{background-image:url('assets/edu_bg1.jpg')}
+.edu.bg-b::before{background-image:url('assets/edu_bg2.jpg')}
+.edu::after{content:"";position:absolute;inset:0;background:linear-gradient(112deg,rgba(251,248,241,.96) 6%,rgba(251,248,241,.72) 40%,rgba(251,248,241,.34) 74%,rgba(251,248,241,.14) 100%)}
+.edu.bg-b::after{background:linear-gradient(68deg,rgba(251,248,241,.96) 6%,rgba(251,248,241,.72) 40%,rgba(251,248,241,.34) 74%,rgba(251,248,241,.14) 100%)}
+.edu:hover{box-shadow:0 14px 30px rgba(60,55,45,.14);border-color:var(--gold)}
+.edu:hover::before{opacity:1;transform:scale(1.05)}
+.edu > *{position:relative;z-index:1}
+.edu .yr{font-size:12.5px;color:var(--terra);letter-spacing:.14em}
+.edu .yr::before{content:"";display:inline-block;width:9px;height:9px;background:var(--terra);margin-right:9px;border-radius:50% 50% 50% 2px;transform:rotate(45deg)}
+.edu .sch::before{content:"·";color:var(--gold);margin-right:8px}
+.edu h3{font-size:18.5px;margin:6px 0 2px}
+.edu .sch{font-size:14px;color:var(--sage);letter-spacing:.1em}
+.edu ul{margin-top:12px;font-size:13.5px;color:#4a463f;list-style:none}
+.edu li{padding:5px 0;border-bottom:1px dashed var(--line)}
+.edu li:last-child{border-bottom:none}
+@media(max-width:720px){.edu-grid{grid-template-columns:1fr}}
+
+.deck{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{perspective:1000px;height:185px;cursor:pointer}
+.card .inner{position:relative;width:100%;height:100%;transition:transform .65s;transform-style:preserve-3d}
+.card.flipped .inner{transform:rotateY(180deg)}
+.card .face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--line);background:#fffdf8;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;text-align:center}
+.card .face.back{transform:rotateY(180deg);background:var(--paper2)}
+.card .face .cn{font-family:"Kaiti SC","STKaiti",serif;font-size:23px;letter-spacing:.1em}
+.card .face .ft{font-size:10.5px;letter-spacing:.3em;color:var(--mist);margin-bottom:10px}
+.card .face.back p{font-family:"Kaiti SC","STKaiti",serif;font-size:14.5px;color:var(--ink);line-height:1.8}
+.card .face.back p a{color:var(--terra);text-decoration:none;border-bottom:1px dashed var(--terra);letter-spacing:.06em;font-size:13px}
+.card.skill .face{border-top:3px solid var(--sage)}
+.card.hobby .face{border-top:3px solid var(--terra)}
+.card .face .poemline{position:absolute;bottom:10px;font-size:10.5px;color:var(--mist);letter-spacing:.2em}
+
+.method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:46px}
+.mcard{background:#fffdf8;border:1px solid var(--line);border-top:3px solid var(--sage);padding:20px 22px 16px}
+.mcard h4{font-family:"Kaiti SC","STKaiti",serif;font-size:17px;color:var(--sage);letter-spacing:.08em;margin-bottom:9px}
+.mcard p{font-size:13.5px;color:#3f3b34;line-height:1.9}
+.think{margin-top:56px;border:1px solid var(--line);background:#fffdf8;padding:26px 24px}
+.think .sec-head{margin-bottom:6px}
+.think-list{display:grid;grid-template-columns:1fr 1fr;gap:16px 30px;margin-top:16px}
+.think-item{border-left:2px solid var(--terra);padding:2px 0 2px 15px}
+.think-item h5{font-family:"Kaiti SC","STKaiti",serif;font-size:15.5px;color:var(--terra);margin-bottom:6px;letter-spacing:.06em}
+.think-item p{font-size:13px;color:#3f3b34;line-height:1.85}
+@media(max-width:720px){.method-grid,.think-list{grid-template-columns:1fr}}
+
+.hint{font-size:12.5px;color:#a29681;text-align:center;margin-top:16px;letter-spacing:.1em}
+@media(max-width:820px){.deck{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.deck{grid-template-columns:1fr}}
+
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.gallery .ph{position:relative;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--line);cursor:zoom-in;background:var(--paper2)}
+.gallery .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.gallery .ph:hover img{transform:scale(1.07)}
+.gallery .ph .cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(43,42,38,.62));color:var(--paper);font-size:10.5px;letter-spacing:.2em;padding:22px 10px 6px;opacity:0;transition:opacity .4s}
+.gallery .ph:hover .cap{opacity:1}
+@media(max-width:820px){.gallery{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.gallery{grid-template-columns:repeat(2,1fr)}}
+
+.honors{display:flex;flex-wrap:wrap;gap:13px;justify-content:center}
+.honor{font-size:13px;border:1px solid var(--line);background:#fffdf8;padding:8px 18px;letter-spacing:.1em;color:#4a463f}
+
+footer{position:relative;border-top:1px solid var(--line);padding:54px 0 40px;text-align:center}
+footer>*:not(.land){position:relative;z-index:1}
+footer .slogan{font-family:"Kaiti SC","STKaiti",serif;font-size:17.5px;letter-spacing:.3em;color:var(--sage)}
+footer .poem{font-size:12.5px;color:var(--mist);letter-spacing:.4em;margin:10px 0 22px}
+footer .links a{margin:0 14px;font-size:13.5px;color:var(--terra);letter-spacing:.1em}
+footer .copy{margin-top:24px;font-size:11.5px;color:#b7a98f;letter-spacing:.12em}
+
+.wave{display:block;width:100%;height:100px;margin:-50px 0 0;pointer-events:none;position:relative;z-index:1}
+.wave path{fill:none}
+@media(max-width:720px){.wave{height:36px}}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+.reveal.on{opacity:1;transform:none}
+
+.modal{position:fixed;inset:0;z-index:120;background:rgba(43,42,38,.55);display:none;align-items:flex-start;justify-content:center;padding:5vh 18px;overflow:auto}
+.modal.open{display:flex}
+.modal-card{background:var(--paper);max-width:820px;width:100%;padding:44px 46px;box-shadow:0 30px 80px rgba(0,0,0,.3);position:relative}
+.modal-card .close{position:absolute;top:14px;right:18px;font-size:22px;cursor:pointer;color:#7a7266}
+.modal-card .mhead{text-align:center;margin-bottom:22px}
+.modal-card .mhead h3{font-size:26px;letter-spacing:.2em}
+.modal-card .mhead p{font-size:12.5px;color:#7a7266;letter-spacing:.16em;margin-top:4px}
+.modal-card h4{font-size:15px;color:var(--terra);letter-spacing:.12em;margin:20px 0 8px;border-bottom:1px solid var(--line);padding-bottom:5px}
+.modal-card .mrow{font-size:13.5px;line-height:1.8;color:#3f3b34}
+.modal-card .mrow b{color:var(--ink)}
+.mtools{position:sticky;bottom:0;background:var(--paper);padding:12px 0;display:flex;gap:12px;justify-content:center}
+
+.lightbox{position:fixed;inset:0;z-index:130;background:rgba(20,18,14,.9);display:none;align-items:center;justify-content:center;flex-direction:column;padding:24px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw;max-height:78vh;border:1px solid rgba(247,242,233,.25)}
+.lightbox .lbcap{margin-top:14px;color:#e8dfcf;font-size:13px;letter-spacing:.2em}
+.lightbox .x{position:absolute;top:18px;right:26px;color:#e8dfcf;font-size:30px;cursor:pointer;z-index:2}
+.lightbox .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(247,242,233,.12);border:1px solid rgba(247,242,233,.35);color:#e8dfcf;font-size:34px;width:52px;height:64px;cursor:pointer;z-index:2;line-height:1}
+.lightbox .lb-nav.prev{left:20px}.lightbox .lb-nav.next{right:20px}
+.lightbox .lb-nav:hover{background:rgba(188,86,61,.55)}
+
+@media print{
+  nav,footer,.cta,.mtools,.modal .close,.hint{display:none!important}
+  body{background:#fff}
+  .modal{position:static;display:block;background:#fff;padding:0}
+  .modal-card{box-shadow:none;max-width:100%;padding:0;background:#fff}
+  section:not(.resume-sec){display:none}
+  .resume-sec{display:block!important}
+}
+
+.back-home{text-align:center;margin-top:46px}
+.back-home a{font-size:13.5px;color:var(--sage);letter-spacing:.2em;border-bottom:1px solid var(--jade);padding:4px 2px}
+.back-home a:hover{color:var(--terra)}
+@media(max-width:720px){nav .lbl{display:none}}
+</style>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-far" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E3E9E1" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#E3E9E1" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g-mid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D4DDD3" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#D4DDD3" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g-near" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C4D1C7" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#C4D1C7" stop-opacity="0"/>
+    </linearGradient>
+    <symbol id="mnt-far" viewBox="0 0 1440 160"><path d="M0 152 C 140 92 240 96 360 66 C 500 30 620 74 780 52 C 900 36 1020 70 1160 50 C 1290 32 1380 66 1440 52 L 1440 160 L 0 160 Z" fill="url(#g-far)"/></symbol>
+    <symbol id="mnt-mid" viewBox="0 0 1440 180"><path d="M0 172 C 160 116 300 122 460 88 C 620 56 780 112 940 84 C 1080 62 1210 104 1440 82 L 1440 180 L 0 180 Z" fill="url(#g-mid)"/></symbol>
+    <symbol id="mnt-near" viewBox="0 0 1440 200"><path d="M0 192 C 220 138 420 150 640 116 C 840 86 1060 138 1440 112 L 1440 200 L 0 200 Z" fill="url(#g-near)"/></symbol>
+    <symbol id="mnt-moon" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="#FDFCF7" opacity=".4"/><circle cx="60" cy="60" r="23" fill="#FBF8EE" opacity=".95"/></symbol>
+    <symbol id="mnt-birds" viewBox="0 0 120 48"><g stroke="#8A9489" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".5"><path d="M8 30 q6 -7 12 0 M34 22 q6 -7 12 0 M60 34 q6 -7 12 0 M86 26 q6 -7 12 0"/></g></symbol>
+  </defs>
+</svg>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><i>飞</i><a href="index.html" style="color:inherit">郭宇飞</a></div>
+    <a href="index.html#about" class="lbl">关于我</a>
+    <a href="index.html#education" class="lbl">教育背景</a>
+    <a href="index.html#experience" class="lbl">工作经历</a>
+    <a href="index.html#works">个人作品</a>
+    <a href="index.html#skills">技能与爱好</a>
+    <a href="index.html#honors" class="lbl">荣誉印记</a>
+  </div>
+</nav>
+
+<main>
+  <section id="photo" style="padding-top:130px">
+    <div class="land softer" aria-hidden="true">
+      <svg class="l-far" viewBox="0 0 1440 160" preserveAspectRatio="none"><use href="#mnt-far"/></svg>
+      <svg class="l-mid" viewBox="0 0 1440 180" preserveAspectRatio="none"><use href="#mnt-mid"/></svg>
+      <svg class="l-near" viewBox="0 0 1440 200" preserveAspectRatio="none"><use href="#mnt-near"/></svg>
+      <svg class="l-moon" viewBox="0 0 120 120"><use href="#mnt-moon"/></svg>
+    </div>
+    <div class="wrap">
+      <div class="sec-head" style="text-align:center;margin-bottom:30px">
+        <span class="no">山水 · 摄影</span>
+        <h2 style="font-size:34px">山水 · 摄影</h2>
+        <p class="en">Shanshui · Three Distances</p>
+        <p class="poem" style="margin-top:14px">自山下而仰山巅，谓之高远 · 自山前而窥山后，谓之深远 · 自近山而望远山，谓之平远</p>
+      </div>
+      <p class="photo-note reveal">所选皆山川草木，按郭熙「三远」布列——高远仰山、深远窥谷、平远见天，色调统一如一卷浅绛山水。「远山长，云山乱，晓山青。」</p>
+      <div class="photo-grid">
+            <figure class="photo-card reveal">
+        <img src="assets/photos/sc_07.jpg" alt="苍翠">
+        <figcaption><b>苍翠</b><span>高远</span></figcaption>
+      </figure>
+      <figure class="photo-card reveal">
+        <img src="assets/photos/sc_04.jpg" alt="层峦">
+        <figcaption><b>层峦</b><span>高远</span></figcaption>
+      </figure>
+      <figure class="photo-card reveal">
+        <img src="assets/photos/sc_09.jpg" alt="暮山">
+        <figcaption><b>暮山</b><span>高远</span></figcaption>
+      </figure>
+      <figure class="photo-card reveal">
+        <img src="assets/photos/sc_01.jpg" alt="黛嶂">
+        <figcaption><b>黛嶂</b><span>高远</span></figcaption>
+      </figure>
+      <figure class="photo-card reveal">
+        <img src="assets/photos/sc_12.jpg" alt="晓雾">
+        <figcaption><b>晓雾</b><span>深远</span></figcaption>
+      </figure>
+      <figure class="photo-card reveal">
+        <img src="assets/photos/sc_11.jpg" alt="林壑">
+        <figcaption><b>林壑</b><span>深远</span></figcaption>
+      </figure>
+      <figure class="photo-card reveal">
+        <img src="assets/photos/sc_06.jpg" alt="凝碧">
+        <figcaption><b>凝碧</b><span>深远</span></figcaption>
+      </figure>
+      <figure class="photo-card reveal">
+        <img src="assets/photos/sc_03.jpg" alt="幽谷">
+        <figcaption><b>幽谷</b><span>深远</span></figcaption>
+      </figure>
+      <figure class="photo-card reveal">
+        <img src="assets/photos/sc_10.jpg" alt="天光">
+        <figcaption><b>天光</b><span>平远</span></figcaption>
+      </figure>
+      <figure class="photo-card reveal">
+        <img src="assets/photos/sc_08.jpg" alt="新晴">
+        <figcaption><b>新晴</b><span>平远</span></figcaption>
+      </figure>
+      <figure class="photo-card reveal">
+        <img src="assets/photos/sc_02.jpg" alt="空翠">
+        <figcaption><b>空翠</b><span>平远</span></figcaption>
+      </figure>
+      <figure class="photo-card reveal">
+        <img src="assets/photos/sc_05.jpg" alt="晴岚">
+        <figcaption><b>晴岚</b><span>平远</span></figcaption>
+      </figure>      </div>
+      <p class="back-home"><a href="index.html#skills">← 返回首页 · 技能与爱好</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+    <div class="land" aria-hidden="true">
+      <svg class="l-far" viewBox="0 0 1440 160" preserveAspectRatio="none"><use href="#mnt-far"/></svg>
+      <svg class="l-mid" viewBox="0 0 1440 180" preserveAspectRatio="none"><use href="#mnt-mid"/></svg>
+      <svg class="l-near" viewBox="0 0 1440 200" preserveAspectRatio="none"><use href="#mnt-near"/></svg>
+      <svg class="l-moon" viewBox="0 0 120 120"><use href="#mnt-moon"/></svg>
+    </div>
+  <p class="slogan">知 识 是 被 品 尝 的 ， 产 品 是 被 使 用 的 。</p>
+    <div class="links">
+    <a href="tel:19058141302">190 5814 1302</a>
+    <a href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">小红书 @Zoey快去学习</a>
+  </div>
+  <p class="copy">郭宇飞 · AI 产品经理 · 2026 ｜ Vibe Coding · Codex ｜ 空山新雨后，天气晚来秋</p>
+</footer>
+
+</body>
+</html>
