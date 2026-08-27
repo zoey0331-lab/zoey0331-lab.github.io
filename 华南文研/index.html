@@ -158,6 +158,7 @@ a{color:inherit;text-decoration:none}
 .dock .qb-item:first-child{border-left:none}
 .dock .qb-item b{display:block;font-size:14px;letter-spacing:3px;color:var(--ink);font-weight:700}
 .dock .qb-item span{display:block;font-size:10.5px;color:var(--mist);margin-top:3px;letter-spacing:1px}
+.dock .qb-item .qb-ico{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:12px;margin-bottom:4px}
 
 /* 通用 */
 .hint{text-align:center;font-size:11px;color:var(--ink2);letter-spacing:1px;padding:6px 0 2px;opacity:.8}
@@ -200,8 +201,8 @@ a{color:inherit;text-decoration:none}
   <div class="card" data-page="zz"><div class="no">闯</div>
     <div class="info"><b>题目闯关</b><p>章节刷题 1200+ 题 · 真题闯关 · 连击加分 · 错题本</p></div>
     <div class="arr">›</div></div>
-  <div class="card" data-page="dk"><div class="no">学</div>
-    <div class="info"><b>学习打卡</b><p>每日打卡 · 连续天数 · 进度可视化 · 使用统计</p></div>
+  <div class="card" data-page="gh"><div class="no">规</div>
+    <div class="info"><b>规划指导</b><p>初试规划 · 模拟面试 · 调剂指导 · 上岸情况</p></div>
     <div class="arr">›</div></div>
 </div>
 
@@ -240,10 +241,10 @@ a{color:inherit;text-decoration:none}
   <div id="panel-tz"></div>
 </section>
 
-<!-- 学习打卡 -->
-<section class="page" id="page-dk">
-  <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>学习打卡</b><span>坚持 · 连续 · 复盘</span></div>
-  <div id="panel-dk"></div>
+<!-- 规划指导 -->
+<section class="page" id="page-gh">
+  <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>规划指导</b><span>Zoey 学姐 · 全程陪伴</span></div>
+  <div id="panel-gh"></div>
 </section>
 
 <!-- 我的 · 错题总结 -->
@@ -267,7 +268,7 @@ a{color:inherit;text-decoration:none}
 <!-- 底部联系栏 -->
 <footer class="dock">
   <div class="quickbar">
-    <div class="qb-item" onclick="openPage('dk')"><b>打卡</b><span>每月学习打卡</span></div>
+    <div class="qb-item" onclick="openPage('gh')"><span class="qb-ico" style="background:#4E6B58;color:#FBF8F1">规</span><b>规划</b><span>规划指导</span></div>
     <div class="qb-item" onclick="openPage('me')"><b>我的</b><span>错题总结</span></div>
     <div class="qb-item" onclick="openPage('re')"><b>续费</b><span>36.6/月 · 180/年</span></div>
     <div class="qb-item" onclick="openPage('sh')"><b>分享</b><span>用户经验</span></div>
@@ -277,7 +278,7 @@ a{color:inherit;text-decoration:none}
     <a class="tel" id="telBtn" href="tel:19058141302">✆ 电话联系我</a>
     <a class="xhs" href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">📕 小红书主页</a>
   </div>
-  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v2.9.1 数据更新 2026.08</div>
+  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v3.0.0 数据更新 2026.08</div>
 </footer>
 
 <script src="qbank.js"></script>
@@ -770,7 +771,7 @@ function renderMK(){
   }).join("");
 }
 
-renderZT(); renderSK(); renderMK(); renderZZ(); renderTZ(); renderCheck(); renderMe(); renderRe(); renderSh();
+renderZT(); renderSK(); renderMK(); renderZZ(); renderTZ(); renderGh(); renderMe(); renderRe(); renderSh();
 
 /* ================= 使用埋点 ================= */
 const EVKEY = "hszy_ev_";
@@ -780,47 +781,28 @@ function trackEv(name){
   try{ localStorage.setItem(EVKEY, JSON.stringify(ev)); }catch(e){}
 }
 
-/* ================= 学习打卡 ================= */
-const CHECKKEY = "hszy_check_";
-function checkLoad(){
-  try{ const d = JSON.parse(localStorage.getItem(CHECKKEY));
-    if(d && d.total != null) return d; }catch(e){}
-  return {last:"", streak:0, total:0, dates:[]};
-}
-function checkSave(s){ try{ localStorage.setItem(CHECKKEY, JSON.stringify(s)); }catch(e){} }
+/* ================= 规划指导 ================= */
 function todayStr(){ const d = new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
-function renderCheck(){
-  const s = checkLoad(), t = todayStr();
-  const done = s.dates.indexOf(t) >= 0;
-  let html = '<div class="note">每日打卡 · 连续 <b>'+(s.streak||0)+'</b> 天 · 累计 <b>'+(s.total||0)+'</b> 天</div>';
-  html += '<div style="background:#F1EDE2;border:1px solid #D9D2C2;border-radius:10px;padding:26px 20px;text-align:center;margin:12px 0">';
-  html += '<div style="font-size:28px;letter-spacing:3px;color:#2F2B26">'+(done?'今日已打卡 ✓':'今日未打卡')+'</div>';
-  html += '<div style="color:#8A8578;font-size:13px;margin-top:10px">连续 '+(s.streak||0)+' 天 · 累计 '+(s.total||0)+' 天</div>';
-  html += !done
-    ? '<button class="gbtn" style="margin-top:16px" onclick="doCheck()">今日打卡</button>'
-    : '<div style="color:#3F5C4B;font-size:13px;margin-top:16px">明日再来，坚持就是上岸</div>';
-  html += '</div>';
-  const dots = [];
-  for(let i=29;i>=0;i--){
-    const d = new Date(); d.setDate(d.getDate()-i);
-    const ds = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-    dots.push('<span title="'+ds+'" style="display:inline-block;width:10px;height:10px;border-radius:2px;margin:3px;background:'+(s.dates.indexOf(ds)>=0?'#3F5C4B':'#E4DDCB')+'"></span>');
-  }
-  html += '<div style="text-align:center;margin-top:6px">'+dots.join("")+'</div><div style="text-align:center;color:#8A8578;font-size:12px;margin-top:6px">近 30 天打卡</div>';
-  const ev = evLoad();
-  html += '<div class="note" style="margin-top:18px">使用统计：真题 '+(ev.zt||0)+' 次 · 思路 '+(ev.sk||0)+' 次 · 模拟 '+(ev.mk||0)+' 次 · 闯关 '+(ev.zz||0)+' 次 · 拓展 '+(ev.tz||0)+' 次 · 打卡 '+(ev.dk||0)+' 次</div>';
-  el("panel-dk").innerHTML = html;
+function renderGh(){
+  const posts = [
+    {n:"一", t:"初试规划", d:"定制化初试规划：文学理论 / 古代文论 / 文学评论三大部分，两个月一期、细化到每周，月末复盘。规划前先了解你的本科、绩点与是否一战，资料按背诵进度动态调整。", link:{label:"查看「规划带背」笔记 ↗", url:"https://xhslink.cn/m/AjzR7MGuqz2", ext:true}},
+    {n:"二", t:"模拟面试", d:"考前仿真面试 + 真题模拟批改：10 月中起每周 2 道左右真题模拟与文学评论批改，11—12 月整套真题模拟 2 次并逐题批改给意见。", link:{label:"电话咨询 19058141302", url:"tel:19058141302", ext:false}},
+    {n:"三", t:"调剂指导", d:"复试与调剂支持：复试指导、调剂信息与策略、个人简历打磨。考试前的问题随时解答。", link:{label:"电话咨询 19058141302", url:"tel:19058141302", ext:false}},
+    {n:"四", t:"上岸情况", d:"「学姐，我上岸了」——从真题拆解到考前模拟批改，见证每一个上岸时刻。", link:{label:"打开上岸笔记 ↗", url:"https://www.xiaohongshu.com/discovery/item/6a8028f20000000028006809?source=webshare&xhsshare=pc_web&xsec_token=ABQ2N8CQz1tEmC-h3eeIUjCtBmXMEy4ID6rIVBAfLeZr4=&xsec_source=pc_share", ext:true}}
+  ];
+  let html = '<div class="note">规划指导 · Zoey 学姐全程陪伴：初试规划 / 模拟面试 / 调剂指导 / 上岸情况</div>';
+  html += posts.map((p,i)=>'<div style="background:#fffdf8;border:1px solid #D9D2C2;border-radius:12px;padding:14px;margin:10px 0">' +
+    '<div onclick="toggleGh('+i+')" style="display:flex;align-items:center;gap:10px;cursor:pointer">' +
+    '<span style="flex:none;width:30px;height:30px;border-radius:8px;background:#4E6B58;color:#FBF8F1;display:flex;align-items:center;justify-content:center;font-size:14px">'+p.n+'</span>' +
+    '<b style="flex:1;font-size:15px;letter-spacing:2px">'+p.t+'</b><span style="color:#8FA39B;font-size:16px">›</span></div>' +
+    '<div id="ghd'+i+'" style="display:none;margin-top:10px;border-top:1px dashed #E6DCC9;padding-top:10px">' +
+    '<div style="font-size:12.5px;color:#6B6457;line-height:1.9">'+p.d+'</div>' +
+    '<div style="margin-top:10px"><a class="gbtn" href="'+p.link.url+'"'+(p.link.ext?' target="_blank"':'')+' style="text-decoration:none;display:inline-block">'+p.link.label+'</a></div></div></div>').join("");
+  el("panel-gh").innerHTML = html;
 }
-function doCheck(){
-  const s = checkLoad(), t = todayStr();
-  if(s.dates.indexOf(t) >= 0) return;
-  const y = new Date(); y.setDate(y.getDate()-1);
-  const ys = y.getFullYear()+"-"+String(y.getMonth()+1).padStart(2,"0")+"-"+String(y.getDate()).padStart(2,"0");
-  s.streak = (s.last === ys) ? (s.streak||0)+1 : 1;
-  s.last = t; s.total = (s.total||0)+1;
-  s.dates.push(t);
-  checkSave(s); trackEv("dk");
-  renderCheck();
+function toggleGh(i){
+  const d = document.getElementById("ghd"+i);
+  if(d) d.style.display = d.style.display === "none" ? "block" : "none";
 }
 
 /* ================= 错题本导出 ================= */
