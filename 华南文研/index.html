@@ -160,6 +160,12 @@ a{color:inherit;text-decoration:none}
 </head>
 <body>
 
+<div id="renewBanner" style="display:none;position:fixed;top:0;left:0;right:0;background:#BC563D;color:#FBF9F2;text-align:center;padding:10px 16px;font-size:13px;z-index:9998;letter-spacing:1px">
+  本期内资料将于 2026-11-25 到期 · 续费 66 元/期，联系 Zoey：
+  <a href="tel:19058141302" style="color:#fff;text-decoration:underline">电话 19058141302</a>
+  <span style="cursor:pointer;margin-left:12px" onclick="document.getElementById('renewBanner').style.display='none'">✕ 关闭</span>
+</div>
+
 <header class="hero">
   <svg class="mnt" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0 120 L180 40 L320 95 L520 20 L700 88 L880 34 L1080 96 L1240 46 L1440 100 L1440 120 Z" fill="#C9D6CD" opacity=".75"/>
@@ -188,6 +194,9 @@ a{color:inherit;text-decoration:none}
     <div class="arr">›</div></div>
   <div class="card" data-page="zz"><div class="no">闯</div>
     <div class="info"><b>题目闯关</b><p>章节刷题 1200+ 题 · 真题闯关 · 连击加分 · 错题本</p></div>
+    <div class="arr">›</div></div>
+  <div class="card" data-page="dk"><div class="no">学</div>
+    <div class="info"><b>学习打卡</b><p>每日打卡 · 连续天数 · 进度可视化 · 使用统计</p></div>
     <div class="arr">›</div></div>
 </div>
 
@@ -226,6 +235,12 @@ a{color:inherit;text-decoration:none}
   <div id="panel-tz"></div>
 </section>
 
+<!-- 学习打卡 -->
+<section class="page" id="page-dk">
+  <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>学习打卡</b><span>坚持 · 连续 · 复盘</span></div>
+  <div id="panel-dk"></div>
+</section>
+
 <!-- 底部联系栏 -->
 <footer class="dock">
   <div class="nm">Zoey <i>·</i> 华南文研</div>
@@ -233,7 +248,7 @@ a{color:inherit;text-decoration:none}
     <a class="tel" id="telBtn" href="tel:19058141302">✆ 电话联系我</a>
     <a class="xhs" href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">📕 小红书主页</a>
   </div>
-  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v2.6.0 数据更新 2026.08</div>
+  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v2.8.0 数据更新 2026.08</div>
 </footer>
 
 <script src="qbank.js"></script>
@@ -478,7 +493,7 @@ function renderZZ(){
     '<div class="panel on" id="bk-panel"></div>' +
     '<div class="panel" id="panel-zzsub"><div class="subtabs" id="stab-zzsub"></div>'+
       SUBJECTS.map((sub,i)=>'<div class="panel'+(i===0?" on":"")+'" id="zzpanel-'+i+'">'+zzBody(i)+'</div>').join("")+'</div>' +
-    '<div class="panel" id="zzpanel-wrong">'+wrongBody()+'</div>';
+    '<div class="panel" id="zzpanel-wrong"><div style="text-align:center;margin-bottom:12px"><button class="gbtn" onclick="exportWrongs()">导出错题（打印 / PDF）</button></div>'+wrongBody()+'</div>';
   renderTabs("stab-zzsub", SUBJECTS, 0);
   renderBK();
 }
@@ -631,7 +646,7 @@ function resetZZ(i, hard){
 /* ================= 渲染逻辑 ================= */
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 function el(id){return document.getElementById(id)}
-function openPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));el("page-"+id).classList.add("on");el("home").style.display="none";window.scrollTo(0,0)}
+function openPage(id){trackEv(id);document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));el("page-"+id).classList.add("on");el("home").style.display="none";window.scrollTo(0,0)}
 function goHome(){document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));el("home").style.display="";window.scrollTo(0,0)}
 document.querySelectorAll(".card").forEach(c=>c.addEventListener("click",()=>openPage(c.dataset.page)));
 
@@ -726,23 +741,126 @@ function renderMK(){
   }).join("");
 }
 
-renderZT(); renderSK(); renderMK(); renderZZ(); renderTZ();
+renderZT(); renderSK(); renderMK(); renderZZ(); renderTZ(); renderCheck();
+
+/* ================= 使用埋点 ================= */
+const EVKEY = "hszy_ev_";
+function evLoad(){ try{ return JSON.parse(localStorage.getItem(EVKEY)) || {}; }catch(e){ return {}; } }
+function trackEv(name){
+  const ev = evLoad(); ev[name] = (ev[name]||0)+1;
+  try{ localStorage.setItem(EVKEY, JSON.stringify(ev)); }catch(e){}
+}
+
+/* ================= 学习打卡 ================= */
+const CHECKKEY = "hszy_check_";
+function checkLoad(){
+  try{ const d = JSON.parse(localStorage.getItem(CHECKKEY));
+    if(d && d.total != null) return d; }catch(e){}
+  return {last:"", streak:0, total:0, dates:[]};
+}
+function checkSave(s){ try{ localStorage.setItem(CHECKKEY, JSON.stringify(s)); }catch(e){} }
+function todayStr(){ const d = new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+function renderCheck(){
+  const s = checkLoad(), t = todayStr();
+  const done = s.dates.indexOf(t) >= 0;
+  let html = '<div class="note">每日打卡 · 连续 <b>'+(s.streak||0)+'</b> 天 · 累计 <b>'+(s.total||0)+'</b> 天</div>';
+  html += '<div style="background:#F1EDE2;border:1px solid #D9D2C2;border-radius:10px;padding:26px 20px;text-align:center;margin:12px 0">';
+  html += '<div style="font-size:28px;letter-spacing:3px;color:#2F2B26">'+(done?'今日已打卡 ✓':'今日未打卡')+'</div>';
+  html += '<div style="color:#8A8578;font-size:13px;margin-top:10px">连续 '+(s.streak||0)+' 天 · 累计 '+(s.total||0)+' 天</div>';
+  html += !done
+    ? '<button class="gbtn" style="margin-top:16px" onclick="doCheck()">今日打卡</button>'
+    : '<div style="color:#3F5C4B;font-size:13px;margin-top:16px">明日再来，坚持就是上岸</div>';
+  html += '</div>';
+  const dots = [];
+  for(let i=29;i>=0;i--){
+    const d = new Date(); d.setDate(d.getDate()-i);
+    const ds = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    dots.push('<span title="'+ds+'" style="display:inline-block;width:10px;height:10px;border-radius:2px;margin:3px;background:'+(s.dates.indexOf(ds)>=0?'#3F5C4B':'#E4DDCB')+'"></span>');
+  }
+  html += '<div style="text-align:center;margin-top:6px">'+dots.join("")+'</div><div style="text-align:center;color:#8A8578;font-size:12px;margin-top:6px">近 30 天打卡</div>';
+  const ev = evLoad();
+  html += '<div class="note" style="margin-top:18px">使用统计：真题 '+(ev.zt||0)+' 次 · 思路 '+(ev.sk||0)+' 次 · 模拟 '+(ev.mk||0)+' 次 · 闯关 '+(ev.zz||0)+' 次 · 拓展 '+(ev.tz||0)+' 次 · 打卡 '+(ev.dk||0)+' 次</div>';
+  el("panel-dk").innerHTML = html;
+}
+function doCheck(){
+  const s = checkLoad(), t = todayStr();
+  if(s.dates.indexOf(t) >= 0) return;
+  const y = new Date(); y.setDate(y.getDate()-1);
+  const ys = y.getFullYear()+"-"+String(y.getMonth()+1).padStart(2,"0")+"-"+String(y.getDate()).padStart(2,"0");
+  s.streak = (s.last === ys) ? (s.streak||0)+1 : 1;
+  s.last = t; s.total = (s.total||0)+1;
+  s.dates.push(t);
+  checkSave(s); trackEv("dk");
+  renderCheck();
+}
+
+/* ================= 错题本导出 ================= */
+function exportWrongs(){
+  const rows = [];
+  SUBJECTS.concat(bkMods()).forEach(function(sub){
+    getWrongs(sub).forEach(function(w){ rows.push([sub, w.q, w.ok]); });
+  });
+  if(!rows.length){ alert("暂无错题可导出，先去闯关练几题吧～"); return; }
+  const w = window.open("", "_blank");
+  w.document.write('<html><head><meta charset="utf-8"><title>华南文研 · 错题本</title>'+
+    '<style>body{font-family:"PingFang SC","Heiti SC",sans-serif;color:#222;padding:32px;max-width:720px;margin:0 auto}'+
+    'h1{font-size:20px;letter-spacing:2px}.it{page-break-inside:avoid;border-bottom:1px dashed #ccc;padding:12px 0}'+
+    '.q{font-size:15px;margin:4px 0}.a{font-size:13px;color:#3F5C4B;margin:4px 0}.sub{color:#888;font-size:12px}</style></head><body>'+
+    '<h1>华南文研 · 错题本（'+rows.length+' 道）</h1><p style="color:#888">导出时间：'+todayStr()+' · 打印或另存为 PDF 复盘</p>');
+  rows.forEach(function(r){
+    w.document.write('<div class="it"><div class="sub">'+esc(r[0])+'</div><div class="q">'+esc(r[1])+'</div><div class="a">✓ '+esc(r[2])+'</div></div>');
+  });
+  w.document.write('</body></html>');
+  w.document.close();
+  setTimeout(function(){ w.focus(); w.print(); }, 300);
+  trackEv("export");
+}
+
+/* ================= 到期续费 ================= */
+const RENEWKEY = "hszy_renew_";
+function currentEnd(){
+  try{ const d = localStorage.getItem(RENEWKEY); if(d) return new Date(d); }catch(e){}
+  return new Date('2026-11-25T23:59:59+08:00');
+}
+function tryRenew(){
+  const code = (document.getElementById("renewCode")||{}).value || "";
+  if(code.trim().toUpperCase() === "HN2026"){
+    const nd = new Date(); nd.setDate(nd.getDate() + 93);
+    try{ localStorage.setItem(RENEWKEY, nd.toISOString()); }catch(e){}
+    document.getElementById("expiredMask").style.display = "none";
+    trackEv("renew");
+    alert("续费成功！有效期至 " + nd.getFullYear()+"-"+String(nd.getMonth()+1).padStart(2,"0")+"-"+String(nd.getDate()).padStart(2,"0") + "，感谢信任。");
+  }else{
+    alert("续费码不正确，请联系 Zoey 获取（电话 19058141302）。");
+  }
+}
 </script>
 <div id="expiredMask" style="display:none;position:fixed;inset:0;background:#F7F3EA;z-index:9999;text-align:center;padding:90px 30px;">
   <div style="color:#BC563D;font-size:16px;letter-spacing:3px;font-weight:700;">Zoey 印</div>
   <div style="font-size:22px;font-weight:700;margin-top:18px;color:#2F2B26;">免费使用期已结束</div>
   <div style="font-size:14px;color:#6E675B;margin-top:14px;line-height:1.9;">
-    本期内容免费使用至 2026-11-25。<br>
-    如需续期或定制复习规划，请联系 Zoey：<br>
+    续费 66 元 / 期（3 个月），联系 Zoey 获取续费码：<br>
     电话 19058141302 · 小红书 @Zoey 快去学习
   </div>
-  <button onclick="location.href='tel:19058141302'" style="margin-top:26px;background:#3F5C4B;color:#FBF9F2;border:none;border-radius:8px;padding:12px 30px;font-size:14px;letter-spacing:1px;">拨打咨询</button>
+  <button onclick="location.href='tel:19058141302'" style="margin-top:22px;background:#3F5C4B;color:#FBF9F2;border:none;border-radius:8px;padding:12px 30px;font-size:14px;letter-spacing:1px;">电话续费咨询</button>
+  <div style="margin-top:26px;padding-top:22px;border-top:1px dashed #D9D2C2">
+    <input id="renewCode" placeholder="输入 Zoey 提供的续费码" style="width:240px;max-width:80%;padding:11px 14px;border:1px solid #C9BFAA;border-radius:8px;font-size:14px;background:#fffdf8;text-align:center;letter-spacing:2px"/>
+    <button onclick="tryRenew()" style="margin-left:10px;background:#BC563D;color:#fff;border:none;border-radius:8px;padding:11px 22px;font-size:14px;letter-spacing:1px;">解锁</button>
+  </div>
+  <div style="margin-top:16px;font-size:12px;color:#8A8578">续费后有效期延长 3 个月 · 定制规划与批改请私信咨询</div>
 </div>
 <script>
 (function(){
-  var end = new Date('2026-11-25T23:59:59+08:00');
-  if (new Date().getTime() > end.getTime()) {
+  var end = (typeof currentEnd === "function") ? currentEnd() : new Date('2026-11-25T23:59:59+08:00');
+  var now = new Date().getTime();
+  if (now > end.getTime()) {
     document.getElementById('expiredMask').style.display = 'block';
+  } else {
+    var days = Math.ceil((end.getTime() - now) / 86400000);
+    if (days <= 7) {
+      var b = document.getElementById('renewBanner');
+      if (b) b.style.display = 'block';
+    }
   }
 })();
 </script>

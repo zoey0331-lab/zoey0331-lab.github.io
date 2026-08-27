@@ -1,5 +1,5 @@
 /* 华南文研 · Service Worker —— 离线缓存，支持"添加到主屏幕"离线使用 */
-const CACHE = "hszy-v2.5.0";
+const CACHE = "hszy-v2.8.0";
 const FILES = [
   "./",
   "./index.html",
@@ -8,6 +8,7 @@ const FILES = [
   "./assets/icon.png",
   "./assets/icon-180.png",
   "./assets/真题_2022-2026.pdf",
+  "./assets/陶东风拆书精读.pdf",
   "./assets/文学理论_三版本教材对比复习指南.pdf",
   "./assets/西方文论_复习思路拆解.pdf",
   "./assets/古代文论_五论四坐标轴语料库.pdf",
