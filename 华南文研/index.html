@@ -282,7 +282,7 @@ a{color:inherit;text-decoration:none}
     <a class="tel" id="telBtn" href="tel:19058141302">✆ 电话联系我</a>
     <a class="xhs" href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">📕 小红书主页</a>
   </div>
-  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v3.0.1 数据更新 2026.08</div>
+  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v3.0.2 数据更新 2026.08</div>
 </footer>
 
 <script src="qbank.js"></script>
@@ -903,6 +903,10 @@ function renderMe(){
   html += '<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0">' +
     stat.map(s=>'<div style="flex:1;min-width:88px;background:#F1EDE2;border:1px solid #D9D2C2;border-radius:10px;padding:12px 8px;text-align:center"><div style="font-size:20px;font-weight:700;color:#4E6B58">'+s[1]+'</div><div style="font-size:11px;color:#8A8578;margin-top:4px">'+s[0]+'</div></div>').join("") + '</div>';
   html += '<div style="text-align:center;margin:14px 0 12px"><button class="gbtn" style="margin-top:0" onclick="exportWrongs()">导出错题（打印 / PDF）</button></div>';
+  html += '<div style="background:#fffdf8;border:1px solid #D9D2C2;border-radius:12px;padding:14px;margin:12px 0;display:flex;align-items:center;gap:10px">' +
+    '<span style="flex:none;width:30px;height:30px;border-radius:8px;background:#4E6B58;color:#FBF8F1;display:flex;align-items:center;justify-content:center;font-size:13px">据</span>' +
+    '<div style="flex:1"><b style="font-size:14px;letter-spacing:1px">DeepSeek 用量分析</b><div style="font-size:11px;color:#8A8578;margin-top:3px">token 用量 · API 请求 · 成本</div></div>' +
+    '<a href="assets/用量数据分析.pdf" target="_blank" style="color:#BC563D;font-size:13px">查看 ↗</a></div>';
   html += all.map(sub=>{
     const ws = getWrongs(sub);
     if(!ws.length) return '';
