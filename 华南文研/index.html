@@ -21,7 +21,7 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{background:var(--paper);color:var(--ink);font-family:"Songti SC","STSong","Kaiti SC",serif;
   background-image:radial-gradient(rgba(185,154,90,.05) 1px,transparent 1px);background-size:28px 28px}
-body{padding-bottom:96px;min-height:100vh}
+body{padding-bottom:152px;min-height:100vh}
 a{color:inherit;text-decoration:none}
 
 /* ===== 顶部 ===== */
@@ -153,6 +153,11 @@ a{color:inherit;text-decoration:none}
   border-radius:20px;color:#FBF8F1}
 .dock .tel{background:var(--acc)}
 .dock .xhs{background:var(--green)}
+.dock .quickbar{display:flex;border-bottom:1px solid var(--line);margin-bottom:10px;padding-bottom:10px}
+.dock .qb-item{flex:1;text-align:center;cursor:pointer;padding:6px 2px;border-left:1px dashed var(--line)}
+.dock .qb-item:first-child{border-left:none}
+.dock .qb-item b{display:block;font-size:14px;letter-spacing:3px;color:var(--ink);font-weight:700}
+.dock .qb-item span{display:block;font-size:10.5px;color:var(--mist);margin-top:3px;letter-spacing:1px}
 
 /* 通用 */
 .hint{text-align:center;font-size:11px;color:var(--ink2);letter-spacing:1px;padding:6px 0 2px;opacity:.8}
@@ -241,14 +246,38 @@ a{color:inherit;text-decoration:none}
   <div id="panel-dk"></div>
 </section>
 
+<!-- 我的 · 错题总结 -->
+<section class="page" id="page-me">
+  <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>我的 · 错题总结</b><span>错题即考点</span></div>
+  <div id="panel-me"></div>
+</section>
+
+<!-- 续费 -->
+<section class="page" id="page-re">
+  <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>续费</b><span>36.6/月 · 180/年</span></div>
+  <div id="panel-re"></div>
+</section>
+
+<!-- 用户经验分享 -->
+<section class="page" id="page-sh">
+  <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>经验分享</b><span>来自上岸的人</span></div>
+  <div id="panel-sh"></div>
+</section>
+
 <!-- 底部联系栏 -->
 <footer class="dock">
+  <div class="quickbar">
+    <div class="qb-item" onclick="openPage('dk')"><b>打卡</b><span>每月学习打卡</span></div>
+    <div class="qb-item" onclick="openPage('me')"><b>我的</b><span>错题总结</span></div>
+    <div class="qb-item" onclick="openPage('re')"><b>续费</b><span>36.6/月 · 180/年</span></div>
+    <div class="qb-item" onclick="openPage('sh')"><b>分享</b><span>用户经验</span></div>
+  </div>
   <div class="nm">Zoey <i>·</i> 华南文研</div>
   <div class="acts">
     <a class="tel" id="telBtn" href="tel:19058141302">✆ 电话联系我</a>
     <a class="xhs" href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">📕 小红书主页</a>
   </div>
-  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v2.8.1 数据更新 2026.08</div>
+  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v2.9.1 数据更新 2026.08</div>
 </footer>
 
 <script src="qbank.js"></script>
@@ -741,7 +770,7 @@ function renderMK(){
   }).join("");
 }
 
-renderZT(); renderSK(); renderMK(); renderZZ(); renderTZ(); renderCheck();
+renderZT(); renderSK(); renderMK(); renderZZ(); renderTZ(); renderCheck(); renderMe(); renderRe(); renderSh();
 
 /* ================= 使用埋点 ================= */
 const EVKEY = "hszy_ev_";
@@ -822,32 +851,88 @@ function currentEnd(){
   try{ const d = localStorage.getItem(RENEWKEY); if(d) return new Date(d); }catch(e){}
   return new Date('2026-11-25T23:59:59+08:00');
 }
-function tryRenew(){
-  const code = (document.getElementById("renewCode")||{}).value || "";
-  if(code.trim().toUpperCase() === "HN2026"){
-    const nd = new Date(); nd.setDate(nd.getDate() + 31);
-    try{ localStorage.setItem(RENEWKEY, nd.toISOString()); }catch(e){}
-    document.getElementById("expiredMask").style.display = "none";
-    trackEv("renew");
-    alert("续费成功！有效期至 " + nd.getFullYear()+"-"+String(nd.getMonth()+1).padStart(2,"0")+"-"+String(nd.getDate()).padStart(2,"0") + "，感谢信任。");
-  }else{
-    alert("续费码不正确，请联系 Zoey 获取（电话 19058141302）。");
-  }
+function tryRenew(which){
+  const id = (which === 2) ? "renewCode2" : "renewCode";
+  const code = ((document.getElementById(id))||{}).value || "";
+  const c = code.trim().toUpperCase();
+  let days = 0, label = "";
+  if(c === "HN2026"){ days = 31; label = "月卡"; }
+  else if(c === "HN2027"){ days = 365; label = "年卡"; }
+  else{ alert("续费码不正确，请联系 Zoey 获取（电话 19058141302）。"); return; }
+  const nd = new Date(); nd.setDate(nd.getDate() + days);
+  try{ localStorage.setItem(RENEWKEY, nd.toISOString()); }catch(e){}
+  document.getElementById("expiredMask").style.display = "none";
+  trackEv("renew");
+  alert("续费成功（"+label+"）！有效期至 " + nd.getFullYear()+"-"+String(nd.getMonth()+1).padStart(2,"0")+"-"+String(nd.getDate()).padStart(2,"0") + "，感谢信任。");
+}
+
+/* ================= 我的 · 错题总结 ================= */
+function renderMe(){
+  const all = SUBJECTS.concat(bkMods());
+  const stat = all.map(sub => [sub, getWrongs(sub).length]);
+  const total = stat.reduce((a,b)=>a+b[1],0);
+  let html = '<div class="note">错题即考点 · 共 '+total+' 道错题 · 导出打印每周复盘</div>';
+  html += '<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0">' +
+    stat.map(s=>'<div style="flex:1;min-width:88px;background:#F1EDE2;border:1px solid #D9D2C2;border-radius:10px;padding:12px 8px;text-align:center"><div style="font-size:20px;font-weight:700;color:#4E6B58">'+s[1]+'</div><div style="font-size:11px;color:#8A8578;margin-top:4px">'+s[0]+'</div></div>').join("") + '</div>';
+  html += '<div style="text-align:center;margin:14px 0 12px"><button class="gbtn" style="margin-top:0" onclick="exportWrongs()">导出错题（打印 / PDF）</button></div>';
+  html += all.map(sub=>{
+    const ws = getWrongs(sub);
+    if(!ws.length) return '';
+    return '<div class="sk"><h4>'+sub+' · 错题 '+ws.length+' 道</h4>'+ws.map(w=>'<div class="mq"><div class="mq-t">'+esc(w.q)+'</div><div class="key on">正确答案：'+esc(w.ok)+'</div></div>').join("")+'</div>';
+  }).join("");
+  el("panel-me").innerHTML = total ? html : '<p style="text-align:center;color:#8A8578;padding:30px 0">暂无错题，先去闯关练几题吧～</p>';
+}
+
+/* ================= 续费 ================= */
+function renderRe(){
+  const end = currentEnd();
+  let html = '<div class="note">三个月后自动到期，续费请联系 Zoey 学姐，电话 19058141302</div>';
+  html += '<div style="display:flex;gap:10px;margin:12px 0">' +
+    '<div style="flex:1;background:#F1EDE2;border:1px solid #D9D2C2;border-radius:10px;padding:18px 12px;text-align:center"><div style="font-size:13px;color:#8A8578">月卡</div><div style="font-size:24px;font-weight:700;color:#BC563D;margin-top:6px">36.6<span style="font-size:12px">元/月</span></div><div style="font-size:11px;color:#8A8578;margin-top:6px">按需续费</div></div>' +
+    '<div style="flex:1;background:#4E6B58;border:1px solid #4E6B58;border-radius:10px;padding:18px 12px;text-align:center;color:#FBF8F1"><div style="font-size:13px;color:#D8E4DC">年卡</div><div style="font-size:24px;font-weight:700;margin-top:6px">180<span style="font-size:12px">元/年</span></div><div style="font-size:11px;color:#D8E4DC;margin-top:6px">全年最划算</div></div></div>';
+  html += '<div style="background:#FBF8F1;border:1px solid #D9D2C2;border-radius:10px;padding:16px;text-align:center;margin-bottom:12px">' +
+    '<div style="font-size:13px;color:#6B6457">三个月后自动到期（<b style="color:#2B2A26">'+(end.getFullYear()+"-"+String(end.getMonth()+1).padStart(2,"0")+"-"+String(end.getDate()).padStart(2,"0"))+'</b>）</div>' +
+    '<div style="font-size:12px;color:#8A8578;margin-top:6px">续费请联系 Zoey 学姐，电话 19058141302</div>' +
+    '<button class="gbtn" onclick="location.href=\'tel:19058141302\'">电话咨询</button></div>';
+  html += '<div class="note">已付费？输入 Zoey 提供的续费码解锁：</div>' +
+    '<div style="text-align:center;margin:12px 0"><input id="renewCode2" placeholder="月卡码 / 年卡码" style="width:240px;max-width:80%;padding:11px 14px;border:1px solid #C9BFAA;border-radius:8px;font-size:14px;background:#fffdf8;text-align:center;letter-spacing:2px"/>' +
+    '<button class="gbtn" style="margin-left:10px" onclick="tryRenew(2)">解锁</button></div>';
+  html += '<div style="text-align:center;font-size:11px;color:#8A8578">月卡码延长 1 个月 · 年卡码延长 1 年</div>';
+  el("panel-re").innerHTML = html;
+}
+
+/* ================= 用户经验分享 ================= */
+function renderSh(){
+  const posts = [
+    {t:"二战上岸｜839 文学理论 129 分，我是怎么拆真题的", d:"把五年真题按题型标回教材：名词解释看重复率，简答看章节分布，论述看中西文论互证。真题不是用来做的，是用来拆的。", tag:"真题导向"},
+    {t:"跨考 4 个月｜时间不够，就靠五论四坐标", d:"马工程背框架，童陶补血肉，每论配真题。不做题海，只做「考点—语料—答案」的对应。", tag:"跨考"},
+    {t:"背书背到哭？试试真题带背法", d:"以题带背：真题问什么就背什么，把答案写成可迁移的要点框架，考场直接组装。", tag:"带背"},
+    {t:"「学姐，我上岸了」", d:"一年陪伴，从真题拆解到考前模拟批改，见证每一个上岸时刻。你也一定可以。", tag:"上岸"}
+  ];
+  let html = '<div class="note">来自学员与备考人的真实经验 · 更多见小红书 @Zoey 快去学习</div>';
+  html += posts.map((p,i)=>'<div style="background:#fffdf8;border:1px solid #D9D2C2;border-radius:12px;padding:16px 16px 14px;margin:12px 0">' +
+    '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="width:6px;height:6px;border-radius:50%;background:#BC563D;display:inline-block"></span>' +
+    '<span style="font-size:11px;color:#8A8578;letter-spacing:1px">Zoey 文研 · 经验 '+(i+1)+'</span></div>' +
+    '<div style="font-size:15px;font-weight:700;letter-spacing:1px;line-height:1.7">'+p.t+'</div>' +
+    '<div style="font-size:12.5px;color:#6B6457;line-height:1.9;margin-top:6px">'+p.d+'</div>' +
+    '<div style="margin-top:10px"><span style="display:inline-block;font-size:10.5px;color:#4E6B58;border:1px solid #A9BCB0;border-radius:12px;padding:2px 10px;letter-spacing:1px">'+p.tag+'</span></div></div>').join("");
+  html += '<div style="text-align:center;margin:14px 0 6px"><a href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank" style="font-size:12.5px;color:#BC563D;letter-spacing:1px">更多经验 · 小红书 @Zoey 快去学习 ↗</a></div>';
+  el("panel-sh").innerHTML = html;
 }
 </script>
 <div id="expiredMask" style="display:none;position:fixed;inset:0;background:#F7F3EA;z-index:9999;text-align:center;padding:90px 30px;">
   <div style="color:#BC563D;font-size:16px;letter-spacing:3px;font-weight:700;">Zoey 印</div>
   <div style="font-size:22px;font-weight:700;margin-top:18px;color:#2F2B26;">免费使用期已结束</div>
   <div style="font-size:14px;color:#6E675B;margin-top:14px;line-height:1.9;">
-    续费 36.6 元/月，联系 Zoey 获取续费码：<br>
-    电话 19058141302 · 小红书 @Zoey 快去学习
+    本期已到期，续费请联系 Zoey 学姐：<br>
+    电话 19058141302
   </div>
   <button onclick="location.href='tel:19058141302'" style="margin-top:22px;background:#3F5C4B;color:#FBF9F2;border:none;border-radius:8px;padding:12px 30px;font-size:14px;letter-spacing:1px;">电话续费咨询</button>
   <div style="margin-top:26px;padding-top:22px;border-top:1px dashed #D9D2C2">
     <input id="renewCode" placeholder="输入 Zoey 提供的续费码" style="width:240px;max-width:80%;padding:11px 14px;border:1px solid #C9BFAA;border-radius:8px;font-size:14px;background:#fffdf8;text-align:center;letter-spacing:2px"/>
     <button onclick="tryRenew()" style="margin-left:10px;background:#BC563D;color:#fff;border:none;border-radius:8px;padding:11px 22px;font-size:14px;letter-spacing:1px;">解锁</button>
   </div>
-  <div style="margin-top:16px;font-size:12px;color:#8A8578">续费后有效期延长 1 个月 · 定制规划与批改请私信咨询</div>
+  <div style="margin-top:16px;font-size:12px;color:#8A8578">续费后有效期自动延长 · 定制规划与批改请私信咨询</div>
 </div>
 <script>
 (function(){
