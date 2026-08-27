@@ -161,7 +161,7 @@ a{color:inherit;text-decoration:none}
 <body>
 
 <div id="renewBanner" style="display:none;position:fixed;top:0;left:0;right:0;background:#BC563D;color:#FBF9F2;text-align:center;padding:10px 16px;font-size:13px;z-index:9998;letter-spacing:1px">
-  本期内资料将于 2026-11-25 到期 · 续费 66 元/期，联系 Zoey：
+  本期内资料将于 2026-11-25 到期 · 续费 36.6 元/月，联系 Zoey：
   <a href="tel:19058141302" style="color:#fff;text-decoration:underline">电话 19058141302</a>
   <span style="cursor:pointer;margin-left:12px" onclick="document.getElementById('renewBanner').style.display='none'">✕ 关闭</span>
 </div>
@@ -248,7 +248,7 @@ a{color:inherit;text-decoration:none}
     <a class="tel" id="telBtn" href="tel:19058141302">✆ 电话联系我</a>
     <a class="xhs" href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">📕 小红书主页</a>
   </div>
-  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v2.8.0 数据更新 2026.08</div>
+  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v2.8.1 数据更新 2026.08</div>
 </footer>
 
 <script src="qbank.js"></script>
@@ -825,7 +825,7 @@ function currentEnd(){
 function tryRenew(){
   const code = (document.getElementById("renewCode")||{}).value || "";
   if(code.trim().toUpperCase() === "HN2026"){
-    const nd = new Date(); nd.setDate(nd.getDate() + 93);
+    const nd = new Date(); nd.setDate(nd.getDate() + 31);
     try{ localStorage.setItem(RENEWKEY, nd.toISOString()); }catch(e){}
     document.getElementById("expiredMask").style.display = "none";
     trackEv("renew");
@@ -839,7 +839,7 @@ function tryRenew(){
   <div style="color:#BC563D;font-size:16px;letter-spacing:3px;font-weight:700;">Zoey 印</div>
   <div style="font-size:22px;font-weight:700;margin-top:18px;color:#2F2B26;">免费使用期已结束</div>
   <div style="font-size:14px;color:#6E675B;margin-top:14px;line-height:1.9;">
-    续费 66 元 / 期（3 个月），联系 Zoey 获取续费码：<br>
+    续费 36.6 元/月，联系 Zoey 获取续费码：<br>
     电话 19058141302 · 小红书 @Zoey 快去学习
   </div>
   <button onclick="location.href='tel:19058141302'" style="margin-top:22px;background:#3F5C4B;color:#FBF9F2;border:none;border-radius:8px;padding:12px 30px;font-size:14px;letter-spacing:1px;">电话续费咨询</button>
@@ -847,7 +847,7 @@ function tryRenew(){
     <input id="renewCode" placeholder="输入 Zoey 提供的续费码" style="width:240px;max-width:80%;padding:11px 14px;border:1px solid #C9BFAA;border-radius:8px;font-size:14px;background:#fffdf8;text-align:center;letter-spacing:2px"/>
     <button onclick="tryRenew()" style="margin-left:10px;background:#BC563D;color:#fff;border:none;border-radius:8px;padding:11px 22px;font-size:14px;letter-spacing:1px;">解锁</button>
   </div>
-  <div style="margin-top:16px;font-size:12px;color:#8A8578">续费后有效期延长 3 个月 · 定制规划与批改请私信咨询</div>
+  <div style="margin-top:16px;font-size:12px;color:#8A8578">续费后有效期延长 1 个月 · 定制规划与批改请私信咨询</div>
 </div>
 <script>
 (function(){
