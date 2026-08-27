@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F6F1E6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="华南文研">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<title>华南文研 · Zoey</title>
+<style>
+:root{
+  --paper:#FBF8F1; --paper2:#F2EDE0; --ink:#2B2A26; --ink2:#6B6457;
+  --acc:#BC563D; --green:#4E6B58; --line:#E6DCC9; --gold:#B99A5A;
+  --jade:#A9BCB0; --mist:#8FA39B;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--paper);color:var(--ink);font-family:"Songti SC","STSong","Kaiti SC",serif;
+  background-image:radial-gradient(rgba(185,154,90,.05) 1px,transparent 1px);background-size:28px 28px}
+body{padding-bottom:96px;min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+/* ===== 顶部 ===== */
+.hero{position:relative;overflow:hidden;padding:34px 20px 30px;text-align:center;
+  background:linear-gradient(180deg,rgba(251,248,241,.30) 0%,rgba(251,248,241,.86) 58%,#FBF8F1 100%),
+    url('assets/bg_photo.jpg') center 18% / cover no-repeat}
+.hero::before{content:"";position:absolute;left:-30%;top:-40%;width:160%;height:120%;
+  background:radial-gradient(ellipse at 30% 20%,rgba(169,188,176,.35),rgba(169,188,176,0) 62%);
+  pointer-events:none}
+.hero svg.mnt{position:absolute;left:0;right:0;bottom:0;width:100%;height:96px;opacity:.55}
+.seal{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:14px;
+  background:var(--acc);color:#FBF7EE;font-size:30px;font-weight:700;letter-spacing:2px;
+  box-shadow:0 6px 18px rgba(188,86,61,.3);transform:rotate(-3deg);
+  font-family:"Kaiti SC","STKaiti","KaiTi",serif}
+.hero h1{margin-top:16px;font-size:30px;letter-spacing:10px;font-weight:600;
+  font-family:"Kaiti SC","STKaiti","KaiTi",serif}
+.hero .sub{margin-top:8px;font-size:13px;color:var(--ink2);letter-spacing:2px}
+.hero .poem{margin-top:10px;font-size:12px;color:var(--gold);letter-spacing:3px}
+
+/* ===== 主板块卡片 ===== */
+.cards{padding:22px 16px 10px}
+.card{position:relative;display:flex;align-items:center;gap:14px;padding:18px 16px;margin-bottom:14px;
+  background:#fffdf8;border:1px solid var(--line);border-radius:12px;box-shadow:0 3px 12px rgba(43,42,38,.05);
+  cursor:pointer;transition:transform .15s}
+.card:active{transform:scale(.98)}
+.card .no{flex:none;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:600;color:#FBF8F1;font-family:"Kaiti SC","STKaiti",serif}
+.card:nth-child(1) .no{background:var(--acc)}
+.card:nth-child(2) .no{background:var(--green)}
+.card:nth-child(3) .no{background:var(--gold)}
+.card:nth-child(4) .no{background:var(--mist)}
+.card:nth-child(5) .no{background:var(--ink)}
+.card .info b{font-size:18px;letter-spacing:3px;font-family:"Kaiti SC","STKaiti",serif;font-weight:600}
+.card .info p{margin-top:4px;font-size:12px;color:var(--ink2);line-height:1.6}
+.card .arr{margin-left:auto;color:var(--ink2);font-size:18px}
+
+/* ===== 子页 ===== */
+.page{display:none;padding:16px 16px 30px}
+.page.on{display:block}
+.page-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.page-head .back{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--paper);
+  display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer}
+.page-head b{font-size:19px;letter-spacing:3px;font-family:"Kaiti SC","STKaiti",serif;font-weight:600}
+.page-head span{font-size:12px;color:var(--ink2)}
+.subtabs{display:flex;gap:8px;margin-bottom:14px;position:sticky;top:0;z-index:5;background:var(--paper);padding:8px 0}
+.stab{flex:1;text-align:center;padding:10px 0;font-size:14px;letter-spacing:2px;color:var(--ink2);
+  border:1px solid var(--line);border-radius:10px;background:var(--paper);cursor:pointer}
+.stab.on{background:var(--ink);color:#FBF8F1;border-color:var(--ink)}
+.panel{display:none}.panel.on{display:block}
+.note{font-size:12.5px;color:var(--ink2);line-height:1.8;background:var(--paper2);border-left:3px solid var(--acc);
+  padding:10px 12px;border-radius:0 10px 10px 0;margin-bottom:14px}
+
+/* 真题 */
+.yr{background:#fffdf8;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.yr-h{display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer;background:var(--paper2)}
+.yr-h .tag{font-size:11px;color:#FBF8F1;background:var(--acc);padding:2px 8px;border-radius:6px;letter-spacing:1px}
+.yr-h b{font-size:15px;letter-spacing:2px}
+.yr-h .tog{margin-left:auto;color:var(--ink2);transition:transform .2s}
+.yr.open .tog{transform:rotate(90deg)}
+.yr-b{display:none;padding:4px 14px 14px}
+.yr.open .yr-b{display:block}
+.qtype{font-size:12.5px;font-weight:700;color:var(--green);letter-spacing:2px;margin:12px 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.qtype::before{content:"▍"}
+.qtime{font-size:10.5px;font-weight:400;color:var(--gold);background:rgba(185,154,90,.12);border:1px solid rgba(185,154,90,.35);border-radius:20px;padding:2px 9px;letter-spacing:1px;white-space:nowrap;margin-left:auto}
+.qitem{font-size:13.5px;line-height:1.85;padding-left:2px;color:var(--ink)}
+.qitem+.qitem{border-top:1px dashed var(--line);margin-top:6px;padding-top:6px}
+
+/* 思路 */
+.sk{background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.sk h4{font-size:15px;letter-spacing:1px;color:var(--acc);margin-bottom:8px}
+.sk h4::before{content:"· ";font-weight:700}
+.sk p{font-size:13px;line-height:1.9;color:var(--ink)}
+.sk ul{padding-left:4px;list-style:none;margin-top:6px}
+.sk li{font-size:13px;line-height:1.85;color:var(--ink);padding-left:14px;position:relative}
+.sk li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.links a{font-size:12px;color:#FBF8F1;background:var(--green);padding:6px 10px;border-radius:8px;letter-spacing:1px}
+.links a.xhs{background:var(--acc)}
+
+/* 模拟 */
+.mock-head{display:flex;align-items:center;gap:12px;background:var(--ink);color:#FBF8F1;border-radius:12px;
+  padding:12px 14px;margin-bottom:14px}
+.mock-head b{font-size:14px;letter-spacing:2px;font-family:"Kaiti SC","STKaiti",serif}
+.timer{display:flex;align-items:center;gap:8px;margin-left:auto}
+.timer .t{font-size:18px;font-weight:700;letter-spacing:1px;font-variant-numeric:tabular-nums}
+.tbtn{font-size:11px;padding:4px 9px;border-radius:6px;border:1px solid rgba(251,248,241,.5);cursor:pointer}
+.mq{background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.mq .mt{font-size:12px;color:var(--green);letter-spacing:2px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mq .mq-t{font-size:14px;line-height:1.8}
+.mq .key{margin-top:8px;font-size:12.5px;color:var(--ink2);background:var(--paper2);border-radius:8px;padding:9px 11px;
+  line-height:1.8;display:none}
+.mq .key.on{display:block}
+.mq .kbtn{display:inline-block;margin-top:8px;font-size:11.5px;color:var(--acc);border:1px solid var(--acc);
+  padding:4px 10px;border-radius:7px;cursor:pointer;letter-spacing:1px}
+
+/* ===== 题目闯关 ===== */
+.ghead{display:flex;align-items:center;gap:10px;background:var(--ink);color:#FBF8F1;border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.ghead .lv{font-size:14px;letter-spacing:2px}
+.ghead .gstat{margin-left:auto;font-size:12px;letter-spacing:1px}
+.gbar{height:6px;border-radius:3px;background:rgba(251,248,241,.25);overflow:hidden;margin-top:8px}
+.gbar i{display:block;height:100%;background:var(--acc);border-radius:3px;transition:width .3s}
+.gq{background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:16px 14px;margin-bottom:12px}
+.gq .gtag{font-size:11px;color:var(--green);letter-spacing:2px;margin-bottom:6px;font-weight:700}
+.gq .qt{font-size:15px;line-height:1.9;margin-bottom:14px}
+.gopt{display:block;width:100%;text-align:left;font-family:inherit;font-size:13.5px;line-height:1.7;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:9px;cursor:pointer;transition:all .15s}
+.gopt:active{transform:scale(.985)}
+.gopt.ok{border-color:var(--green);background:#E7EFE3;color:var(--green);font-weight:700}
+.gopt.bad{border-color:var(--acc);background:#F6E3DC;color:var(--acc)}
+.gopt.dim{opacity:.45}
+.gfb{min-height:22px;font-size:12.5px;color:var(--ink2);letter-spacing:1px;margin-top:4px}
+.gfin{text-align:center;background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:30px 18px}
+.gfin .big{font-size:46px}
+.gfin h3{font-size:20px;letter-spacing:4px;margin:10px 0 6px;font-family:"Kaiti SC","STKaiti",serif}
+.gfin p{font-size:13px;color:var(--ink2);line-height:1.8}
+.gbtn{display:inline-block;margin-top:16px;font-size:13px;letter-spacing:2px;color:#FBF8F1;background:var(--acc);
+  border:none;border-radius:20px;padding:10px 26px;cursor:pointer}
+.greset{display:inline-block;margin-top:16px;margin-left:10px;font-size:13px;letter-spacing:2px;color:var(--acc);
+  background:var(--paper);border:1px solid var(--acc);border-radius:20px;padding:10px 20px;cursor:pointer}
+.streak{display:inline-block;font-size:11px;color:var(--gold);border:1px solid var(--gold);border-radius:6px;padding:2px 7px;margin-left:6px;letter-spacing:1px}
+
+/* ===== 底部 Dock ===== */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(251,248,241,.96);backdrop-filter:blur(8px);
+  border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));text-align:center}
+.dock .nm{font-size:13px;letter-spacing:3px;font-weight:600;font-family:"Kaiti SC","STKaiti",serif}
+.dock .nm i{font-style:normal;color:var(--acc)}
+.dock .acts{display:flex;justify-content:center;gap:10px;margin-top:8px}
+.dock a{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;letter-spacing:1px;padding:8px 18px;
+  border-radius:20px;color:#FBF8F1}
+.dock .tel{background:var(--acc)}
+.dock .xhs{background:var(--green)}
+
+/* 通用 */
+.hint{text-align:center;font-size:11px;color:var(--ink2);letter-spacing:1px;padding:6px 0 2px;opacity:.8}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="mnt" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 120 L180 40 L320 95 L520 20 L700 88 L880 34 L1080 96 L1240 46 L1440 100 L1440 120 Z" fill="#C9D6CD" opacity=".75"/>
+    <path d="M0 120 L220 70 L420 112 L640 58 L860 110 L1080 66 L1300 112 L1440 88 L1440 120 Z" fill="#A9BCB0" opacity=".55"/>
+      <path d="M0 120 L120 88 L260 116 L420 92 L620 118 L820 96 L1040 118 L1240 100 L1440 118 L1440 120 Z" fill="#8FA39B" opacity=".3"/>
+  </svg>
+  <div class="seal">文研</div>
+  <h1>华南文研</h1>
+  <p class="sub">华南师范大学 839 文学理论 · Zoey 整理</p>
+  <p class="poem">博观而约取，厚积而薄发</p>
+</header>
+
+<!-- 首页四大板块 -->
+<div class="cards" id="home">
+  <div class="card" data-page="zt"><div class="no">一</div>
+    <div class="info"><b>历年真题</b><p>2022—2026 全题型拆解 · 名词解释 / 简答 / 论述 / 综合写作</p></div>
+    <div class="arr">›</div></div>
+  <div class="card" data-page="sk"><div class="no">二</div>
+    <div class="info"><b>复习思路</b><p>马工程底本 · 三版本教材用法 · 中西文论答题材料 · 学思做复盘</p></div>
+    <div class="arr">›</div></div>
+  <div class="card" data-page="mk"><div class="no">三</div>
+    <div class="info"><b>考前模拟</b><p>三科仿真卷 · 3 小时限时（150 分）· 名词 / 简答 / 论述 / 写作要点速查</p></div>
+    <div class="arr">›</div></div>
+  <div class="card" data-page="tz"><div class="no">拓</div>
+    <div class="info"><b>拓展阅读</b><p>书单 · 原典 · 网课 · 备考经验 · 答题技巧（源自 140+ 经验贴）</p></div>
+    <div class="arr">›</div></div>
+  <div class="card" data-page="zz"><div class="no">闯</div>
+    <div class="info"><b>题目闯关</b><p>章节刷题 1200+ 题 · 真题闯关 · 连击加分 · 错题本</p></div>
+    <div class="arr">›</div></div>
+</div>
+
+<!-- 历年真题 -->
+<section class="page" id="page-zt">
+  <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>历年真题</b><span>2022—2026 · 华南839</span></div>
+  <div class="subtabs" id="stab-zt"></div>
+  <div id="panel-zt"></div>
+</section>
+
+<!-- 复习思路 -->
+<section class="page" id="page-sk">
+  <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>复习思路</b><span>真题导向 · 体系化复习</span></div>
+  <div class="subtabs" id="stab-sk"></div>
+  <div id="panel-sk"></div>
+</section>
+
+<!-- 考前模拟 -->
+<section class="page" id="page-mk">
+  <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>考前模拟</b><span>仿真自测 · 150 分 / 3 小时</span></div>
+  <div class="subtabs" id="stab-mk"></div>
+  <div id="panel-mk"></div>
+</section>
+
+<!-- 题目闯关 -->
+<section class="page" id="page-zz">
+  <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>题目闯关</b><span>三科 30 关 · 答对前进</span></div>
+  <div class="subtabs" id="stab-zz"></div>
+  <div id="panel-zz"></div>
+</section>
+
+<!-- 拓展阅读 -->
+<section class="page" id="page-tz">
+  <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>拓展阅读</b><span>书单 · 经验 · 技巧</span></div>
+  <div class="subtabs" id="stab-tz"></div>
+  <div id="panel-tz"></div>
+</section>
+
+<!-- 底部联系栏 -->
+<footer class="dock">
+  <div class="nm">Zoey <i>·</i> 华南文研</div>
+  <div class="acts">
+    <a class="tel" id="telBtn" href="tel:19058141302">✆ 电话联系我</a>
+    <a class="xhs" href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">📕 小红书主页</a>
+  </div>
+  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v2.6.0 数据更新 2026.08</div>
+</footer>
+
+<script src="qbank.js"></script>
+<script>
+/* 离线安装支持（PWA Service Worker，手机/电脑均可"添加到主屏幕"） */
+if('serviceWorker' in navigator){ window.addEventListener('load',function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); }); }
+
+/* ================= 基础配置 ================= */
+// 在此填写你的手机号（底部「电话联系我」会直接拨打）
+const PHONE = "19058141302";
+document.getElementById("telBtn").href = "tel:" + PHONE;
+
+const SUBJECTS = ["文学理论", "西方文论", "古代文论"];
+const XHS = "https://xhslink.cn/m/AjzR7MGuqz2";
+const PDF = {
+  "文学理论": [["真题 PDF", "assets/真题_2022-2026.pdf"], ["三版本教材对比", "assets/文学理论_三版本教材对比复习指南.pdf"], ["陶东风拆书精读", "assets/陶东风拆书精读.pdf"], ["五论·本质论", "assets/本质论×839真题.pdf"], ["五论·创作论", "assets/创作论×839真题.pdf"], ["五论·作品论", "assets/作品论×839真题.pdf"], ["五论·读者论", "assets/读者论×839真题.pdf"], ["五论·发展论", "assets/发展论×839真题.pdf"]],
+  "西方文论": [["复习思路拆解", "assets/西方文论_复习思路拆解.pdf"], ["真题 PDF", "assets/真题_2022-2026.pdf"]],
+  "古代文论": [["五论四坐标轴语料库", "assets/古代文论_五论四坐标轴语料库.pdf"], ["四要素拆解", "assets/古代文论_四要素拆解.pdf"], ["读者论系列", "assets/古代文论_读者论系列.pdf"]]
+};
+
+/* ================= 历年真题数据 ================= */
+const ZT = {
+"文学理论": [
+ {y:"2022", q:[
+  {t:"一、名词解释（10分×4）", items:["1. “二为”方向","2. 文学意境","3. 艺术直觉","4. 二度创作"]},
+  {t:"二、简答题（10分×3）", items:["1. 简述文学批评的“美学的和历史的原则”","2. 简述创作动机对文学创造的重要作用","3. 简述文学体裁的“三分法”和“四分法”"]},
+  {t:"三、论述题（20分×2）", items:["1. 结合具体作品，说明中国网络文学的特点和存在的问题","2. 举例说明文学意蕴的系统性和丰富性"]},
+  {t:"四、综合运用题（40分）", items:["用文学批评的方法，自选角度，自拟题目，评论电影《长津湖》"]}]},
+ {y:"2023", q:[
+  {t:"一、名词解释（10分×4）", items:["1. 艺术理解","2. 文学象征","3. 感兴批评方法","4. 文学经典"]},
+  {t:"二、简答题（10分×3）", items:["1. 文学的实践性","2. 文学语言的特征","3. 文学批评的思想标准"]},
+  {t:"三、论述题（20分×2）", items:["1. 文学体裁的变与不变","2. 文学价值的多样性和主导价值"]},
+  {t:"四、材料分析题（15分＋25分）", items:["材料：王夫之《姜斋诗话》论兴观群怨——“作者用一致之思，读者各以其情而自得”","1. 结合材料谈文学功能的整体性（15分）","2. 结合中国传统文论，从读者接受的角度谈“作者用一致之思，读者各以其情而自得”（25分）"]}]},
+ {y:"2024", q:[
+  {t:"一、名词解释（10分×4）", items:["1. 文学的倾向性","2. 现代主义","3. 文学典型","4. 数字文学"]},
+  {t:"二、简答题（10分×3）", items:["1. 文学的功能","2. 文学语言的特征","3. 文学批评的艺术标准"]},
+  {t:"三、论述题（20分×2）", items:["1. 材料：姚斯、王国维、王夫之“作者用一致之思” — 分析“文学接受”在文学活动中的作用","2. 材料：陆机“诗缘情而绮靡”、刘勰“登山则情满于山”、王国维情景关系、华兹华斯 — 分析艺术情感与文学意境的情感特征"]},
+  {t:"四、综合运用题（15分＋25分）", items:["材料：司空图《二十四诗品》“雄浑”“劲健”两段","1. 翻译文字并指出其诗学思想（15分）","2. 结合具体作品，谈谈对这两种风格的理解（25分）"]}]},
+ {y:"2025", q:[
+  {t:"一、名词解释（10分×4）", items:["1. 文学的认识性","2. 文学的审美功能","3. 艺术理解","4. 艺术流派"]},
+  {t:"二、简答题（10分×4）", items:["1. 简答文学的主导价值","2. 简答文学的政治和思想倾向性","3. 简答文学的接受过程","4. 简答文学的语言性质和特质"]},
+  {t:"三、论述题（15分×2）", items:["1. 从生动性、有生气、意蕴三方面分析文学的形象性","2. 论述文学的批判性和继承性"]},
+  {t:"四、写作（40分）", items:["请以西方文论或文学批评中的观点写一篇文章。要求观点鲜明，体现辩证思维。"]}]},
+ {y:"2026", q:[
+  {t:"一、名词解释（8分×5）", items:["1. 文学的情感性","2. 文学的间接性","3. 形式主义批评","4. 以意逆志","5. 文学意蕴"]},
+  {t:"二、简答题（10分×4）", items:["1. 简述文学作为意识形态有什么特征","2. 简答文学风格的特征，并简述一种你了解的诗歌风格","3. 简答文学意境的特征","4. 简述文学语言和日常语言的特征"]},
+  {t:"三、论述题（15分×2）", items:["1. 结合中国古代传统诗歌，分析诗歌的审美特征","2. 结合具体作品，谈谈“美学的和历史的原则”"]},
+  {t:"四、写作（20分＋20分）", items:["1. 阅读王国维《人间词话》“隔与不隔”材料，谈其理论及启发意义","2. 陌生化理论材料——体现什么文学批评理论？结合阅读体验谈启发与不足"]}]}
+],
+"西方文论": [
+ {y:"2022", q:[{t:"综合运用题（40分）", items:["用文学批评的方法，自选角度，自拟题目，评论电影《长津湖》 —— 电影评论 / 批评方法实战"]}]},
+ {y:"2023", q:[{t:"简答题（10分）", items:["文学批评的思想标准 —— 与“美学—历史原则”连成批评标准系列"]}]},
+ {y:"2024", q:[{t:"名词解释＋简答", items:["名词解释：现代主义（文学思潮）","简答：文学批评的艺术标准"]}]},
+ {y:"2025", q:[{t:"写作题（40分）", items:["以西方文论或文学批评中的观点写一篇文章，要求观点鲜明、体现辩证思维 —— 观点型评论写作"]}]},
+ {y:"2026", q:[{t:"名词解释＋写作", items:["名词解释：形式主义批评","写作：陌生化理论材料分析——该理论的理论归属、启发与不足"]}]}
+],
+"古代文论": [
+ {y:"2022", q:[{t:"名词解释（10分）", items:["文学意境"]}]},
+ {y:"2023", q:[{t:"名词解释＋材料分析", items:["名词解释：感兴批评方法","材料：王夫之《姜斋诗话》兴观群怨——“作者用一致之思，读者各以其情而自得”"]}]},
+ {y:"2024", q:[{t:"论述＋综合运用", items:["论述：陆机“诗缘情而绮靡”＋刘勰“登山则情满于山”＋王国维情景关系 → 艺术情感与文学意境","综合：司空图《二十四诗品》“雄浑”“劲健”——翻译、诗学思想、风格理解"]}]},
+ {y:"2025", q:[{t:"名词解释（10分）", items:["艺术理解"]}]},
+ {y:"2026", q:[{t:"名词解释＋论述＋写作", items:["名词解释：以意逆志","论述：结合中国古代传统诗歌，分析诗歌的审美特征","写作：王国维《人间词话》“隔”与“不隔”的理论及启发意义"]}]}
+]
+};
+
+/* ================= 复习思路数据 ================= */
+const SK = {
+"文学理论": [
+ {h:"一 · 底本与框架", p:"马工程《文学理论》是绝对底本，请背烂。先把目录整体背下来，形成体系：文学本质论、创作论、作品论、接受论、发展论（五论）；再对应艾布拉姆斯《镜与灯》四要素——世界、作家、作品、读者。框架即思维导图。", list:["本质论：文学是什么（意识形态、审美、语言艺术）","创作论：创作主体、动机、过程","作品论：内容与形式、形象、意境、风格、体裁","接受论：接受过程、作用、批评","发展论：起源、继承与革新、流派思潮"]},
+ {h:"二 · 三版本教材怎么用", p:"马工程做骨架，童庆炳、陶东风做血肉。三者其实都围绕四要素展开，只是详略与视野不同。", list:["童庆炳《文学理论教程》：体系最完备，对马版做概念细化和例证补充","陶东风《文学理论基本问题》：更贴近当代问题，中西比较视野，适合答题升华","用法：马版背框架与定义 → 童版补细节 → 陶版出观点，做到“理论＋中西例子＋总结”"]},
+ {h:"三 · 真题导向", p:"把历年真题按题型标回教材，标记重点章节；名词解释、简答、论述、综合分别总结答题材料。", list:["名词解释：概念＋答题点＋例子（如“文学倾向性”：意识形态属性＋政治思想倾向＋真实性＋例）","简答：要点化、分层作答","论述：理论阐述＋中西文论互证＋作品例证＋总结升华","综合/写作：观点鲜明、辩证思维，善用批评方法"]},
+ {h:"四 · 中西文论做血肉", p:"马版较浅，须主动积累古代与西方文论语料，与教材知识点一一挂钩。", list:["例：文学接受作用 ← 孟子“以意逆志”、董仲舒“诗无达诂”、姚斯“期待视野”、伊瑟尔“召唤结构”","例：文学语言 ← 陆机“诗缘情而绮靡”、俄国形式主义“陌生化”","语料来自张少康《中国文学理论批评史教程》＋原典选读（《毛诗序》《文赋》《二十四诗品》《人间词话》）"]},
+ {h:"五 · 五论系列速查", p:"五论四坐标轴逐格拆解：现代框架＋古代文论语料＋真题对号入座＋答题示范，一论一篇，直接对着真题背。", list:["本质论（性质＋价值功能）：五年13题，出题密度之王","创作论：创作动机→构思→传达一条链","作品论（构成＋形态）：意象×意境×典型，五年14题","读者论：二度创作×期待视野×以意逆志","发展论（第9章历史＋第10章当代）：通变一链，2025压轴论述"]},
+ {h:"六 · 陶东风《文学理论基本问题》拆解", p:"三版本之「观点库」：马工程给框架，童庆炳补细节，陶东风出观点。问题教材，导论＋八章，反本质主义＋知识社会学。", list:["导论：文艺学「失效」危机 → 知识社会学重建，历史化与地方化","一 什么是文学：概念史＋家族相似，「文学」是历史建构","二 思维方式：形象思维、灵感、发散直觉；虚静神思","三 文学与世界：摹仿→镜子→现实主义（现象—本质）→表现→唯美","四 语言·意义·阐释：陌生化、含混、视域融合、召唤结构","五 体裁与风格：三分法/四分法；风格是内容与形式的统一","六 传统与创新：艾略特、经典化、互文性解构独创","七 文学与文化：意识形态、文化工业、灵光消逝","八 身份认同：阶级、性别、东方主义","用法：论述题先给教材答案，再给陶版「问题的另一面」"]}
+],
+"西方文论": [
+ {h:"一 · 真题考什么", p:"西方文论在839中主要落在：文学评论/影评、批评方法分析与概括、观点型写作。近年写作题比重上升（2025、2026 均为 40 分写作）。", list:["2022：用批评方法评论电影《长津湖》","2025：以西方文论或文学批评观点写文章","2026：陌生化理论材料分析＋写作"]},
+ {h:"二 · 理论体系要能讲清", p:"系统掌握教材中的理论，做到“能清晰阐述”，不只记名词。按批评谱系梳理：", list:["作者中心：浪漫主义表现论、精神分析（无意识）、社会历史批评","文本中心：俄国形式主义（陌生化）、新批评（文本细读）、结构主义、叙事学","读者中心：接受美学（姚斯期待视野）、读者反应批评（伊瑟尔召唤结构）","后结构：解构主义、互文性、女性主义、后殖民等批评实践"]},
+ {h:"三 · 分体裁备评论", p:"针对小说、诗歌、戏剧、散文及观点型评论，各准备适合的文论工具。", list:["小说：叙事学（叙述视角/人物/结构）＋典型人物＋现实主义","诗歌：意象、陌生化、新批评细读（张力、含混）","戏剧：冲突结构、悲剧理论（亚里士多德）","电影/观点型：社会历史批评＋精神分析＋意识形态批评，观点鲜明、辩证"]},
+ {h:"四 · 学思做＋复盘", p:"学习过程中总结自己的答题模板，学、思、做、复盘四步循环。", list:["学：理论概念＋代表人物＋核心命题","思：每个理论找一句原典＋一个作品例证","做：每周一篇评论/观点文，限时输出","复盘：对照真题要点回看，迭代模板"]}
+],
+"古代文论": [
+ {h:"一 · 四要素拆解法", p:"用艾布拉姆斯四要素拆解古代文论，语料归位，答题随取随用。", list:["世界：感物说（“感于哀乐，缘事而发”）、物我交融、情景关系","作家：言志缘情、养气、神思（刘勰）、妙悟（严羽）","作品：意象、意境、风骨、滋味（钟嵘）、象外之象（司空图）","读者：以意逆志（孟子）、诗无达诂（董仲舒）、兴观群怨（孔子）、自得（王夫之）"]},
+ {h:"二 · 真题重点人物", p:"从真题出发，这些人物/命题年年出现，必须滚瓜烂熟。", list:["孟子：以意逆志","陆机：诗缘情而绮靡","刘勰：神思、风骨、情满于山","司空图：二十四诗品（雄浑、劲健）","王夫之：兴观群怨、“作者用一致之思，读者各以其情而自得”","王国维：情景关系、境界说、隔与不隔"]},
+ {h:"三 · 怎么读书", p:"以童庆炳《现代视野中的中华古代文论系统》为主线，张少康《中国文学理论批评史教程》打底，原典选读做弹药。", list:["通读批评史建立时间线（先秦—魏晋—唐宋—明清）","用四要素把散点命题归位到同一张坐标图","重点篇目整段背诵：《毛诗序》《典论·论文》《文赋》《二十四诗品》《人间词话》选段","读到命题→立刻配一个作品例证（陶渊明、王维、苏轼等）"]},
+ {h:"四 · 答题套路", p:"古代文论题 = 原文翻译/概念界定 ＋ 诗学思想 ＋ 作品例证 ＋ 与教材知识点呼应。", list:["例：以意逆志 → 孟子原文＋“不以文害辞，不以辞害志”＋读者接受中的“创造性理解”＋例（如历代对《诗经》的多种阐释）","例：隔与不隔 → “语语都在目前”＋陶谢不隔、延年山谷稍隔＋意境的特征（情景交融、虚实相生）"]}
+]
+};
+
+/* ================= 拓展阅读数据 ================= */
+const TZ = {
+"书单": [
+ {h:"底本与辅导", p:"备考主战场，顺序：马版背烂 → 辅导书 → 童陶补充。", list:["马工程《文学理论》：绝对底本，请背烂","王一川《文学理论》学习指南与练习：配套梳理","童庆炳《文学理论教程》：概念细化与例证补充","陶东风《文学理论基本问题》：内容更新、中西比较视野"]},
+ {h:"古代文论", p:"为马版补充“血肉”，建立古文论体系。", list:["张少康《中国文学理论批评史教程》：建立时间线","童庆炳《现代视野中的中华古代文论系统》：体系化","童庆炳《中国古代诗学与美学》：专题深化","陶东风《中国古代心理美学六论》：审美心理专题"]},
+ {h:"原典选读", p:"理清脉络、积累答题材料即可，不必全背。", list:["王国维《人间词话》：境界说、隔与不隔","《毛诗序》《典论·论文》《文赋》：重点段落背诵","刘勰《文心雕龙》：神思、风骨、知音等篇","司空图《二十四诗品》：雄浑、劲健等品"]},
+ {h:"文学批评实操", p:"批评与西方文论同时准备，最便于输出。", list:["赵炎秋《文学批评实践教程》：首选","邱运华《文学批评方法与案例》：备选","B站 6小兔老师：文论网课打基础","梅香文学批评：学答题方式与输出逻辑"]},
+ {h:"陶东风《文学理论基本问题》", p:"三版本之观点库，精读拆书见资料区（PDF）。", list:["反本质主义视角，为论述题加分","导论＋八章：什么是文学、思维方式、文学与世界、语言阐释、体裁风格、传统创新、文化、身份认同"]}
+],
+"经验": [
+ {h:"第一步：背目录，建框架", p:"先把教材整体目录背下来，形成体系化认知。", list:["马工程框架：本质论 / 创作论 / 作品论 / 接受论 / 批评论 / 发展论","再对应艾布拉姆斯四要素：世界 · 作家 · 作品 · 读者","本质上是构建思维导图：先整体后细节"]},
+ {h:"第二步：马版做框架，其余做血肉", p:"三版本殊途同归，都围绕四要素展开。", list:["童庆炳：内容详尽，对马版做补充","陶东风：内容更新，中西比较视野","文学理论 = 掌握框架、形成体系 ＋ 补充血肉","读其他版本时豁然开朗，说明框架已成"]},
+ {h:"第三步：中西文论联动", p:"马版内容浅，要有意识积累古代与西方文论语料。", list:["例：文学接受的作用 ← 孟子“以意逆志”、董仲舒“诗无达诂”、姚斯“期待视野”、伊瑟尔“召唤结构”","例：文学语言 ← 陆机“诗缘情而绮靡”、陌生化","西方文论与文学批评同时准备，最易输出"]},
+ {h:"打地基心态", p:"文论学习是枯燥的积累，但大道至简。", list:["前期背诵枯燥是正常的，别否定自己","基础越扎实，运用越得心应手","好框架会让你读下一本教材时豁然开朗"]}
+],
+"技巧": [
+ {h:"真题标记法", p:"把真题按题型标记回教材，总结重点章节。", list:["名解 / 简答 / 论述 / 综合运用，四类分别标记","结合真题中的古代文论做延伸（如王夫之兴观群怨）","熟悉真题后有意识总结答题材料"]},
+ {h:"70分套路：理论＋中西例子＋总结", p:"卷面前 70 分是套路化答题，教材本身也这么写。", list:["理论：概念界定＋答题点分层","中西例子：马版例子＋古文论/西文论语料","总结：一两句总括性升华"]},
+ {h:"名解范例：文学的倾向性（2024）", p:"10 分名解的完整拆解。", list:["文学性质：意识形态属性（定位）","概念：作家在作品中流露的政治思想与情感倾向","答题点：政治思想倾向性 ＋ 真实性","结合例子概述 ＋ 总结"]},
+ {h:"论述与批评备考", p:"论述以教材为主，批评要“练输出”。", list:["论述：王国维 / 王夫之 / 陆机 / 刘勰语料集中总结","批评：选一本批评书＋2-3 个通用理论","输出模拟后找学长学姐修改指导","715 文学史对文论形成有力补充"]}
+]
+};
+function renderTZ(){
+  renderTabs("stab-tz", Object.keys(TZ), 0);
+  el("panel-tz").innerHTML = Object.keys(TZ).map((s,i)=>{
+    const cards = TZ[s].map(c=>'<div class="sk"><h4>'+c.h+'</h4><p>'+c.p+'</p>'+
+      (c.list?'<ul>'+c.list.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul>':"")+'</div>').join("");
+    return '<div class="panel'+(i===0?" on":"")+'">'+cards+'</div>';
+  }).join("");
+}
+
+/* ================= 考前模拟数据 ================= */
+const MOCK = {
+"文学理论": {
+ intro:"仿 2025—2026 新题型命制：名词8分×5、简答10分×4、论述15分×2、写作40分。",
+ parts:[
+  {t:"一、名词解释（8分×5）", items:[
+   {q:"1. 文学形象", k:"文学形象是文学作品中呈现的具体可感、具有艺术概括性的感性形态。要点：①具体可感性与概括性统一；②主观与客观统一；③个性与共性的统一（典型化）。"},
+   {q:"2. 创作个性", k:"创作个性是作家在创作中稳定体现出来的独特艺术素质与风格倾向。要点：①受气质、阅历、审美趣味影响；②通过题材选择、语言运用、意象营造外化；③是文学风格形成的内在根据。"},
+   {q:"3. 期待视野", k:"姚斯接受美学核心概念，指读者阅读前由经验、趣味、素养形成的“前结构”与心理定势。要点：①与作品“审美距离”产生张力；②影响接受效果；③与“视野融合”相对。"},
+   {q:"4. 文学流派", k:"一定历史时期内思想倾向、审美追求与创作风格相近的作家自觉或不自觉形成的创作群体。要点：①自觉结社或自发趋同；②以共同纲领/风格为标志；③与文学思潮既有联系又有区别。"},
+   {q:"5. 文学意蕴", k:"文学作品蕴含的思想情感、哲理内涵等多层次意义系统。要点：①历史内容层；②哲理意味层；③审美意蕴层；④意蕴的丰富性与系统性。"}]},
+  {t:"二、简答题（10分×4）", items:[
+   {q:"1. 简述文学的社会效益", k:"文学以审美方式实现认识、教育、娱乐功能的综合效果。要点：①审美性是前提；②寓教于乐；③坚持社会效益与经济效益统一；④以“二为”方向为根本。"},
+   {q:"2. 简述文学意境的虚实相生", k:"意境由实境与虚境构成：实境是逼真描绘的具体景象，虚境是实境诱发想象的深层意蕴。要点：①“真境逼而神境出”；②虚实结合、以实显虚；③情景交融是其基础。"},
+   {q:"3. 简述文学批评的“美学—历史”原则", k:"恩格斯提出，要求审美评价与历史评价相统一。要点：①美学标准：艺术形象、形式、审美感染力；②历史标准：思想倾向、历史真实性、进步性；③二者统一，美学评价是前提。"},
+   {q:"4. 简述文学语言的特征", k:"要点：①形象性（可感可闻）；②情感性（饱含态度与情绪）；③含蓄蕴藉（言有尽而意无穷）；④音乐性（节奏韵律）；⑤与日常语言/科学语言的区分。"}]},
+  {t:"三、论述题（15分×2）", items:[
+   {q:"1. 结合中西文论，论述“文学是语言的艺术”", k:"论点：文学以语言为物质媒介，在时间中展开，塑造想象形象。要点：①语言媒介的间接性→想象性（与绘画雕塑比较）；②“诗缘情而绮靡”“陌生化”体现语言的艺术化；③文学语言的形象性、情感性、含蓄性；④结合具体作品例证。"},
+   {q:"2. 试论数字时代文学的新变与不变", k:"要点：①新变：数字文学、网络文学、跨媒介叙事、AI参与创作（可引2024“数字文学”名词）；②不变：审美本质、情感内核、语言艺术本性；③辩证看待技术对文学场域的重塑；④坚持内容为王与价值导向。"}]},
+  {t:"四、写作（40分）", items:[
+   {q:"请以“文学经典的重读”为题，运用一种文学理论或批评方法写一篇文章，观点鲜明，体现辩证思维。", k:"写作框架：①立论：经典在“重读”中生成——接受美学视角（期待视野、视野融合、读者参与意义生成）；②论证：经典的重读是“对话”（伽达默尔）而非仰视；③辩证：重读不等于任意解读，需尊重文本召唤结构与历史语境；④例证：《诗经》多重阐释、经典作品在不同时代的回响；⑤结语升华。"}]}
+]},
+"西方文论": {
+ intro:"仿历年批评类/观点型出题：名词8分×5、简答10分×4、论述15分×2、写作40分。",
+ parts:[
+  {t:"一、名词解释（8分×5）", items:[
+   {q:"1. 陌生化", k:"俄国形式主义核心概念：艺术技巧在于使对象陌生，增加感觉难度与时间长度，恢复人对生活的感觉。要点：①以“文学性”为研究对象；②形式难度的审美意义；③例：“石头成为石头”。"},
+   {q:"2. 召唤结构", k:"伊瑟尔提出：文本中存在大量“未定点”与“空白”，召唤读者参与具体化。要点：①与英伽登“图示化面貌”相关；②阅读是填补空白的过程；③读者在文学接受中的能动作用。"},
+   {q:"3. 文本细读", k:"新批评核心方法：对文本语言、结构、意象、张力进行细致分析，反对意图谬误与感受谬误。要点：①聚焦文本内部；②关注含混、悖论、反讽；③适用于诗歌分析。"},
+   {q:"4. 互文性", k:"克里斯蒂娃提出：任何文本都是其他文本的吸收与转化。要点：①文本间性；②引文、戏仿、典故；③后结构主义语境；④可用于跨文本分析。"},
+   {q:"5. 文学性", k:"俄国形式主义（雅各布森）提出：使文学成为文学的那种特性，即语言自身的诗性功能。要点：①文学研究的对象；②区别于内容社会学批评；③与“陌生化”互补。"}]},
+  {t:"二、简答题（10分×4）", items:[
+   {q:"1. 简述精神分析批评的基本思路", k:"要点：①无意识理论（本我/自我/超我）；②俄狄浦斯情结、升华说；③作家创作是“白日梦”；④批评应用于人物心理分析与创作心理；⑤局限：过度心理化、忽视社会历史。"},
+   {q:"2. 简述新批评的“意图谬误”与“感受谬误”", k:"意图谬误：以作者意图判定作品意义之误；感受谬误：以读者感受替代作品意义之误。要点：①坚持作品中心；②文本客观性；③推动细读法；④局限：割裂作者读者。"},
+   {q:"3. 简述结构主义与解构主义的区别", k:"要点：①结构主义：语言系统/深层结构决定意义，追求稳定结构与规律；②解构主义：消解中心与二元对立，意义延异、不断滑动；③二者同源又对立；④方法论启示与批评实践差异。"},
+   {q:"4. 简述叙事学的基本分析范畴", k:"要点：①叙述者与叙述视角（全知/限知、内聚焦/外聚焦）；②叙述时间（时序、时长、频率）；③人物功能与结构（普罗普）；④叙事语法与声音。"}]},
+  {t:"三、论述题（15分×2）", items:[
+   {q:"1. 运用叙事学理论，分析一部你熟悉的小说的叙述视角", k:"框架：①视角类型界定（如《孔乙己》的限知视角）；②视角如何塑造人物与主题；③叙述者与隐含作者的距离；④视角转换的效果；⑤结合文本细读。"},
+   {q:"2. 评“作者之死”", k:"要点：①巴特命题：写作与阅读中作者让位于语言与文本；②合理性：意义在文本与读者互动中生成，反作者中心；③辩证：完全取消作者意图亦有失偏颇（可引意图谬误争论）；④结合作品接受史。"}]},
+  {t:"四、写作（40分）", items:[
+   {q:"自选一部电影或小说，运用一种西方文论（精神分析/结构主义/叙事学/接受美学等）写一篇评论，观点鲜明，体现辩证思维。", k:"写作框架：①理论工具界定＋适用性说明；②作品文本细读（关键场景/情节）；③理论分析与文本互证；④辩证反思（该理论的边界）；⑤结语。"}]}
+]},
+"古代文论": {
+ intro:"仿历年材料型出题：名词8分×5、简答10分×4、论述15分×2、材料写作40分。",
+ parts:[
+  {t:"一、名词解释（8分×5）", items:[
+   {q:"1. 以意逆志", k:"《孟子·万章上》：“以意逆志，是为得之。”以己之意推求作者之志。要点：①“不以文害辞，不以辞害志”；②读者能动理解；③与“知人论世”互补；④接受美学意义。"},
+   {q:"2. 诗言志", k:"中国诗学开山纲领（《尚书·尧典》）。要点：①“诗言志，歌永言”；②志兼情志；③由言志到缘情的流变（陆机）；④儒家诗教的规范功能。"},
+   {q:"3. 意境", k:"意象与情思融合、虚实相生、韵味无穷的审美境界。要点：①情景交融；②虚实相生（实境虚境）；③韵味无穷（“味外之旨”）；④王国维“境界说”集大成。"},
+   {q:"4. 风骨", k:"刘勰《文心雕龙·风骨》：风为情志感染力，骨为文辞精要峻拔。要点：①风骨并称，情辞相济；②与建安风力相关；③要求刚健明朗、内容充实；④与“采”的辩证。"},
+   {q:"5. 感兴", k:"创作论概念：外物触发情感而兴起创作冲动。要点：①“感物兴情”；②感兴批评方法——从创作发生论批评；③钟嵘“直寻”、严羽“妙悟”与之相通。"}]},
+  {t:"二、简答题（10分×4）", items:[
+   {q:"1. 简述钟嵘《诗品》的“滋味说”", k:"要点：①“五言居文词之要，是众作之有滋味者也”；②滋味=形象性＋感染力＋韵味；③反“理过其辞，淡乎寡味”的玄言诗；④“直寻”“自然英旨”；⑤为意境说先声。"},
+   {q:"2. 简述严羽《沧浪诗话》的“妙悟”说", k:"要点：①“禅道惟在妙悟，诗道亦在妙悟”；②以禅喻诗，重直觉顿悟；③“别材别趣”反以议论为诗；④入门的“熟参”功夫；⑤影响与局限。"},
+   {q:"3. 简述司空图的“象外之象，景外之景”", k:"要点：①《二十四诗品》核心命题；②由实境通往虚境；③“韵外之致”“味外之旨”；④要求含蓄蕴藉、余味无穷；⑤与意境论的深化。"},
+   {q:"4. 简述王国维“境界说”的基本内涵", k:"要点：①“能写真景物、真感情者，谓之有境界”；②有我之境与无我之境；③隔与不隔；④“造境”与“写境”；⑤境界为中国意境论之总结。"}]},
+  {t:"三、论述题（15分×2）", items:[
+   {q:"1. 从“诗言志”到“诗缘情”再到“境界说”，论中国文论情感论的发展", k:"框架：①先秦言志（志含情）→②魏晋缘情（陆机“诗缘情而绮靡”，情感独立）→③唐宋意境（情与景融，王夫之“情景名为二而实不可离”）→④近代境界（王国维真情观）；⑤贯穿线索：情感的地位不断提升、表现日益审美化。"},
+   {q:"2. 结合具体作品，谈谈你对“不隔”之境的理解", k:"要点：①“语语都在目前”即不隔——意象鲜明、情真景真；②例：陶渊明“采菊东篱下”、谢灵运“池塘生春草”；③隔=用典生涩、意象晦暗；④不隔与意境的“如在目前”相通；⑤辩证：含蓄不等于隔。"}]},
+  {t:"四、材料写作（40分）", items:[
+   {q:"材料：刘勰《文心雕龙·神思》：“文之思也，其神远矣。故寂然凝虑，思接千载；悄焉动容，视通万里……神用象通，情变所孕。”请翻译材料，指出其诗学思想，并结合具体作品谈创作构思中的“神思”。", k:"框架：①翻译（凝神静虑而神游古今，情思驱动意象贯通）；②诗学思想：创作论中的想象论——艺术想象不受时空限制、以情驭象、虚实相生；③例：李白“白发三千丈”、苏轼《念奴娇》“大江东去”的时空驰骋；④与陆机“精骛八极，心游万仞”互证；⑤联系教材创作论（艺术想象特征）。"}]}
+]}};
+</script>
+<script>
+
+/* ================= 题目闯关 ================= */
+const QZ = {
+"文学理论":[
+ {q:"艾布拉姆斯《镜与灯》提出的文学活动四要素是？",o:["世界、作家、作品、读者","内容、形式、语言、结构","创作、接受、批评、传播","感性、理性、情感、想象"],a:0},
+ {q:"马工程《文学理论》的整体框架通常概括为？",o:["本质论、创作论、作品论、接受论、发展论","本体论、认识论、价值论、批评论","起源论、发展论、衰亡论、批评论","作家论、作品论、读者论、媒介论"],a:0},
+ {q:"“文学是语言的艺术”，强调的是文学的？",o:["物质媒介","思想内容","社会功能","创作主体"],a:0},
+ {q:"“二为”方向指文艺要？",o:["为人民服务、为社会主义服务","为政治服务、为经济建设服务","为大众服务、为市场服务","为时代服务、为历史服务"],a:0},
+ {q:"“诗缘情而绮靡”出自陆机的？",o:["《文赋》","《典论·论文》","《文心雕龙》","《诗品》"],a:0},
+ {q:"文学批评“美学的和历史的原则”由谁明确提出？",o:["恩格斯","马克思","列宁","普列汉诺夫"],a:0},
+ {q:"“期待视野”是接受美学中谁的核心概念？",o:["姚斯","英伽登","伊瑟尔","巴赫金"],a:0},
+ {q:"文学意境的基本特征不包括？",o:["结构对称","情景交融","虚实相生","韵味无穷"],a:0},
+ {q:"文学典型的本质特征是？",o:["个性与共性的统一","绝对的真实","纯粹的虚构","数量的普遍"],a:0},
+ {q:"数字文学、网络文学的出现，说明文学在发展中要？",o:["继承与革新","固守传统","否定经典","脱离读者"],a:0}
+],
+"西方文论":[
+ {q:"“陌生化”理论属于哪个流派？",o:["俄国形式主义","新批评","精神分析","结构主义"],a:0},
+ {q:"新批评主张文学研究的中心是？",o:["文本","作者","读者","社会历史"],a:0},
+ {q:"“作者之死”这一命题由谁提出？",o:["罗兰·巴特","米歇尔·福柯","德里达","拉康"],a:0},
+ {q:"伊瑟尔“召唤结构”的依据是文本的？",o:["空白与未定点","宏大叙事","作者意图","社会背景"],a:0},
+ {q:"结构主义认为意义产生于？",o:["语言系统内部的差异关系","作者的主观意图","读者的个人感受","现实的直接反映"],a:0},
+ {q:"精神分析批评关注的重心是？",o:["无意识","意识流","社会制度","语言游戏"],a:0},
+ {q:"叙事学主要分析的是？",o:["叙述视角、叙述时间、人物功能","意象与象征","节奏与韵律","风格与语体"],a:0},
+ {q:"“互文性”概念主要由谁提出？",o:["克里斯蒂娃","托多罗夫","普罗普","热奈特"],a:0},
+ {q:"亚里士多德《诗学》着重讨论的文体是？",o:["悲剧","史诗","喜剧","抒情诗"],a:0},
+ {q:"“文学性”这一概念是俄国形式主义的谁提出的？",o:["雅各布森","什克洛夫斯基","埃亨鲍姆","托马舍夫斯基"],a:0}
+],
+"古代文论":[
+ {q:"“以意逆志”出自？",o:["《孟子》","《庄子》","《荀子》","《墨子》"],a:0},
+ {q:"“诗言志”最早见于？",o:["《尚书·尧典》","《毛诗序》","《文赋》","《诗品序》"],a:0},
+ {q:"钟嵘《诗品》提出的核心命题是？",o:["滋味说","妙悟说","神韵说","格调说"],a:0},
+ {q:"刘勰《文心雕龙·神思》主要论述的是？",o:["艺术想象","文学体裁","批评标准","文学起源"],a:0},
+ {q:"司空图《二十四诗品》倡导的审美理想是？",o:["象外之象、味外之旨","温柔敦厚","文以载道","发愤著书"],a:0},
+ {q:"“登山则情满于山，观海则意溢于海”出自？",o:["《文心雕龙》","《文赋》","《人间词话》","《沧浪诗话》"],a:0},
+ {q:"王国维境界说的核心是？",o:["能写真景物、真感情","无我之境高于有我之境","隔优于不隔","造境高于写境"],a:0},
+ {q:"“隔与不隔”是王国维品评什么的术语？",o:["词","诗","曲","赋"],a:0},
+ {q:"严羽《沧浪诗话》以什么论诗？",o:["禅（妙悟）","儒（仁政）","道（自然）","法（格律）"],a:0},
+ {q:"王夫之论兴观群怨的名句是？",o:["作者用一致之思，读者各以其情而自得","诗无达诂","诗可以怨","意在言外"],a:0}
+]
+};
+const ZZKEY = "hszy_zz_";
+const zstate = SUBJECTS.map(s=>{
+  const k = ZZKEY + s;
+  try{ const d = JSON.parse(localStorage.getItem(k)); if(d && typeof d.cur==="number") return d; }catch(e){}
+  return {cur:0, score:0, streak:0, correct:0, fin:false};
+});
+function saveZZ(i){ try{ localStorage.setItem(ZZKEY + SUBJECTS[i], JSON.stringify(zstate[i])); }catch(e){} }
+/* 错题本 */
+const WRONGKEY = "hszy_wrong_";
+function getWrongs(sub){
+  try{ const d = JSON.parse(localStorage.getItem(WRONGKEY + sub)); if(Array.isArray(d)) return d; }catch(e){}
+  return [];
+}
+function saveWrongs(sub, arr){ try{ localStorage.setItem(WRONGKEY + sub, JSON.stringify(arr)); }catch(e){} }
+function renderZZ(){
+  renderTabs("stab-zz", ["章节刷题","真题闯关","错题本"], 0);
+  el("panel-zz").innerHTML =
+    '<div class="panel on" id="bk-panel"></div>' +
+    '<div class="panel" id="panel-zzsub"><div class="subtabs" id="stab-zzsub"></div>'+
+      SUBJECTS.map((sub,i)=>'<div class="panel'+(i===0?" on":"")+'" id="zzpanel-'+i+'">'+zzBody(i)+'</div>').join("")+'</div>' +
+    '<div class="panel" id="zzpanel-wrong">'+wrongBody()+'</div>';
+  renderTabs("stab-zzsub", SUBJECTS, 0);
+  renderBK();
+}
+function wrongBody(){
+  return SUBJECTS.concat(bkMods()).map((sub)=>{
+    const ws = getWrongs(sub);
+    const items = ws.length
+      ? ws.map(w=>'<div class="mq"><div class="mq-t">'+esc(w.q)+'</div><div class="key on">正确答案：'+esc(w.ok)+'</div></div>').join("")
+      : '<p>暂无错题，继续保持～</p>';
+    return '<div class="sk"><h4>'+sub+' · 错题 '+ws.length+' 道</h4>'+items+
+      (ws.length ? '<div style="margin-top:10px"><button class="greset" onclick="clearWrong(\''+sub+'\')">清空该科错题</button></div>' : '')+'</div>';
+  }).join("");
+}
+function clearWrong(sub){
+  saveWrongs(sub, []);
+  renderZZ();
+  var tabs = document.querySelectorAll("#stab-zz .stab");
+  tabs.forEach(function(t,ti){ t.classList.toggle("on", ti===2); });
+  var panels = document.querySelectorAll("#panel-zz .panel");
+  panels.forEach(function(p,pi){ p.classList.toggle("on", pi===2); });
+}
+
+/* ================= 章节刷题（按背诵笔记拆解 · 1200+ 题） ================= */
+const BKKEY = "hszy_bk_";
+let bkState = {mod:-1, i:0, right:0};
+function bkLoad(){
+  try{ const d = JSON.parse(localStorage.getItem(BKKEY+"state"));
+    if(d && typeof d.mod === "number" && d.mod >= 0){ bkState = d; return true; } }catch(e){}
+  return false;
+}
+function bkSave(){ try{ localStorage.setItem(BKKEY+"state", JSON.stringify(bkState)); }catch(e){} }
+const BK_ORDER = ["绪论","第一章 文学的性质","第二章 文学的价值与功能","第三章 文学创作","第四章 文学作品","第五章 文学体裁","第六章 文学的风格、流派和思潮","第七章 文学接受","第八章 文学批评","第九章 文学的历史演变","第十章 文学活动的当代发展"];
+function bkMods(){
+  const seen = [];
+  QBANK.forEach(function(b){ if(seen.indexOf(b.m) < 0) seen.push(b.m); });
+  return BK_ORDER.filter(function(m){ return seen.indexOf(m) >= 0; });
+}
+function renderBK(){
+  const mods = bkMods();
+  el("bk-panel").innerHTML = '<div class="note">按马工程教材章节拆解 · 共 '+QBANK.length+' 题 · 点开章节直接刷题，错题自动进错题本</div>' +
+    mods.map(function(m,mi){
+      const n = QBANK.filter(b=>b.m===m).length;
+      return '<div class="card" onclick="bkOpen('+mi+')"><div class="no">'+(mi+1)+'</div>'+
+        '<div class="info"><b>'+m+'</b><p>'+n+' 题 · 点开即刷</p></div><div class="arr">›</div></div>';
+    }).join("");
+}
+function bkOpen(mi){
+  bkState = {mod:mi, i:0, right:0};
+  bkSave();
+  el("bk-panel").innerHTML = bkView(mi);
+}
+function bkView(mi){
+  const m = bkMods()[mi];
+  const items = QBANK.filter(b=>b.m===m);
+  if(bkState.i >= items.length){
+    return '<div class="gfin"><div class="big">🎉</div><h3>'+m+' · 刷完</h3>'+
+      '<p>共 '+items.length+' 题 · 答对 '+(bkState.right||0)+' 题</p>'+
+      '<button class="gbtn" onclick="bkOpen('+mi+')">再刷一遍</button>'+
+      '<button class="greset" onclick="renderBK()">返回章节</button></div>';
+  }
+  const q = items[bkState.i];
+  const opts = q.o.map((t,oi)=>'<button class="gopt" id="bko'+mi+'_'+oi+'" onclick="bkPick('+mi+','+oi+')">'+
+    String.fromCharCode(65+oi)+'、'+esc(t)+'</button>').join("");
+  return '<div class="ghead"><div class="lv">'+m+'</div><div class="gstat">'+bkState.i+' / '+items.length+'</div></div>'+
+    '<div class="gq"><div class="gtag">考点 · '+esc(q.k)+'</div><div class="qt">'+esc(q.q)+'</div>'+
+    opts+'<div class="gfb" id="bkfb'+mi+'"></div></div>'+
+    '<div style="text-align:center"><button class="greset" onclick="renderBK()">返回章节列表</button></div>';
+}
+function bkPick(mi, oi){
+  const m = bkMods()[mi];
+  const items = QBANK.filter(b=>b.m===m);
+  const q = items[bkState.i];
+  const fb = document.getElementById("bkfb"+mi);
+  const opts = document.querySelectorAll("#bk-panel .gopt");
+  opts.forEach(function(b){ b.disabled = true; });
+  if(oi === q.a){
+    bkState.right = (bkState.right||0) + 1;
+    document.getElementById("bko"+mi+"_"+oi).classList.add("ok");
+    fb.textContent = "✓ 回答正确";
+  }else{
+    document.getElementById("bko"+mi+"_"+oi).classList.add("bad");
+    document.getElementById("bko"+mi+"_"+q.a).classList.add("ok");
+    opts.forEach(function(b){ b.classList.add("dim"); });
+    document.getElementById("bko"+mi+"_"+oi).classList.remove("dim");
+    fb.textContent = "✗ 答错了，正确答案是 " + String.fromCharCode(65+q.a) + "、" + q.o[q.a];
+    const ws = getWrongs(m);
+    if(!ws.some(function(w){ return w.q === q.q; })){
+      ws.push({q:q.q, ok:String.fromCharCode(65+q.a)+"、"+q.o[q.a]});
+      saveWrongs(m, ws);
+    }
+  }
+  bkState.i++;
+  bkSave();
+  setTimeout(function(){ el("bk-panel").innerHTML = bkView(mi); }, 1100);
+}
+function zzBody(i){
+  const sub = SUBJECTS[i], st = zstate[i], bank = QZ[sub];
+  if(st.cur >= bank.length){
+    const best = st.score;
+    return '<div class="gfin"><div class="big">🎉</div><h3>'+sub+' · 通关</h3>'+
+      '<p>'+bank.length+' 关挑战完成！得分 '+best+' · 最高连击 '+(st.streak||0)+' · 答对 '+(st.correct||0)+' 题</p>'+
+      '<button class="gbtn" onclick="resetZZ('+i+')">再闯一次</button>'+
+      '<button class="greset" onclick="resetZZ('+i+',true)">清零重来</button></div>';
+  }
+  const q = bank[st.cur], pct = Math.round(st.cur/bank.length*100);
+  const opts = q.o.map((t,oi)=>
+    '<button class="gopt" id="zo'+i+'_'+oi+'" onclick="pickZZ('+i+','+oi+')">'+
+    String.fromCharCode(65+oi)+'、'+t+'</button>').join("");
+  return '<div class="ghead"><div class="lv">第 '+(st.cur+1)+' / '+bank.length+' 关</div>'+
+    '<div class="gstat">得分 '+st.score+'<span class="streak">🔥 连击 '+st.streak+'</span></div>'+
+    '<div class="gbar" style="width:100%"><i style="width:'+pct+'%"></i></div></div>'+
+    '<div class="gq"><div class="gtag">'+sub+' · 闯关第 '+(st.cur+1)+' 题</div>'+
+    '<div class="qt">'+q.q+'</div>'+opts+'<div class="gfb" id="zfb'+i+'"></div></div>'+
+    '<div style="text-align:center"><button class="greset" onclick="resetZZ('+i+',true)">重置本关进度</button></div>';
+}
+function pickZZ(i, oi){
+  const sub = SUBJECTS[i], st = zstate[i], q = QZ[sub][st.cur];
+  if(st.locked) return;
+  st.locked = true;
+  const fb = document.getElementById("zfb"+i);
+  if(oi === q.a){
+    st.score += 10 + st.streak*2; st.streak++; st.cur++;
+    st.correct = (st.correct||0) + 1;
+    document.getElementById("zo"+i+"_"+oi).classList.add("ok");
+    fb.textContent = "✓ 回答正确！+"+(10+(st.streak-1)*2)+"分";
+    saveZZ(i);
+    setTimeout(()=>{ st.locked=false; el("zzpanel-"+i).innerHTML = zzBody(i); }, 650);
+  }else{
+    st.streak = 0;
+    const ws = getWrongs(sub);
+    if(!ws.some(function(w){ return w.q === q.q; })){
+      ws.push({q:q.q, ok:String.fromCharCode(65+q.a)+"、"+q.o[q.a]});
+      saveWrongs(sub, ws);
+    }
+    document.getElementById("zo"+i+"_"+oi).classList.add("bad");
+    document.getElementById("zo"+i+"_"+q.a).classList.add("ok");
+    const opts = document.querySelectorAll("#zzpanel-"+i+" .gopt");
+    opts.forEach(b=>b.classList.add("dim"));
+    document.getElementById("zo"+i+"_"+oi).classList.remove("dim");
+    fb.textContent = "✗ 答错了，正确答案是 " + String.fromCharCode(65+q.a) + "。再试一次！";
+    setTimeout(()=>{ st.locked=false; el("zzpanel-"+i).innerHTML = zzBody(i); }, 1400);
+  }
+}
+function resetZZ(i, hard){
+  zstate[i] = hard ? {cur:0,score:0,streak:0,correct:0,fin:false} : {cur:0,score:0,streak:0,correct:0,fin:true};
+  saveZZ(i);
+  el("zzpanel-"+i).innerHTML = zzBody(i);
+}
+
+/* ================= 渲染逻辑 ================= */
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function el(id){return document.getElementById(id)}
+function openPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));el("page-"+id).classList.add("on");el("home").style.display="none";window.scrollTo(0,0)}
+function goHome(){document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));el("home").style.display="";window.scrollTo(0,0)}
+document.querySelectorAll(".card").forEach(c=>c.addEventListener("click",()=>openPage(c.dataset.page)));
+
+const ZT_NOTE = {
+ "文学理论":"题型：名词解释 / 简答 / 论述 / 综合·写作。2025 起简答扩为 4 题、新增 40 分写作，注意输出能力训练。",
+ "西方文论":"西方文论以评论写作与批评方法为主：影评、观点型写作、批评标准与陌生化/形式主义等理论分析。",
+ "古代文论":"古代文论以材料分析为主：翻译＋诗学思想＋作品例证；高频人物：孟子、陆机、刘勰、司空图、王夫之、王国维。"
+};
+function suggestTime(label){
+  const pts = [];
+  const re = /(\d+(?:\.\d+)?)分(?:\s*[×x]\s*(\d+))?/g;
+  let m;
+  while((m = re.exec(label))){ pts.push({s:parseFloat(m[1]), n:m[2]?parseInt(m[2]):1}); }
+  if(!pts.length) return "";
+  const total = pts.reduce((a,b)=>a+b.s*b.n,0);
+  const totalT = Math.round(total*1.2);
+  const pers = pts.map(b=>Math.round(b.s*1.2));
+  const uni = pers.every(v=>v===pers[0]) ? String(pers[0]) : pers.join("/");
+  if(pts.length===1 && pts[0].n===1) return "建议用时 " + uni + " 分钟";
+  if(pts.length===1) return "每题约 " + uni + " 分钟 · 共 " + totalT + " 分钟";
+  return "建议 " + uni + " 分钟 · 共 " + totalT + " 分钟";
+}
+function renderTabs(prefix, subs, cur){ el(prefix).innerHTML = subs.map((s,i)=>
+  '<div class="stab'+(i===cur?" on":"")+'" onclick="setSub(\''+prefix+'\',\''+i+'\')">'+s+'</div>').join("") }
+function setSub(prefix, i){
+  i = parseInt(i);
+  const pid = prefix.replace("stab-", "panel-");
+  document.querySelectorAll("#"+prefix+" .stab").forEach((t,ti)=>t.classList.toggle("on",ti===i));
+  document.querySelectorAll("#"+pid+" .panel").forEach((p,pi)=>p.classList.toggle("on",pi===i));
+}
+function initTabs(prefix){ el(prefix).innerHTML = ""; }
+
+/* 真题 */
+function renderZT(){
+  renderTabs("stab-zt", SUBJECTS, 0);
+  el("panel-zt").innerHTML = SUBJECTS.map((s,i)=>{
+    const years = ZT[s];
+    const html = years.map(yr=>{
+      const qh = yr.q.map(q=>'<div class="qtype">'+q.t+'<span class="qtime">'+suggestTime(q.t)+'</span></div>'+q.items.map(it=>'<div class="qitem">'+it+'</div>').join("")).join("");
+      return '<div class="yr"><div class="yr-h" onclick="this.parentNode.classList.toggle(\'open\')">'+
+        '<span class="tag">'+yr.y+'年</span><b>'+s+'真题</b><span class="tog">›</span></div>'+
+        '<div class="yr-b">'+qh+'</div></div>';
+    }).join("");
+    return '<div class="panel'+(i===0?" on":"")+'"><div class="note">'+ZT_NOTE[s]+'</div>'+html+'</div>';
+  }).join("");
+}
+/* 复习思路 */
+function renderSK(){
+  renderTabs("stab-sk", SUBJECTS, 0);
+  el("panel-sk").innerHTML = SUBJECTS.map((s,i)=>{
+    const cards = SK[s].map(c=>'<div class="sk"><h4>'+c.h+'</h4><p>'+c.p+'</p>'+
+      (c.list?'<ul>'+c.list.map(x=>'<li>'+x+'</li>').join("")+'</ul>':"")+
+      '<div class="links">'+PDF[s].map(l=>'<a href="'+l[1]+'" target="_blank">'+l[0]+' ↗</a>').join("")+
+      '<a class="xhs" href="'+XHS+'" target="_blank">小红书 · 更多资料</a></div></div>').join("");
+    return '<div class="panel'+(i===0?" on":"")+'">'+cards+'</div>';
+  }).join("");
+}
+/* 考前模拟 */
+const timers = [{left:10800,int:null},{left:10800,int:null},{left:10800,int:null}];
+function timerTick(i){
+  const T = timers[i];
+  if(T.left<=0){clearInterval(T.int);T.int=null;el("tclock"+i).textContent="00:00";el("tbtn"+i).textContent="开始";return}
+  T.left--;
+  const h=Math.floor(T.left/3600), mm=String(Math.floor(T.left%3600/60)).padStart(2,"0"), ss=String(T.left%60).padStart(2,"0");
+  el("tclock"+i).textContent=h+":"+mm+":"+ss;
+}
+function toggleTimer(i){
+  const T = timers[i];
+  if(T.int){clearInterval(T.int);T.int=null;el("tbtn"+i).textContent="继续"}
+  else{T.int=setInterval(()=>timerTick(i),1000);el("tbtn"+i).textContent="暂停"}
+}
+function resetTimer(i){
+  const T = timers[i];
+  if(T.int){clearInterval(T.int);T.int=null}
+  T.left=10800;el("tclock"+i).textContent="3:00:00";el("tbtn"+i).textContent="开始"
+}
+function toggleKey(btn){btn.nextElementSibling.classList.toggle("on")}
+function renderMK(){
+  renderTabs("stab-mk", SUBJECTS, 0);
+  el("panel-mk").innerHTML = SUBJECTS.map((s,i)=>{
+    const m = MOCK[s];
+    const body = m.parts.map(p=>'<div class="mq"><div class="mt">'+p.t+'<span class="qtime">'+suggestTime(p.t)+'</span></div>'+
+      p.items.map(it=>'<div class="mq-t">'+it.q+'</div>'+
+        '<span class="kbtn" onclick="toggleKey(this)">查看要点</span>'+
+        '<div class="key">'+it.k+'</div>').join("")+'</div>').join("");
+    return '<div class="panel'+(i===0?" on":"")+'">'+
+      '<div class="mock-head"><b>'+s+' · 仿真模拟</b>'+
+      '<div class="timer"><span class="t" id="tclock'+i+'">3:00:00</span>'+
+      '<span class="tbtn" id="tbtn'+i+'" onclick="toggleTimer('+i+')">开始</span>'+
+      '<span class="tbtn" onclick="resetTimer('+i+')">重置</span></div></div>'+
+      '<div class="note">'+m.intro+' 共 150 分 · 建议 3 小时完成。</div>'+body+'</div>';
+  }).join("");
+}
+
+renderZT(); renderSK(); renderMK(); renderZZ(); renderTZ();
+</script>
+<div id="expiredMask" style="display:none;position:fixed;inset:0;background:#F7F3EA;z-index:9999;text-align:center;padding:90px 30px;">
+  <div style="color:#BC563D;font-size:16px;letter-spacing:3px;font-weight:700;">Zoey 印</div>
+  <div style="font-size:22px;font-weight:700;margin-top:18px;color:#2F2B26;">免费使用期已结束</div>
+  <div style="font-size:14px;color:#6E675B;margin-top:14px;line-height:1.9;">
+    本期内容免费使用至 2026-11-25。<br>
+    如需续期或定制复习规划，请联系 Zoey：<br>
+    电话 19058141302 · 小红书 @Zoey 快去学习
+  </div>
+  <button onclick="location.href='tel:19058141302'" style="margin-top:26px;background:#3F5C4B;color:#FBF9F2;border:none;border-radius:8px;padding:12px 30px;font-size:14px;letter-spacing:1px;">拨打咨询</button>
+</div>
+<script>
+(function(){
+  var end = new Date('2026-11-25T23:59:59+08:00');
+  if (new Date().getTime() > end.getTime()) {
+    document.getElementById('expiredMask').style.display = 'block';
+  }
+})();
+</script>
+</body>
+</html>

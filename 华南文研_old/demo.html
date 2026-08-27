@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>华师文研 · 3分钟体验</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#F8F4EB}
+  .top{height:60px;background:#3F5C4B;color:#F8F4EB;display:flex;align-items:center;justify-content:space-between;padding:0 18px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+  .top .brand{font-size:15px;font-weight:600;letter-spacing:1px}
+  .top .tip{font-size:11px;opacity:.75;margin-left:8px}
+  .top .timer{background:#BC563D;padding:5px 14px;border-radius:20px;font-size:13px;font-variant-numeric:tabular-nums}
+  iframe{width:100%;height:calc(100% - 60px);border:0;display:block}
+  .overlay{position:fixed;inset:0;background:#F8F4EB;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:#33302B;text-align:center;padding:0 28px;z-index:9}
+  .overlay.show{display:flex}
+  .overlay h2{font-size:26px;color:#3F5C4B;letter-spacing:2px}
+  .overlay p{color:#8A8578;font-size:14px;line-height:2}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="brand">华师文研<span class="tip">3分钟体验 · 到期自动失效</span></div>
+  <div class="timer" id="timer">03:00</div>
+</div>
+<iframe id="app" src="index.html"></iframe>
+<div class="overlay" id="overlay">
+  <h2>体验已结束</h2>
+  <p>本次 3 分钟体验已失效<br>完整版含 1000 题题库、真题模拟与闯关存档<br>请联系 @Zoey 快去学习 获取</p>
+</div>
+<script>
+(function(){
+  var exp = parseInt(new URLSearchParams(location.search).get('exp') || '0', 10);
+  var overlay = document.getElementById('overlay');
+  var timerEl = document.getElementById('timer');
+  var app = document.getElementById('app');
+  function lock(){
+    overlay.classList.add('show');
+    app.style.display = 'none';
+  }
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  if(!exp || Date.now() > exp){ timerEl.textContent = '00:00'; lock(); return; }
+  function tick(){
+    var left = Math.max(0, Math.floor((exp - Date.now()) / 1000));
+    timerEl.textContent = pad(Math.floor(left / 60)) + ':' + pad(left % 60);
+    if(left <= 0) lock();
+  }
+  tick();
+  setInterval(tick, 500);
+})();
+</script>
+</body>
+</html>

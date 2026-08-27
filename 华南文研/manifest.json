@@ -1,0 +1,16 @@
+{
+ "name": "华南文研 · Zoey",
+ "short_name": "华南文研",
+ "description": "华南师大839文学理论考研：按背诵笔记拆解章节刷题 1200+ 题 / 历年真题 / 考前模拟 / 错题本",
+ "id": "./",
+ "start_url": "./index.html",
+ "display": "standalone",
+ "display_override": ["standalone", "minimal-ui"],
+ "orientation": "portrait",
+ "background_color": "#FBF8F1",
+ "theme_color": "#FBF8F1",
+ "icons": [
+  {"src": "assets/icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any"},
+  {"src": "assets/icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+ ]
+}
