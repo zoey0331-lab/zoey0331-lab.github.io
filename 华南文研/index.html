@@ -201,9 +201,6 @@ a{color:inherit;text-decoration:none}
   <div class="card" data-page="zz"><div class="no">闯</div>
     <div class="info"><b>题目闯关</b><p>章节刷题 1200+ 题 · 真题闯关 · 连击加分 · 错题本</p></div>
     <div class="arr">›</div></div>
-  <div class="card" data-page="gh"><div class="no">规</div>
-    <div class="info"><b>规划指导</b><p>初试规划 · 模拟面试 · 调剂指导 · 上岸情况</p></div>
-    <div class="arr">›</div></div>
 </div>
 
 <!-- 历年真题 -->
@@ -241,6 +238,12 @@ a{color:inherit;text-decoration:none}
   <div id="panel-tz"></div>
 </section>
 
+<!-- 学习打卡 -->
+<section class="page" id="page-dk">
+  <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>学习打卡</b><span>坚持 · 连续 · 复盘</span></div>
+  <div id="panel-dk"></div>
+</section>
+
 <!-- 规划指导 -->
 <section class="page" id="page-gh">
   <div class="page-head"><div class="back" onclick="goHome()">‹</div><b>规划指导</b><span>Zoey 学姐 · 全程陪伴</span></div>
@@ -268,17 +271,18 @@ a{color:inherit;text-decoration:none}
 <!-- 底部联系栏 -->
 <footer class="dock">
   <div class="quickbar">
+    <div class="qb-item" onclick="openPage('dk')"><span class="qb-ico" style="background:#F2EDE0">✓</span><b>打卡</b><span>学习打卡</span></div>
+    <div class="qb-item" onclick="openPage('me')"><span class="qb-ico" style="background:#F2EDE0">我</span><b>我的</b><span>错题总结</span></div>
+    <div class="qb-item" onclick="openPage('re')"><span class="qb-ico" style="background:#F2EDE0">¥</span><b>续费</b><span>36.6/月 · 180/年</span></div>
+    <div class="qb-item" onclick="openPage('sh')"><span class="qb-ico" style="background:#F2EDE0">享</span><b>分享</b><span>用户经验</span></div>
     <div class="qb-item" onclick="openPage('gh')"><span class="qb-ico" style="background:#4E6B58;color:#FBF8F1">规</span><b>规划</b><span>规划指导</span></div>
-    <div class="qb-item" onclick="openPage('me')"><b>我的</b><span>错题总结</span></div>
-    <div class="qb-item" onclick="openPage('re')"><b>续费</b><span>36.6/月 · 180/年</span></div>
-    <div class="qb-item" onclick="openPage('sh')"><b>分享</b><span>用户经验</span></div>
   </div>
   <div class="nm">Zoey <i>·</i> 华南文研</div>
   <div class="acts">
     <a class="tel" id="telBtn" href="tel:19058141302">✆ 电话联系我</a>
     <a class="xhs" href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">📕 小红书主页</a>
   </div>
-  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v3.0.0 数据更新 2026.08</div>
+  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v3.0.1 数据更新 2026.08</div>
 </footer>
 
 <script src="qbank.js"></script>
@@ -803,6 +807,48 @@ function renderGh(){
 function toggleGh(i){
   const d = document.getElementById("ghd"+i);
   if(d) d.style.display = d.style.display === "none" ? "block" : "none";
+}
+
+/* ================= 学习打卡 ================= */
+const CHECKKEY = "hszy_check_";
+function checkLoad(){
+  try{ const d = JSON.parse(localStorage.getItem(CHECKKEY));
+    if(d && d.total != null) return d; }catch(e){}
+  return {last:"", streak:0, total:0, dates:[]};
+}
+function checkSave(s){ try{ localStorage.setItem(CHECKKEY, JSON.stringify(s)); }catch(e){} }
+function renderCheck(){
+  const s = checkLoad(), t = todayStr();
+  const done = s.dates.indexOf(t) >= 0;
+  let html = '<div class="note">每日打卡 · 连续 <b>'+(s.streak||0)+'</b> 天 · 累计 <b>'+(s.total||0)+'</b> 天</div>';
+  html += '<div style="background:#F1EDE2;border:1px solid #D9D2C2;border-radius:10px;padding:26px 20px;text-align:center;margin:12px 0">';
+  html += '<div style="font-size:28px;letter-spacing:3px;color:#2F2B26">'+(done?'今日已打卡 ✓':'今日未打卡')+'</div>';
+  html += '<div style="color:#8A8578;font-size:13px;margin-top:10px">连续 '+(s.streak||0)+' 天 · 累计 '+(s.total||0)+' 天</div>';
+  html += !done
+    ? '<button class="gbtn" style="margin-top:16px" onclick="doCheck()">今日打卡</button>'
+    : '<div style="color:#3F5C4B;font-size:13px;margin-top:16px">明日再来，坚持就是上岸</div>';
+  html += '</div>';
+  const dots = [];
+  for(let i=29;i>=0;i--){
+    const d = new Date(); d.setDate(d.getDate()-i);
+    const ds = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    dots.push('<span title="'+ds+'" style="display:inline-block;width:10px;height:10px;border-radius:2px;margin:3px;background:'+(s.dates.indexOf(ds)>=0?'#3F5C4B':'#E4DDCB')+'"></span>');
+  }
+  html += '<div style="text-align:center;margin-top:6px">'+dots.join("")+'</div><div style="text-align:center;color:#8A8578;font-size:12px;margin-top:6px">近 30 天打卡</div>';
+  const ev = evLoad();
+  html += '<div class="note" style="margin-top:18px">使用统计：真题 '+(ev.zt||0)+' 次 · 思路 '+(ev.sk||0)+' 次 · 模拟 '+(ev.mk||0)+' 次 · 闯关 '+(ev.zz||0)+' 次 · 拓展 '+(ev.tz||0)+' 次 · 打卡 '+(ev.dk||0)+' 次</div>';
+  el("panel-dk").innerHTML = html;
+}
+function doCheck(){
+  const s = checkLoad(), t = todayStr();
+  if(s.dates.indexOf(t) >= 0) return;
+  const y = new Date(); y.setDate(y.getDate()-1);
+  const ys = y.getFullYear()+"-"+String(y.getMonth()+1).padStart(2,"0")+"-"+String(y.getDate()).padStart(2,"0");
+  s.streak = (s.last === ys) ? (s.streak||0)+1 : 1;
+  s.last = t; s.total = (s.total||0)+1;
+  s.dates.push(t);
+  checkSave(s); trackEv("dk");
+  renderCheck();
 }
 
 /* ================= 错题本导出 ================= */

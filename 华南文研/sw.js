@@ -1,5 +1,5 @@
 /* 华南文研 · Service Worker —— 离线缓存，支持"添加到主屏幕"离线使用 */
-const CACHE = "hszy-v3.0.0";
+const CACHE = "hszy-v3.0.1";
 const FILES = [
   "./",
   "./index.html",
