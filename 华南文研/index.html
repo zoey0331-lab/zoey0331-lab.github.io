@@ -21,7 +21,7 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{background:var(--paper);color:var(--ink);font-family:"Songti SC","STSong","Kaiti SC",serif;
   background-image:radial-gradient(rgba(185,154,90,.05) 1px,transparent 1px);background-size:28px 28px}
-body{padding-bottom:152px;min-height:100vh}
+body{padding-bottom:186px;min-height:100vh}
 a{color:inherit;text-decoration:none}
 
 /* ===== 顶部 ===== */
@@ -145,23 +145,23 @@ a{color:inherit;text-decoration:none}
 
 /* ===== 底部 Dock ===== */
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(251,248,241,.96);backdrop-filter:blur(8px);
-  border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));text-align:center}
-.dock .nm{font-size:13px;letter-spacing:3px;font-weight:600;font-family:"Kaiti SC","STKaiti",serif}
+  border-top:1px solid var(--line);padding:8px 14px calc(8px + env(safe-area-inset-bottom));text-align:center}
+.dock .nm{font-size:12px;letter-spacing:2px;font-weight:600;font-family:"Kaiti SC","STKaiti",serif}
 .dock .nm i{font-style:normal;color:var(--acc)}
-.dock .acts{display:flex;justify-content:center;gap:10px;margin-top:8px}
-.dock a{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;letter-spacing:1px;padding:8px 18px;
+.dock .acts{display:flex;justify-content:center;gap:10px;margin-top:6px}
+.dock a{display:inline-flex;align-items:center;gap:5px;font-size:12px;letter-spacing:1px;padding:6px 14px;
   border-radius:20px;color:#FBF8F1}
 .dock .tel{background:var(--acc)}
 .dock .xhs{background:var(--green)}
-.dock .quickbar{display:flex;border-bottom:1px solid var(--line);margin-bottom:10px;padding-bottom:10px}
-.dock .qb-item{flex:1;text-align:center;cursor:pointer;padding:6px 2px;border-left:1px dashed var(--line)}
+.dock .quickbar{display:flex;border-bottom:1px solid var(--line);margin-bottom:8px;padding-bottom:6px}
+.dock .qb-item{flex:1;text-align:center;cursor:pointer;padding:4px 1px;border-left:1px dashed var(--line)}
 .dock .qb-item:first-child{border-left:none}
-.dock .qb-item b{display:block;font-size:14px;letter-spacing:3px;color:var(--ink);font-weight:700}
-.dock .qb-item span{display:block;font-size:10.5px;color:var(--mist);margin-top:3px;letter-spacing:1px}
-.dock .qb-item .qb-ico{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:12px;margin-bottom:4px}
+.dock .qb-item b{display:block;font-size:12.5px;letter-spacing:2px;color:var(--ink);font-weight:700}
+.dock .qb-item span{display:block;font-size:9.5px;color:var(--mist);margin-top:2px;letter-spacing:.5px}
+.dock .qb-item .qb-ico{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:10px;margin-bottom:2px}
 
 /* 通用 */
-.hint{text-align:center;font-size:11px;color:var(--ink2);letter-spacing:1px;padding:6px 0 2px;opacity:.8}
+.hint{text-align:center;font-size:11px;color:var(--ink2);letter-spacing:1px;padding:4px 0 0;opacity:.8}
 </style>
 </head>
 <body>
@@ -282,7 +282,7 @@ a{color:inherit;text-decoration:none}
     <a class="tel" id="telBtn" href="tel:19058141302">✆ 电话联系我</a>
     <a class="xhs" href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">📕 小红书主页</a>
   </div>
-  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v3.0.2 数据更新 2026.08</div>
+  <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v3.0.3 数据更新 2026.08</div>
 </footer>
 
 <script src="qbank.js"></script>
