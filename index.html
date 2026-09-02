@@ -873,11 +873,12 @@ footer .copy{margin-top:24px;font-size:11.5px;color:#b7a98f;letter-spacing:.12em
 <script>
 
 
-var VMS = {full:['assets/video/女性的解放.mp4'], quick:['assets/video/女性的解放.mp4']};
+var VMS = {full:['https://cdn.jsdelivr.net/gh/zoey0331-lab/zoey0331-lab.github.io@main/assets/video/%E5%A5%B3%E6%80%A7%E7%9A%84%E8%A7%A3%E6%94%BE.mp4','assets/video/女性的解放.mp4'], quick:['https://cdn.jsdelivr.net/gh/zoey0331-lab/zoey0331-lab.github.io@main/assets/video/%E5%A5%B3%E6%80%A7%E7%9A%84%E8%A7%A3%E6%94%BE.mp4','assets/video/女性的解放.mp4']};
 function openVideo(ver){ ver = ver || 'full'; document.getElementById('videoModal').classList.add('open'); switchVideo(ver); }
 function switchVideo(ver){
-  const v = document.getElementById('vmVideo'); v.pause();
-  v.src = VMS[ver][0]; v.currentTime = 0; v.play();
+  const v = document.getElementById('vmVideo'); const list = VMS[ver]; v.pause();
+  v.src = list[0]; v.currentTime = 0; v.play();
+  v.onerror = function(){ if(list[1] && v.src.indexOf(list[1]) < 0){ v.src = list[1]; v.play(); } };
   document.querySelectorAll('.vmtabs button').forEach(b => b.classList.toggle('on', b.textContent.indexOf(ver === 'full' ? '完整版' : '快速版') > -1));
 }
 function closeVideo(){ document.getElementById('videoModal').classList.remove('open'); document.getElementById('vmVideo').pause(); }
