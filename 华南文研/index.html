@@ -14,14 +14,13 @@
 <title>华南文研 · Zoey</title>
 <style>
 :root{
-  --paper:#FBF8F1; --paper2:#F5F1E6; --card:#FFFFFF;
-  --ink:#2B2A26; --ink2:#6B6458;
-  --acc:#BC563D; --green:#4E6B58; --line:#E3D9C8; --hair:#ECE4D3;
-  --gold:#B99A5A; --jade:#A9BCB0; --mist:#8FA39B; --gray:#8A8578;
+  --paper:#FBF8F1; --paper2:#F2EDE0; --ink:#2B2A26; --ink2:#6B6457;
+  --acc:#BC563D; --green:#4E6B58; --line:#E6DCC9; --gold:#B99A5A;
+  --jade:#A9BCB0; --mist:#8FA39B;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{background:var(--paper);color:var(--ink);font-family:"Songti SC","STSong","Kaiti SC",serif;
-  background-image:radial-gradient(rgba(185,154,90,.025) 1px,transparent 1px);background-size:30px 30px;font-variant-numeric:tabular-nums}
+  background-image:radial-gradient(rgba(185,154,90,.05) 1px,transparent 1px);background-size:28px 28px}
 body{padding-bottom:186px;min-height:100vh}
 a{color:inherit;text-decoration:none}
 
@@ -43,9 +42,9 @@ a{color:inherit;text-decoration:none}
 .hero .poem{margin-top:10px;font-size:12px;color:var(--gold);letter-spacing:3px}
 
 /* ===== 主板块卡片 ===== */
-.cards{padding:24px 18px 12px}
-.card{position:relative;display:flex;align-items:center;gap:14px;padding:18px 18px;margin-bottom:16px;
-  background:var(--card);border:none;border-radius:14px;box-shadow:0 1px 2px rgba(43,42,38,.02),0 6px 18px rgba(43,42,38,.04);
+.cards{padding:22px 16px 10px}
+.card{position:relative;display:flex;align-items:center;gap:14px;padding:18px 16px;margin-bottom:14px;
+  background:#fffdf8;border:1px solid var(--line);border-radius:12px;box-shadow:0 3px 12px rgba(43,42,38,.05);
   cursor:pointer;transition:transform .15s}
 .card:active{transform:scale(.98)}
 .card .no{flex:none;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
@@ -60,23 +59,23 @@ a{color:inherit;text-decoration:none}
 .card .arr{margin-left:auto;color:var(--ink2);font-size:18px}
 
 /* ===== 子页 ===== */
-.page{display:none;padding:18px 18px 30px}
+.page{display:none;padding:16px 16px 30px}
 .page.on{display:block}
 .page-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.page-head .back{width:34px;height:34px;border-radius:10px;border:1px solid var(--hair);background:var(--paper);
+.page-head .back{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--paper);
   display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer}
 .page-head b{font-size:19px;letter-spacing:3px;font-family:"Kaiti SC","STKaiti",serif;font-weight:600}
 .page-head span{font-size:12px;color:var(--ink2)}
 .subtabs{display:flex;gap:8px;margin-bottom:14px;position:sticky;top:0;z-index:5;background:var(--paper);padding:8px 0}
 .stab{flex:1;text-align:center;padding:10px 0;font-size:14px;letter-spacing:2px;color:var(--ink2);
-  border:1px solid var(--hair);border-radius:10px;background:var(--paper);cursor:pointer}
+  border:1px solid var(--line);border-radius:10px;background:var(--paper);cursor:pointer}
 .stab.on{background:var(--ink);color:#FBF8F1;border-color:var(--ink)}
 .panel{display:none}.panel.on{display:block}
-.note{font-size:12.5px;color:var(--ink2);line-height:1.8;background:var(--paper2);border-left:3px solid var(--green);
+.note{font-size:12.5px;color:var(--ink2);line-height:1.8;background:var(--paper2);border-left:3px solid var(--acc);
   padding:10px 12px;border-radius:0 10px 10px 0;margin-bottom:14px}
 
 /* 真题 */
-.yr{background:var(--card);border:none;border-radius:14px;margin-bottom:14px;overflow:hidden;box-shadow:0 1px 2px rgba(43,42,38,.02),0 4px 14px rgba(43,42,38,.03)}
+.yr{background:#fffdf8;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
 .yr-h{display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer;background:var(--paper2)}
 .yr-h .tag{font-size:11px;color:#FBF8F1;background:var(--acc);padding:2px 8px;border-radius:6px;letter-spacing:1px}
 .yr-h b{font-size:15px;letter-spacing:2px}
@@ -88,10 +87,10 @@ a{color:inherit;text-decoration:none}
 .qtype::before{content:"▍"}
 .qtime{font-size:10.5px;font-weight:400;color:var(--gold);background:rgba(185,154,90,.12);border:1px solid rgba(185,154,90,.35);border-radius:20px;padding:2px 9px;letter-spacing:1px;white-space:nowrap;margin-left:auto}
 .qitem{font-size:13.5px;line-height:1.85;padding-left:2px;color:var(--ink)}
-.qitem+.qitem{margin-top:10px}
+.qitem+.qitem{border-top:1px dashed var(--line);margin-top:6px;padding-top:6px}
 
 /* 思路 */
-.sk{background:var(--card);border:none;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(43,42,38,.02),0 4px 14px rgba(43,42,38,.03)}
+.sk{background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
 .sk h4{font-size:15px;letter-spacing:1px;color:var(--green);margin-bottom:8px}
 .sk h4::before{content:"· ";font-weight:700}
 .sk p{font-size:13px;line-height:1.9;color:var(--ink)}
@@ -109,7 +108,7 @@ a{color:inherit;text-decoration:none}
 .timer{display:flex;align-items:center;gap:8px;margin-left:auto}
 .timer .t{font-size:18px;font-weight:700;letter-spacing:1px;font-variant-numeric:tabular-nums}
 .tbtn{font-size:11px;padding:4px 9px;border-radius:6px;border:1px solid rgba(251,248,241,.5);cursor:pointer}
-.mq{background:var(--card);border:none;border-radius:14px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(43,42,38,.02),0 4px 14px rgba(43,42,38,.03)}
+.mq{background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px}
 .mq .mt{font-size:12px;color:var(--green);letter-spacing:2px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .mq .mq-t{font-size:14px;line-height:1.8}
 .mq .key{margin-top:8px;font-size:12.5px;color:var(--ink2);background:var(--paper2);border-radius:8px;padding:9px 11px;
@@ -124,17 +123,17 @@ a{color:inherit;text-decoration:none}
 .ghead .gstat{margin-left:auto;font-size:12px;letter-spacing:1px}
 .gbar{height:6px;border-radius:3px;background:rgba(251,248,241,.25);overflow:hidden;margin-top:8px}
 .gbar i{display:block;height:100%;background:var(--acc);border-radius:3px;transition:width .3s}
-.gq{background:var(--card);border:none;border-radius:14px;padding:16px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(43,42,38,.02),0 4px 14px rgba(43,42,38,.03)}
+.gq{background:#fffdf8;border:1px solid var(--line);border-radius:12px;padding:16px 14px;margin-bottom:12px}
 .gq .gtag{font-size:11px;color:var(--green);letter-spacing:2px;margin-bottom:6px;font-weight:700}
 .gq .qt{font-size:15px;line-height:1.9;margin-bottom:14px}
 .gopt{display:block;width:100%;text-align:left;font-family:inherit;font-size:13.5px;line-height:1.7;color:var(--ink);
-  background:var(--paper);border:1px solid var(--hair);border-radius:10px;padding:11px 13px;margin-bottom:9px;cursor:pointer;transition:all .15s}
+  background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:9px;cursor:pointer;transition:all .15s}
 .gopt:active{transform:scale(.985)}
 .gopt.ok{border-color:var(--green);background:#E7EFE3;color:var(--green);font-weight:700}
 .gopt.bad{border-color:var(--acc);background:#F6E3DC;color:var(--acc)}
 .gopt.dim{opacity:.45}
 .gfb{min-height:22px;font-size:12.5px;color:var(--ink2);letter-spacing:1px;margin-top:4px}
-.gfin{text-align:center;background:var(--card);border:none;border-radius:16px;padding:32px 18px;box-shadow:0 1px 2px rgba(43,42,38,.02),0 4px 14px rgba(43,42,38,.03)}
+.gfin{text-align:center;background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:30px 18px}
 .gfin .big{display:inline-flex;align-items:center;justify-content:center;width:86px;height:86px;border-radius:18px;background:var(--acc);color:#FBF7EE;font-size:40px;font-weight:600;line-height:1;transform:rotate(-4deg);box-shadow:0 6px 18px rgba(188,86,61,.22);font-family:"Kaiti SC","STKaiti","KaiTi",serif}
 .gfin h3{font-size:20px;letter-spacing:4px;margin:10px 0 6px;font-family:"Kaiti SC","STKaiti",serif}
 .gfin p{font-size:13px;color:var(--ink2);line-height:1.8}
@@ -146,7 +145,7 @@ a{color:inherit;text-decoration:none}
 
 /* ===== 底部 Dock ===== */
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(251,248,241,.96);backdrop-filter:blur(8px);
-  border-top:1px solid var(--hair);padding:8px 14px calc(8px + env(safe-area-inset-bottom));text-align:center}
+  border-top:1px solid var(--line);padding:8px 14px calc(8px + env(safe-area-inset-bottom));text-align:center}
 .dock .nm{font-size:12px;letter-spacing:2px;font-weight:600;font-family:"Kaiti SC","STKaiti",serif}
 .dock .nm i{font-style:normal;color:var(--acc)}
 .dock .acts{display:flex;justify-content:center;gap:10px;margin-top:6px}
@@ -155,11 +154,11 @@ a{color:inherit;text-decoration:none}
 .dock .tel{background:var(--acc)}
 .dock .xhs{background:var(--green)}
 .dock .quickbar{display:flex;border-bottom:1px solid var(--line);margin-bottom:8px;padding-bottom:6px}
-.dock .qb-item{flex:1;text-align:center;cursor:pointer;padding:4px 1px;border-left:0}
+.dock .qb-item{flex:1;text-align:center;cursor:pointer;padding:4px 1px;border-left:1px dashed var(--line)}
 .dock .qb-item:first-child{border-left:none}
 .dock .qb-item b{display:block;font-size:12.5px;letter-spacing:2px;color:var(--ink);font-weight:700}
 .dock .qb-item span{display:block;font-size:10.5px;color:var(--ink2);margin-top:3px;letter-spacing:.5px}
-.dock .qb-item .qb-ico{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#F0EBDF;color:var(--ink);margin:0 auto 2px;transition:background .2s,color .2s}
+.dock .qb-item .qb-ico{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#F2EDE0;color:var(--ink);margin:0 auto 2px;transition:background .2s,color .2s}
 .dock .qb-item .qb-ico svg{width:13px;height:13px;display:block}
 .dock .qb-item.on .qb-ico{background:var(--acc);color:#FBF8F1}
 .dock .qb-item.on b{color:var(--acc)}
