@@ -21,7 +21,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;font-family:"Songti SC","STSong","Kaiti SC",serif;
-  background-image:radial-gradient(rgba(185,154,90,.025) 1px,transparent 1px);background-size:30px 30px}
+  background-image:radial-gradient(rgba(185,154,90,.025) 1px,transparent 1px);background-size:30px 30px;font-variant-numeric:tabular-nums}
 body{padding-bottom:186px;min-height:100vh}
 a{color:inherit;text-decoration:none}
 
@@ -35,9 +35,9 @@ a{color:inherit;text-decoration:none}
 .hero svg.mnt{position:absolute;left:0;right:0;bottom:0;width:100%;height:96px;opacity:.55}
 .seal{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:14px;
   background:var(--acc);color:#FBF7EE;font-size:30px;font-weight:700;letter-spacing:2px;
-  box-shadow:0 6px 18px rgba(188,86,61,.3);transform:rotate(-3deg);
+  box-shadow:0 4px 14px rgba(188,86,61,.22);transform:rotate(-3deg);
   font-family:"Kaiti SC","STKaiti","KaiTi",serif}
-.hero h1{margin-top:16px;font-size:30px;letter-spacing:10px;font-weight:600;
+.hero h1{margin-top:16px;font-size:27px;letter-spacing:8px;font-weight:600;
   font-family:"Kaiti SC","STKaiti","KaiTi",serif}
 .hero .sub{margin-top:8px;font-size:13px;color:var(--ink2);letter-spacing:2px}
 .hero .poem{margin-top:10px;font-size:12px;color:var(--gold);letter-spacing:3px}
@@ -45,15 +45,15 @@ a{color:inherit;text-decoration:none}
 /* ===== 主板块卡片 ===== */
 .cards{padding:24px 18px 12px}
 .card{position:relative;display:flex;align-items:center;gap:14px;padding:18px 18px;margin-bottom:16px;
-  background:var(--card);border:1px solid var(--hair);border-radius:12px;box-shadow:0 2px 10px rgba(43,42,38,.04);
+  background:var(--card);border:none;border-radius:14px;box-shadow:0 1px 2px rgba(43,42,38,.02),0 6px 18px rgba(43,42,38,.04);
   cursor:pointer;transition:transform .15s}
 .card:active{transform:scale(.98)}
 .card .no{flex:none;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
   font-size:20px;font-weight:600;color:#FBF8F1;font-family:"Kaiti SC","STKaiti",serif}
 .card:nth-child(1) .no{background:var(--acc)}
-.card:nth-child(2) .no{background:var(--green)}
-.card:nth-child(3) .no{background:var(--gold)}
-.card:nth-child(4) .no{background:var(--mist)}
+.card:nth-child(2) .no{background:var(--ink)}
+.card:nth-child(3) .no{background:var(--ink)}
+.card:nth-child(4) .no{background:var(--ink)}
 .card:nth-child(5) .no{background:var(--ink)}
 .card .info b{font-size:18px;letter-spacing:3px;font-family:"Kaiti SC","STKaiti",serif;font-weight:600}
 .card .info p{margin-top:4px;font-size:12px;color:var(--ink2);line-height:1.6}
@@ -76,7 +76,7 @@ a{color:inherit;text-decoration:none}
   padding:10px 12px;border-radius:0 10px 10px 0;margin-bottom:14px}
 
 /* 真题 */
-.yr{background:var(--card);border:1px solid var(--hair);border-radius:12px;margin-bottom:14px;overflow:hidden}
+.yr{background:var(--card);border:none;border-radius:14px;margin-bottom:14px;overflow:hidden;box-shadow:0 1px 2px rgba(43,42,38,.02),0 4px 14px rgba(43,42,38,.03)}
 .yr-h{display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer;background:var(--paper2)}
 .yr-h .tag{font-size:11px;color:#FBF8F1;background:var(--acc);padding:2px 8px;border-radius:6px;letter-spacing:1px}
 .yr-h b{font-size:15px;letter-spacing:2px}
@@ -88,10 +88,10 @@ a{color:inherit;text-decoration:none}
 .qtype::before{content:"▍"}
 .qtime{font-size:10.5px;font-weight:400;color:var(--gold);background:rgba(185,154,90,.12);border:1px solid rgba(185,154,90,.35);border-radius:20px;padding:2px 9px;letter-spacing:1px;white-space:nowrap;margin-left:auto}
 .qitem{font-size:13.5px;line-height:1.85;padding-left:2px;color:var(--ink)}
-.qitem+.qitem{border-top:1px dashed var(--line);margin-top:6px;padding-top:6px}
+.qitem+.qitem{margin-top:10px}
 
 /* 思路 */
-.sk{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:16px;margin-bottom:14px}
+.sk{background:var(--card);border:none;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(43,42,38,.02),0 4px 14px rgba(43,42,38,.03)}
 .sk h4{font-size:15px;letter-spacing:1px;color:var(--green);margin-bottom:8px}
 .sk h4::before{content:"· ";font-weight:700}
 .sk p{font-size:13px;line-height:1.9;color:var(--ink)}
@@ -109,7 +109,7 @@ a{color:inherit;text-decoration:none}
 .timer{display:flex;align-items:center;gap:8px;margin-left:auto}
 .timer .t{font-size:18px;font-weight:700;letter-spacing:1px;font-variant-numeric:tabular-nums}
 .tbtn{font-size:11px;padding:4px 9px;border-radius:6px;border:1px solid rgba(251,248,241,.5);cursor:pointer}
-.mq{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.mq{background:var(--card);border:none;border-radius:14px;padding:14px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(43,42,38,.02),0 4px 14px rgba(43,42,38,.03)}
 .mq .mt{font-size:12px;color:var(--green);letter-spacing:2px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .mq .mq-t{font-size:14px;line-height:1.8}
 .mq .key{margin-top:8px;font-size:12.5px;color:var(--ink2);background:var(--paper2);border-radius:8px;padding:9px 11px;
@@ -124,7 +124,7 @@ a{color:inherit;text-decoration:none}
 .ghead .gstat{margin-left:auto;font-size:12px;letter-spacing:1px}
 .gbar{height:6px;border-radius:3px;background:rgba(251,248,241,.25);overflow:hidden;margin-top:8px}
 .gbar i{display:block;height:100%;background:var(--acc);border-radius:3px;transition:width .3s}
-.gq{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:16px 16px;margin-bottom:14px}
+.gq{background:var(--card);border:none;border-radius:14px;padding:16px 16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(43,42,38,.02),0 4px 14px rgba(43,42,38,.03)}
 .gq .gtag{font-size:11px;color:var(--green);letter-spacing:2px;margin-bottom:6px;font-weight:700}
 .gq .qt{font-size:15px;line-height:1.9;margin-bottom:14px}
 .gopt{display:block;width:100%;text-align:left;font-family:inherit;font-size:13.5px;line-height:1.7;color:var(--ink);
@@ -134,8 +134,8 @@ a{color:inherit;text-decoration:none}
 .gopt.bad{border-color:var(--acc);background:#F6E3DC;color:var(--acc)}
 .gopt.dim{opacity:.45}
 .gfb{min-height:22px;font-size:12.5px;color:var(--ink2);letter-spacing:1px;margin-top:4px}
-.gfin{text-align:center;background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:30px 18px}
-.gfin .big{font-size:46px}
+.gfin{text-align:center;background:var(--card);border:none;border-radius:16px;padding:32px 18px;box-shadow:0 1px 2px rgba(43,42,38,.02),0 4px 14px rgba(43,42,38,.03)}
+.gfin .big{display:inline-flex;align-items:center;justify-content:center;width:86px;height:86px;border-radius:18px;background:var(--acc);color:#FBF7EE;font-size:40px;font-weight:600;line-height:1;transform:rotate(-4deg);box-shadow:0 6px 18px rgba(188,86,61,.22);font-family:"Kaiti SC","STKaiti","KaiTi",serif}
 .gfin h3{font-size:20px;letter-spacing:4px;margin:10px 0 6px;font-family:"Kaiti SC","STKaiti",serif}
 .gfin p{font-size:13px;color:var(--ink2);line-height:1.8}
 .gbtn{display:inline-block;margin-top:16px;font-size:13px;letter-spacing:2px;color:#FBF8F1;background:var(--acc);
@@ -155,11 +155,14 @@ a{color:inherit;text-decoration:none}
 .dock .tel{background:var(--acc)}
 .dock .xhs{background:var(--green)}
 .dock .quickbar{display:flex;border-bottom:1px solid var(--line);margin-bottom:8px;padding-bottom:6px}
-.dock .qb-item{flex:1;text-align:center;cursor:pointer;padding:4px 1px;border-left:1px dashed var(--line)}
+.dock .qb-item{flex:1;text-align:center;cursor:pointer;padding:4px 1px;border-left:0}
 .dock .qb-item:first-child{border-left:none}
 .dock .qb-item b{display:block;font-size:12.5px;letter-spacing:2px;color:var(--ink);font-weight:700}
-.dock .qb-item span{display:block;font-size:10.5px;color:var(--ink2);margin-top:2px;letter-spacing:.5px}
-.dock .qb-item .qb-ico{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:10px;margin-bottom:2px}
+.dock .qb-item span{display:block;font-size:10.5px;color:var(--ink2);margin-top:3px;letter-spacing:.5px}
+.dock .qb-item .qb-ico{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#F0EBDF;color:var(--ink);margin:0 auto 2px;transition:background .2s,color .2s}
+.dock .qb-item .qb-ico svg{width:13px;height:13px;display:block}
+.dock .qb-item.on .qb-ico{background:var(--acc);color:#FBF8F1}
+.dock .qb-item.on b{color:var(--acc)}
 
 /* 通用 */
 .hint{text-align:center;font-size:11px;color:var(--ink2);letter-spacing:1px;padding:4px 0 0;opacity:.8}
@@ -290,16 +293,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--green);outline-offs
 <!-- 底部联系栏 -->
 <footer class="dock">
   <div class="quickbar">
-    <div class="qb-item" onclick="openPage('dk')"><span class="qb-ico" style="background:#EFE9DC">✓</span><b>打卡</b><span>学习打卡</span></div>
-    <div class="qb-item" onclick="openPage('me')"><span class="qb-ico" style="background:#EFE9DC">我</span><b>我的</b><span>错题总结</span></div>
-    <div class="qb-item" onclick="openPage('re')"><span class="qb-ico" style="background:#EFE9DC">¥</span><b>续费</b><span>36.6/月 · 180/年</span></div>
-    <div class="qb-item" onclick="openPage('sh')"><span class="qb-ico" style="background:#EFE9DC">享</span><b>分享</b><span>用户经验</span></div>
-    <div class="qb-item" onclick="openPage('gh')"><span class="qb-ico" style="background:#4E6B58;color:#FBF8F1">规</span><b>规划</b><span>规划指导</span></div>
+    <div class="qb-item" onclick="openPage('dk')"><span class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M10 15.5l1.6 1.6L16 13"/></svg></span><b>打卡</b><span>学习打卡</span></div>
+    <div class="qb-item" onclick="openPage('me')"><span class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.8-3.5 3.7-5.5 7.5-5.5s6.7 2 7.5 5.5"/></svg></span><b>我的</b><span>错题总结</span></div>
+    <div class="qb-item" onclick="openPage('re')"><span class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 1 1-2.6-6.1"/><path d="M20.5 3.5V7h-3.5"/></svg></span><b>续费</b><span>36.6/月 · 180/年</span></div>
+    <div class="qb-item" onclick="openPage('sh')"><span class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.2"/><circle cx="17.5" cy="5.8" r="2.2"/><circle cx="17.5" cy="18.2" r="2.2"/><path d="M8.2 10.8l7-3.6M8.2 13.2l7 3.6"/></svg></span><b>分享</b><span>用户经验</span></div>
+    <div class="qb-item" onclick="openPage('gh')"><span class="qb-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M15.8 8.2l-1.8 5-5 1.8 1.8-5z"/></svg></span><b>规划</b><span>规划指导</span></div>
   </div>
   <div class="nm">Zoey <i>·</i> 华南文研</div>
   <div class="acts">
     <a class="tel" id="telBtn" href="tel:19058141302">✆ 电话联系我</a>
-    <a class="xhs" href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">📕 小红书主页</a>
+    <a class="xhs" href="https://xhslink.cn/m/AjzR7MGuqz2" target="_blank">小红书主页</a>
   </div>
   <div class="hint">华南师大文学理论考研 · 文学理论 / 西方文论 / 古代文论 · v3.0.3 数据更新 2026.08</div>
 </footer>
@@ -602,7 +605,7 @@ function bkView(mi){
   const m = bkMods()[mi];
   const items = QBANK.filter(b=>b.m===m);
   if(bkState.i >= items.length){
-    return '<div class="gfin"><div class="big">🎉</div><h3>'+m+' · 刷完</h3>'+
+    return '<div class="gfin"><div class="big">完</div><h3>'+m+' · 刷完</h3>'+
       '<p>共 '+items.length+' 题 · 答对 '+(bkState.right||0)+' 题</p>'+
       '<button class="gbtn" onclick="bkOpen('+mi+')">再刷一遍</button>'+
       '<button class="greset" onclick="renderBK()">返回章节</button></div>';
@@ -646,7 +649,7 @@ function zzBody(i){
   const sub = SUBJECTS[i], st = zstate[i], bank = QZ[sub];
   if(st.cur >= bank.length){
     const best = st.score;
-    return '<div class="gfin"><div class="big">🎉</div><h3>'+sub+' · 通关</h3>'+
+    return '<div class="gfin"><div class="big">通</div><h3>'+sub+' · 通关</h3>'+
       '<p>'+bank.length+' 关挑战完成！得分 '+best+' · 最高连击 '+(st.streak||0)+' · 答对 '+(st.correct||0)+' 题</p>'+
       '<button class="gbtn" onclick="resetZZ('+i+')">再闯一次</button>'+
       '<button class="greset" onclick="resetZZ('+i+',true)">清零重来</button></div>';
@@ -656,7 +659,7 @@ function zzBody(i){
     '<button class="gopt" id="zo'+i+'_'+oi+'" onclick="pickZZ('+i+','+oi+')">'+
     String.fromCharCode(65+oi)+'、'+t+'</button>').join("");
   return '<div class="ghead"><div class="lv">第 '+(st.cur+1)+' / '+bank.length+' 关</div>'+
-    '<div class="gstat">得分 '+st.score+'<span class="streak">🔥 连击 '+st.streak+'</span></div>'+
+    '<div class="gstat">得分 '+st.score+'<span class="streak">连击 ×'+st.streak+'</span></div>'+
     '<div class="gbar" style="width:100%"><i style="width:'+pct+'%"></i></div></div>'+
     '<div class="gq"><div class="gtag">'+sub+' · 闯关第 '+(st.cur+1)+' 题</div>'+
     '<div class="qt">'+q.q+'</div>'+opts+'<div class="gfb" id="zfb'+i+'"></div></div>'+
@@ -699,8 +702,8 @@ function resetZZ(i, hard){
 /* ================= 渲染逻辑 ================= */
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 function el(id){return document.getElementById(id)}
-function openPage(id){trackEv(id);document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));el("page-"+id).classList.add("on");el("home").style.display="none";window.scrollTo(0,0)}
-function goHome(){document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));el("home").style.display="";window.scrollTo(0,0)}
+function openPage(id){trackEv(id);document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));el("page-"+id).classList.add("on");el("home").style.display="none";window.scrollTo(0,0);document.querySelectorAll(".qb-item").forEach(q=>q.classList.toggle("on",(q.getAttribute("onclick")||"").indexOf("'"+id+"'")>-1));}
+function goHome(){document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));document.querySelectorAll(".qb-item").forEach(q=>q.classList.remove("on"));el("home").style.display="";window.scrollTo(0,0)}
 document.querySelectorAll(".card").forEach(c=>c.addEventListener("click",()=>openPage(c.dataset.page)));
 
 const ZT_NOTE = {
