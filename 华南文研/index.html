@@ -14,14 +14,14 @@
 <title>华南文研 · Zoey</title>
 <style>
 :root{
-  --paper:#FBF8F1; --paper2:#F2EDE0; --card:#FFFDF8;
+  --paper:#FBF8F1; --paper2:#F5F1E6; --card:#FFFFFF;
   --ink:#2B2A26; --ink2:#6B6458;
   --acc:#BC563D; --green:#4E6B58; --line:#E3D9C8; --hair:#ECE4D3;
   --gold:#B99A5A; --jade:#A9BCB0; --mist:#8FA39B; --gray:#8A8578;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;font-family:"Songti SC","STSong","Kaiti SC",serif;
-  background-image:radial-gradient(rgba(185,154,90,.05) 1px,transparent 1px);background-size:28px 28px}
+  background-image:radial-gradient(rgba(185,154,90,.025) 1px,transparent 1px);background-size:30px 30px}
 body{padding-bottom:186px;min-height:100vh}
 a{color:inherit;text-decoration:none}
 
@@ -146,7 +146,7 @@ a{color:inherit;text-decoration:none}
 
 /* ===== 底部 Dock ===== */
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(251,248,241,.96);backdrop-filter:blur(8px);
-  border-top:1px solid var(--line);padding:8px 14px calc(8px + env(safe-area-inset-bottom));text-align:center}
+  border-top:1px solid var(--hair);padding:8px 14px calc(8px + env(safe-area-inset-bottom));text-align:center}
 .dock .nm{font-size:12px;letter-spacing:2px;font-weight:600;font-family:"Kaiti SC","STKaiti",serif}
 .dock .nm i{font-style:normal;color:var(--acc)}
 .dock .acts{display:flex;justify-content:center;gap:10px;margin-top:6px}
@@ -176,9 +176,26 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--green);outline-offs
 
 <header class="hero">
   <svg class="mnt" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 120 L180 40 L320 95 L520 20 L700 88 L880 34 L1080 96 L1240 46 L1440 100 L1440 120 Z" fill="#C9D6CD" opacity=".75"/>
-    <path d="M0 120 L220 70 L420 112 L640 58 L860 110 L1080 66 L1300 112 L1440 88 L1440 120 Z" fill="#A9BCB0" opacity=".55"/>
-      <path d="M0 120 L120 88 L260 116 L420 92 L620 118 L820 96 L1040 118 L1240 100 L1440 118 L1440 120 Z" fill="#8FA39B" opacity=".3"/>
+    <defs>
+      <linearGradient id="mg-far" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#B9CBC0" stop-opacity=".95"/>
+        <stop offset="1" stop-color="#B9CBC0" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="mg-mid" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#A2B7A9" stop-opacity=".9"/>
+        <stop offset="1" stop-color="#A2B7A9" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="mg-near" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#8CA396" stop-opacity=".6"/>
+        <stop offset="1" stop-color="#8CA396" stop-opacity="0"/>
+      </linearGradient>
+      <filter id="mg-blur" x="-10%" y="-30%" width="120%" height="160%"><feGaussianBlur stdDeviation="1.4"/></filter>
+    </defs>
+    <g filter="url(#mg-blur)">
+      <path d="M0 118 C 140 72 260 84 420 56 C 610 22 770 82 950 52 C 1110 26 1280 74 1440 44 L 1440 120 L 0 120 Z" fill="url(#mg-far)"/>
+    </g>
+    <path d="M0 118 C 190 92 330 100 520 76 C 720 48 910 102 1130 70 C 1300 46 1390 94 1440 80 L 1440 120 L 0 120 Z" fill="url(#mg-mid)" opacity=".92"/>
+    <path d="M0 118 C 250 106 460 112 710 96 C 960 80 1190 110 1440 98 L 1440 120 L 0 120 Z" fill="url(#mg-near)" opacity=".85"/>
   </svg>
   <div class="seal">文研</div>
   <h1>华南文研</h1>
@@ -273,10 +290,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--green);outline-offs
 <!-- 底部联系栏 -->
 <footer class="dock">
   <div class="quickbar">
-    <div class="qb-item" onclick="openPage('dk')"><span class="qb-ico" style="background:#F2EDE0">✓</span><b>打卡</b><span>学习打卡</span></div>
-    <div class="qb-item" onclick="openPage('me')"><span class="qb-ico" style="background:#F2EDE0">我</span><b>我的</b><span>错题总结</span></div>
-    <div class="qb-item" onclick="openPage('re')"><span class="qb-ico" style="background:#F2EDE0">¥</span><b>续费</b><span>36.6/月 · 180/年</span></div>
-    <div class="qb-item" onclick="openPage('sh')"><span class="qb-ico" style="background:#F2EDE0">享</span><b>分享</b><span>用户经验</span></div>
+    <div class="qb-item" onclick="openPage('dk')"><span class="qb-ico" style="background:#EFE9DC">✓</span><b>打卡</b><span>学习打卡</span></div>
+    <div class="qb-item" onclick="openPage('me')"><span class="qb-ico" style="background:#EFE9DC">我</span><b>我的</b><span>错题总结</span></div>
+    <div class="qb-item" onclick="openPage('re')"><span class="qb-ico" style="background:#EFE9DC">¥</span><b>续费</b><span>36.6/月 · 180/年</span></div>
+    <div class="qb-item" onclick="openPage('sh')"><span class="qb-ico" style="background:#EFE9DC">享</span><b>分享</b><span>用户经验</span></div>
     <div class="qb-item" onclick="openPage('gh')"><span class="qb-ico" style="background:#4E6B58;color:#FBF8F1">规</span><b>规划</b><span>规划指导</span></div>
   </div>
   <div class="nm">Zoey <i>·</i> 华南文研</div>
@@ -797,7 +814,7 @@ function renderGh(){
     {n:"四", t:"上岸情况", d:"「学姐，我上岸了」——从真题拆解到考前模拟批改，见证每一个上岸时刻。", link:{label:"打开上岸笔记 ↗", url:"https://www.xiaohongshu.com/discovery/item/6a8028f20000000028006809?source=webshare&xhsshare=pc_web&xsec_token=ABQ2N8CQz1tEmC-h3eeIUjCtBmXMEy4ID6rIVBAfLeZr4=&xsec_source=pc_share", ext:true}}
   ];
   let html = '<div class="note">规划指导 · Zoey 学姐全程陪伴：初试规划 / 模拟面试 / 调剂指导 / 上岸情况</div>';
-  html += posts.map((p,i)=>'<div style="background:#fffdf8;border:1px solid #D9D2C2;border-radius:12px;padding:14px;margin:10px 0">' +
+  html += posts.map((p,i)=>'<div style="background:#fff;border:1px solid #ECE4D3;border-radius:12px;padding:14px;margin:10px 0">' +
     '<div onclick="toggleGh('+i+')" style="display:flex;align-items:center;gap:10px;cursor:pointer">' +
     '<span style="flex:none;width:30px;height:30px;border-radius:8px;background:#4E6B58;color:#FBF8F1;display:flex;align-items:center;justify-content:center;font-size:14px">'+p.n+'</span>' +
     '<b style="flex:1;font-size:15px;letter-spacing:2px">'+p.t+'</b><span style="color:#8FA39B;font-size:16px">›</span></div>' +
@@ -905,7 +922,7 @@ function renderMe(){
   html += '<div style="display:flex;flex-wrap:wrap;gap:10px;margin:12px 0">' +
     stat.map(s=>'<div style="flex:1;min-width:88px;background:#F1EDE2;border:1px solid #D9D2C2;border-radius:10px;padding:12px 8px;text-align:center"><div style="font-size:20px;font-weight:700;color:#4E6B58">'+s[1]+'</div><div style="font-size:11px;color:#8A8578;margin-top:4px">'+s[0]+'</div></div>').join("") + '</div>';
   html += '<div style="text-align:center;margin:14px 0 12px"><button class="gbtn" style="margin-top:0" onclick="exportWrongs()">导出错题（打印 / PDF）</button></div>';
-  html += '<div style="background:#fffdf8;border:1px solid #D9D2C2;border-radius:12px;padding:14px;margin:12px 0;display:flex;align-items:center;gap:10px">' +
+  html += '<div style="background:#fff;border:1px solid #ECE4D3;border-radius:12px;padding:14px;margin:12px 0;display:flex;align-items:center;gap:10px">' +
     '<span style="flex:none;width:30px;height:30px;border-radius:8px;background:#4E6B58;color:#FBF8F1;display:flex;align-items:center;justify-content:center;font-size:13px">据</span>' +
     '<div style="flex:1"><b style="font-size:14px;letter-spacing:1px">DeepSeek 用量分析</b><div style="font-size:11px;color:#8A8578;margin-top:3px">token 用量 · API 请求 · 成本</div></div>' +
     '<a href="assets/用量数据分析.pdf" target="_blank" style="color:#BC563D;font-size:13px">查看 ↗</a></div>';
@@ -929,7 +946,7 @@ function renderRe(){
     '<div style="font-size:12px;color:#8A8578;margin-top:6px">续费请联系 Zoey 学姐，电话 19058141302</div>' +
     '<button class="gbtn" onclick="location.href=\'tel:19058141302\'">电话咨询</button></div>';
   html += '<div class="note">已付费？输入 Zoey 提供的续费码解锁：</div>' +
-    '<div style="text-align:center;margin:12px 0"><input id="renewCode2" placeholder="月卡码 / 年卡码" style="width:240px;max-width:80%;padding:11px 14px;border:1px solid #C9BFAA;border-radius:8px;font-size:14px;background:#fffdf8;text-align:center;letter-spacing:2px"/>' +
+    '<div style="text-align:center;margin:12px 0"><input id="renewCode2" placeholder="月卡码 / 年卡码" style="width:240px;max-width:80%;padding:11px 14px;border:1px solid #E3D9C8;border-radius:8px;font-size:14px;background:#fff;text-align:center;letter-spacing:2px"/>' +
     '<button class="gbtn" style="margin-left:10px" onclick="tryRenew(2)">解锁</button></div>';
   html += '<div style="text-align:center;font-size:11px;color:#8A8578">月卡码延长 1 个月 · 年卡码延长 1 年</div>';
   el("panel-re").innerHTML = html;
@@ -944,7 +961,7 @@ function renderSh(){
     {t:"「学姐，我上岸了」", d:"一年陪伴，从真题拆解到考前模拟批改，见证每一个上岸时刻。你也一定可以。", tag:"上岸"}
   ];
   let html = '<div class="note">来自学员与备考人的真实经验 · 更多见小红书 @Zoey 快去学习</div>';
-  html += posts.map((p,i)=>'<div style="background:#fffdf8;border:1px solid #D9D2C2;border-radius:12px;padding:16px 16px 14px;margin:12px 0">' +
+  html += posts.map((p,i)=>'<div style="background:#fff;border:1px solid #ECE4D3;border-radius:12px;padding:16px 16px 14px;margin:12px 0">' +
     '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="width:6px;height:6px;border-radius:50%;background:#BC563D;display:inline-block"></span>' +
     '<span style="font-size:11px;color:#8A8578;letter-spacing:1px">Zoey 文研 · 经验 '+(i+1)+'</span></div>' +
     '<div style="font-size:15px;font-weight:700;letter-spacing:1px;line-height:1.7">'+p.t+'</div>' +
@@ -963,7 +980,7 @@ function renderSh(){
   </div>
   <button onclick="location.href='tel:19058141302'" style="margin-top:22px;background:#3F5C4B;color:#FBF9F2;border:none;border-radius:8px;padding:12px 30px;font-size:14px;letter-spacing:1px;">电话续费咨询</button>
   <div style="margin-top:26px;padding-top:22px;border-top:1px dashed #D9D2C2">
-    <input id="renewCode" placeholder="输入 Zoey 提供的续费码" style="width:240px;max-width:80%;padding:11px 14px;border:1px solid #C9BFAA;border-radius:8px;font-size:14px;background:#fffdf8;text-align:center;letter-spacing:2px"/>
+    <input id="renewCode" placeholder="输入 Zoey 提供的续费码" style="width:240px;max-width:80%;padding:11px 14px;border:1px solid #E3D9C8;border-radius:8px;font-size:14px;background:#fff;text-align:center;letter-spacing:2px"/>
     <button onclick="tryRenew()" style="margin-left:10px;background:#BC563D;color:#fff;border:none;border-radius:8px;padding:11px 22px;font-size:14px;letter-spacing:1px;">解锁</button>
   </div>
   <div style="margin-top:16px;font-size:12px;color:#8A8578">续费后有效期自动延长 · 定制规划与批改请私信咨询</div>
