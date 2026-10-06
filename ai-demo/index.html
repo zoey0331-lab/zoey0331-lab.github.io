@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3F5C4B">
+<title>华南文研 · AI 助教</title>
+<style>
+  :root{
+    --bg:#F8F4EB; --card:#FFFFFF; --green:#3F5C4B; --green-d:#2F4638;
+    --terra:#BC563D; --ink:#33302B; --muted:#8A8578; --line:#E7E0D2;
+    --gold:#C9A227; --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.6;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px 48px}
+
+  /* header */
+  header{
+    position:sticky;top:0;z-index:20;background:var(--green);color:#F8F4EB;
+    padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top,0px));
+    display:flex;align-items:center;justify-content:space-between;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+  }
+  header .brand{font-size:16px;font-weight:700;letter-spacing:1px}
+  header .brand small{display:block;font-size:10px;font-weight:400;opacity:.8;letter-spacing:2px}
+  header .gear{background:rgba(255,255,255,.14);border:none;color:#F8F4EB;width:38px;height:38px;
+    border-radius:50%;font-size:18px;cursor:pointer}
+
+  /* tabs */
+  .tabs{display:flex;gap:8px;margin:16px 0;background:var(--card);padding:6px;border-radius:12px;border:1px solid var(--line)}
+  .tab{flex:1;text-align:center;padding:10px 0;border-radius:9px;font-size:14px;font-weight:600;color:var(--muted);
+    cursor:pointer;border:none;background:transparent;transition:.15s}
+  .tab.on{background:var(--green);color:#F8F4EB}
+
+  .panel{display:none}.panel.on{display:block}
+
+  /* cards */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:12px}
+  .card h3{font-size:13px;color:var(--green);margin-bottom:8px;letter-spacing:.5px}
+  label{display:block;font-size:12px;color:var(--muted);margin:8px 0 4px}
+  textarea,select,input[type=text],input[type=password]{
+    width:100%;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px;
+    font-family:inherit;background:#FCFAF5;color:var(--ink);resize:vertical;outline:none;
+  }
+  textarea:focus,select:focus,input:focus{border-color:var(--green)}
+  textarea{min-height:84px}
+  .row{display:flex;gap:8px}
+  .row>*{flex:1}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:10px;
+    padding:12px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
+  .btn.primary{background:var(--green);color:#F8F4EB;flex:1}
+  .btn.primary:active{background:var(--green-d)}
+  .btn.ghost{background:transparent;color:var(--green);border:1.5px solid var(--green)}
+  .btn[disabled]{opacity:.5;pointer-events:none}
+  .btns{display:flex;gap:8px;margin-top:10px}
+
+  /* retrieval */
+  .hits{margin-top:10px}
+  .hit{border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:8px;background:#FCFAF5}
+  .hit .meta{font-size:11px;color:var(--muted);margin-bottom:4px;display:flex;gap:6px;flex-wrap:wrap}
+  .hit .tag{background:#EEE7D8;color:var(--green);padding:1px 7px;border-radius:20px;font-weight:600}
+  .hit .score{color:var(--terra)}
+  .hit p{font-size:13px;color:var(--ink);max-height:72px;overflow:hidden;position:relative}
+  .hit p.open{max-height:none}
+  .hit .toggle{font-size:11px;color:var(--green);cursor:pointer}
+
+  /* answer */
+  .answer{margin-top:12px;display:none}
+  .answer.show{display:block}
+  .answer .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .answer .head b{font-size:13px;color:var(--green)}
+  .answer .copy{font-size:11px;color:var(--muted);cursor:pointer;border:1px solid var(--line);border-radius:8px;padding:4px 10px}
+  .ans-body{white-space:pre-wrap;font-size:14px;background:#FCFAF5;border:1px solid var(--line);border-radius:10px;padding:14px;line-height:1.8}
+  .ans-body .sec{font-weight:700;color:var(--green);margin-top:10px}
+  .ans-body .sec:first-child{margin-top:0}
+  .ans-body .err{color:var(--terra);font-weight:600}
+
+  /* settings overlay */
+  .mask{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:40;display:none;align-items:flex-end;justify-content:center}
+  .mask.show{display:flex}
+  .sheet{background:var(--bg);width:100%;max-width:720px;border-radius:18px 18px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom,0px));max-height:86vh;overflow:auto}
+  .sheet h3{font-size:16px;color:var(--green);margin-bottom:4px}
+  .sheet .tip{font-size:12px;color:var(--muted);margin-bottom:12px}
+  .sheet .warn{background:#FBEDE7;color:#9A3E22;border:1px solid #F0D2C4;border-radius:10px;padding:10px 12px;font-size:12px;margin:10px 0}
+
+  /* toast */
+  #toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;
+    padding:10px 18px;border-radius:24px;font-size:13px;opacity:0;transition:.25s;z-index:50;pointer-events:none;max-width:80%;text-align:center}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .loading{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .footnote{font-size:11px;color:var(--muted);text-align:center;margin-top:20px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">华南文研<small>AI 助教 · 839 文学理论</small></div>
+  <button class="gear" id="gearBtn" aria-label="设置">⚙️</button>
+</header>
+
+<div class="wrap">
+  <div class="tabs">
+    <button class="tab on" data-tab="qa">答疑</button>
+    <button class="tab" data-tab="grade">批改</button>
+    <button class="tab" data-tab="diag">诊断</button>
+  </div>
+
+  <!-- ============ 答疑 ============ -->
+  <section class="panel on" id="panel-qa">
+    <div class="card">
+      <label>题型</label>
+      <select id="qaType">
+        <option value="auto">自动判断</option>
+        <option value="名词解释">名词解释</option>
+        <option value="简答">简答</option>
+        <option value="论述">论述</option>
+        <option value="材料分析">材料分析</option>
+      </select>
+      <label>你的问题</label>
+      <textarea id="qaQ" placeholder="例：文学典型的含义与特征"></textarea>
+      <div class="btns">
+        <button class="btn primary" id="qaRun">检索并回答</button>
+        <button class="btn ghost" id="qaPrompt">复制 Prompt</button>
+      </div>
+      <div class="hits" id="qaHits"></div>
+    </div>
+    <div class="card answer" id="qaAnswer">
+      <div class="head"><b>📖 助教回答</b><span class="copy" data-target="qaAnswerBody">复制答案</span></div>
+      <div class="ans-body" id="qaAnswerBody"></div>
+    </div>
+  </section>
+
+  <!-- ============ 批改 ============ -->
+  <section class="panel" id="panel-grade">
+    <div class="card">
+      <label>题目（可含评分点 / 参考答案）</label>
+      <textarea id="gradeQ" placeholder="例：简答『文学意境的特征』（15 分）"></textarea>
+      <label>学生答案</label>
+      <textarea id="gradeA" placeholder="粘贴你要批改的答案…"></textarea>
+      <div class="btns">
+        <button class="btn primary" id="gradeRun">批改</button>
+        <button class="btn ghost" id="gradePrompt">复制 Prompt</button>
+      </div>
+    </div>
+    <div class="card answer" id="gradeAnswer">
+      <div class="head"><b>📝 阅卷批改</b><span class="copy" data-target="gradeAnswerBody">复制答案</span></div>
+      <div class="ans-body" id="gradeAnswerBody"></div>
+    </div>
+  </section>
+
+  <!-- ============ 诊断 ============ -->
+  <section class="panel" id="panel-diag">
+    <div class="card">
+      <label>最近答题记录（章节、对错、题型、耗时，随意贴）</label>
+      <textarea id="diagR" placeholder="例：文学本质论 名词解释 错 2 题；作品论 论述 用时过长…" style="min-height:120px"></textarea>
+      <label>目标（可选）</label>
+      <input type="text" id="diagTarget" placeholder="例：华南师大 839，还剩 80 天">
+      <div class="btns">
+        <button class="btn primary" id="diagRun">生成诊断</button>
+        <button class="btn ghost" id="diagPrompt">复制 Prompt</button>
+      </div>
+    </div>
+    <div class="card answer" id="diagAnswer">
+      <div class="head"><b>🗓️ 复习计划</b><span class="copy" data-target="diagAnswerBody">复制答案</span></div>
+      <div class="ans-body" id="diagAnswerBody"></div>
+    </div>
+  </section>
+
+  <div class="footnote">答案可溯源 · 无依据不回答 · 引用标注材料编号</div>
+</div>
+
+<!-- 设置 -->
+<div class="mask" id="mask">
+  <div class="sheet">
+    <h3>模型设置</h3>
+    <div class="tip">直连大模型需要接口地址 + Key；不填也能用「复制 Prompt」。</div>
+    <label>接口地址（Base URL）</label>
+    <input type="text" id="cfgEndpoint" placeholder="https://api.deepseek.com/v1">
+    <label>模型名</label>
+    <input type="text" id="cfgModel" placeholder="deepseek-chat">
+    <label>API Key</label>
+    <input type="password" id="cfgKey" placeholder="sk-…">
+    <div class="warn">⚠️ Key 仅保存在你本机浏览器（localStorage）。正式上线请改用云函数转发，避免 Key 泄露。</div>
+    <div class="btns">
+      <button class="btn primary" id="cfgSave">保存</button>
+      <button class="btn ghost" id="cfgClose">关闭</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="chunks.js"></script>
+<script>
+/* ================= 知识库与检索 ================= */
+const CHUNKS = window.CHUNKS || [];
+function norm(s){ return (s||'').toLowerCase().replace(/[^一-鿿\w]/g,''); }
+function bigrams(s){ s=norm(s); const g=[]; for(let i=0;i<s.length-1;i++) g.push(s.slice(i,i+2)); if(s.length===1) g.push(s); return g; }
+
+const docs = CHUNKS.map((c,i)=>({id:i, src:c.s, sec:c.h, text:c.t, grams:bigrams(c.t)}));
+const N = docs.length;
+const avgdl = N ? docs.reduce((a,d)=>a+d.grams.length,0)/N : 1;
+const df = new Map();
+docs.forEach(d=>{ new Set(d.grams).forEach(g=>df.set(g,(df.get(g)||0)+1)); });
+
+function bm25(d, qg){
+  const tf=new Map(); d.grams.forEach(g=>tf.set(g,(tf.get(g)||0)+1));
+  let s=0;
+  for(const q of qg){ const n=df.get(q)||0; if(!n) continue; const f=tf.get(q)||0; if(!f) continue;
+    const idf=Math.log(1+(N-n+0.5)/(n+0.5));
+    s += idf*f*2.5/(f+1.5*(1-0.75+0.75*d.grams.length/avgdl));
+  }
+  return s;
+}
+function retrieve(query, k){
+  const qg=bigrams(query);
+  return docs.map(d=>({d, s:bm25(d,qg)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,k);
+}
+
+/* ================= 提示词模板 ================= */
+const SYSTEM_QA = `# 角色
+你是华南师范大学 839 文学理论的助教，熟悉马工程《文学理论》教材、2021—2026 历年真题、古代文论范畴（意境、韵味、兴观群怨、以意逆志等）与三版本教材（马工程／童庆炳／陶东风）的差异。
+
+# 铁律
+1. 只依据提供的【参考资料】作答；资料没有的内容，直接说明"资料不足"，禁止编造真题、引文与出处。
+2. 每引用教材原文或范畴，必须标注来源编号与出处（例：材料2｜背诵笔记·第四章）。
+3. 不给"押题""必考"这类承诺；涉及考试政策以官方通知为准。
+4. 保持学术表达，不要口语化网络用语；不使用第一人称抒情。
+
+# 输出结构
+【结论】一句话回答
+【作答框架】按分点给出可背诵的骨架（每点：结论＋依据＋例子）
+【参考文献】实际用到的材料编号
+【易错点】最容易答漏的一处`;
+
+const TYPE_SPECS = {
+  '名词解释':'题型规格：名词解释，150—250 字，结构＝定义→2—3 个核心要素→一句例子。',
+  '简答':'题型规格：简答，350—500 字，3—4 点，先结论后依据。',
+  '论述':'题型规格：论述，700—900 字，观点→分论点（原文＋例子）→回扣。',
+  '材料分析':'题型规格：材料分析，800—1000 字，概括材料→提炼范畴→分层分析→落例子。'
+};
+
+const PROMPT_GRADE = `# 任务
+你是 839 阅卷老师，请按评分点批改学生的答案。
+
+# 输入
+题目：{question}
+学生答案：{answer}
+
+# 输出
+1. 逐点评分：每个评分点给【得分/满分】，并写明"答到了什么／漏了什么"；
+2. 总分与档位（优秀／良好／及格／不及格），一句话理由；
+3. 扣分点清单（最多 3 条，按影响排序）；
+4. 修改示范：把学生答案中最弱的一段改写成 80 字示范；
+5. 同类题提醒：这道题暴露的知识漏洞属于哪一章、该补什么。
+
+# 约束
+严格按评分点给分，不因文采加分；学生答案没有依据的表述不额外给分。`;
+
+const PROMPT_DIAG = `# 任务
+根据学生的答题记录，给出两周复习计划。
+
+# 输入
+最近作答记录：{records}
+目标：{target}
+
+# 输出
+1. 薄弱章节排序（按错误率 × 出现频次），最多 3 个；
+2. 每个薄弱点的补救动作（背诵／真题／批改各占多少）；
+3. 未来两周日程表（每天 30—60 分钟可执行）；
+4. 一句提醒：最该避免的复习误区。`;
+
+/* ================= 组装 Prompt ================= */
+function refsBlock(hits){
+  return hits.map((x,i)=>{
+    const r=x.d; const sec = r.sec ? `·${r.sec}` : '';
+    return `材料${i+1}｜${r.src}${sec}\n${r.text}`;
+  }).join('\n\n');
+}
+function buildQA(question, type){
+  const hits = retrieve(question, 4);
+  const spec = (type && type!=='auto') ? TYPE_SPECS[type] : '';
+  const refs = refsBlock(hits);
+  const top = hits[0] ? hits[0].s : 0;
+  const fallback = top < 0.5 ? '\n注意：检索命中较弱，请判断是否需要先说明"资料不足"。' : '';
+  const user = `【参考资料】以下材料编号是唯一作答依据：\n\n${refs || '（暂无检索结果）'}\n\n【问题】${question}${spec? '\n'+spec:''}${fallback}`;
+  return { hits, topScore:top, system:SYSTEM_QA, user, messages:[{role:'system',content:SYSTEM_QA},{role:'user',content:user}] };
+}
+function buildGrade(question, answer){
+  const user = PROMPT_GRADE.replace('{question}', question||'（未提供）').replace('{answer}', answer||'（未提供）');
+  return { system:'你是一名严谨的高校文科阅卷老师。', user, messages:[{role:'system',content:'你是一名严谨的高校文科阅卷老师。'},{role:'user',content:user}] };
+}
+function buildDiag(records, target){
+  const user = PROMPT_DIAG.replace('{records}', records||'（未提供）').replace('{target}', target||'华南师大 839');
+  return { system:'你是一名考研学习规划助教。', user, messages:[{role:'system',content:'你是一名考研学习规划助教。'},{role:'user',content:user}] };
+}
+
+/* ================= 模型调用 ================= */
+function getCfg(){
+  try{ return JSON.parse(localStorage.getItem('hnwy_cfg')||'{}'); }catch(e){ return {}; }
+}
+function cfgBase(){
+  const c=getCfg();
+  return { endpoint:c.endpoint||'https://api.deepseek.com/v1', model:c.model||'deepseek-chat', key:c.key||'' };
+}
+async function callLLM(messages){
+  const c = cfgBase();
+  if(!c.key) throw new Error('NO_KEY');
+  const url = c.endpoint.replace(/\/+$/,'') + '/chat/completions';
+  const res = await fetch(url, {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+c.key},
+    body: JSON.stringify({model:c.model, messages, temperature:0.3, stream:false})
+  });
+  if(!res.ok){ const t=await res.text().catch(()=>''); throw new Error('HTTP '+res.status+' '+t.slice(0,160)); }
+  const data = await res.json();
+  return data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content : JSON.stringify(data);
+}
+
+/* ================= UI 工具 ================= */
+const $=id=>document.getElementById(id);
+function esc(s){ return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),2600); }
+function renderAnswer(text){
+  return (text||'').split('\n').map(l=>{
+    if(/^【.+?】/.test(l)) return '<div class="sec">'+esc(l)+'</div>';
+    if(/^(⚠️|错误|失败|HTTP)/.test(l.trim())) return '<div class="err">'+esc(l)+'</div>';
+    if(l.trim()==='') return '<br>';
+    return esc(l);
+  }).join('');
+}
+async function copyText(t){
+  try{ await navigator.clipboard.writeText(t); toast('已复制到剪贴板'); }
+  catch(e){ toast('复制失败，请手动选择复制'); }
+}
+
+/* 切换 tab */
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');
+  $('panel-'+t.dataset.tab).classList.add('on');
+}));
+
+/* 设置 */
+$('gearBtn').onclick=()=>{ const c=cfgBase(); $('cfgEndpoint').value=c.endpoint; $('cfgModel').value=c.model; $('cfgKey').value=c.key; $('mask').classList.add('show'); };
+$('cfgClose').onclick=()=>$('mask').classList.remove('show');
+$('cfgSave').onclick=()=>{ localStorage.setItem('hnwy_cfg', JSON.stringify({endpoint:$('cfgEndpoint').value.trim(), model:$('cfgModel').value.trim(), key:$('cfgKey').value.trim()})); $('mask').classList.remove('show'); toast('已保存'); };
+$('mask').addEventListener('click',e=>{ if(e.target.id==='mask') $('mask').classList.remove('show'); });
+
+/* 渲染检索依据 */
+function renderHits(hits, elId){
+  const el=$(elId); if(!hits.length){ el.innerHTML=''; return; }
+  el.innerHTML='<label style="margin-top:10px">🔎 检索依据（材料编号可溯源）</label>'+hits.map((x,i)=>{
+    return `<div class="hit"><div class="meta"><span class="tag">材料${i+1}</span><span>${esc(x.d.src)}${x.d.sec?'·'+esc(x.d.sec):''}</span><span class="score">得分 ${x.s.toFixed(1)}</span></div><p id="hit-${elId}-${i}">${esc(x.d.text)}</p><span class="toggle" data-id="hit-${elId}-${i}">展开</span></div>`;
+  }).join('');
+  el.querySelectorAll('.toggle').forEach(t=>t.onclick=()=>{ const p=$(t.dataset.id); p.classList.toggle('open'); t.textContent=p.classList.contains('open')?'收起':'展开'; });
+}
+
+/* 通用执行 */
+async function runMode(opts){
+  const {build, hitsEl, ansBox, ansBody, needKey, onNoKey} = opts;
+  let payload;
+  try{ payload = build(); }
+  catch(e){ toast('输入有误：'+e.message); return; }
+  if(hitsEl) renderHits(payload.hits||[], hitsEl);
+  $(ansBox).classList.add('show');
+  const body=$(ansBody); body.innerHTML='<div class="sec">生成中…</div>';
+  if(needKey){
+    if(!cfgBase().key){ body.innerHTML='<div class="err">未配置 API Key，无法直连大模型。</div><br>请点右上角 ⚙️ 填 Key，或改用下方「复制 Prompt」贴到豆包/DeepSeek。'; return; }
+    try{
+      const txt = await callLLM(payload.messages);
+      body.innerHTML = renderAnswer(txt);
+    }catch(e){
+      if(/Failed to fetch|NetworkError|CORS/i.test(e.message)){
+        body.innerHTML='<div class="err">浏览器直连被 CORS/网络拦截（OpenAI 兼容接口默认不允许网页直连）。</div><br>稳定做法：用「复制 Prompt」贴到豆包/DeepSeek，或部署云函数转发（见 PRD 第 6 节）。<br><br><span class="sec">已组装的 Prompt：</span><br>'+esc(payload.user);
+      }else{
+        body.innerHTML='<div class="err">调用失败：</div>'+esc(e.message);
+      }
+    }
+  }else{
+    body.innerHTML='<div class="sec">已组装 Prompt（可直接复制使用）：</div><br>'+esc(payload.user);
+  }
+}
+
+/* ================= 三个模式绑定 ================= */
+$('qaRun').onclick=()=>runMode({
+  build:()=>{ const q=$('qaQ').value.trim(); if(!q) throw new Error('请输入问题'); return buildQA(q, $('qaType').value); },
+  hitsEl:'qaHits', ansBox:'qaAnswer', ansBody:'qaAnswerBody', needKey:true
+});
+$('qaPrompt').onclick=()=>{ const q=$('qaQ').value.trim(); if(!q) return toast('请输入问题'); copyText(buildQA(q,$('qaType').value).user); };
+
+$('gradeRun').onclick=()=>runMode({
+  build:()=>{ if(!$('gradeA').value.trim()) throw new Error('请粘贴学生答案'); return buildGrade($('gradeQ').value.trim(), $('gradeA').value.trim()); },
+  ansBox:'gradeAnswer', ansBody:'gradeAnswerBody', needKey:true
+});
+$('gradePrompt').onclick=()=>{ if(!$('gradeA').value.trim()) return toast('请粘贴学生答案'); copyText(buildGrade($('gradeQ').value.trim(),$('gradeA').value.trim()).user); };
+
+$('diagRun').onclick=()=>runMode({
+  build:()=>{ if(!$('diagR').value.trim()) throw new Error('请粘贴答题记录'); return buildDiag($('diagR').value.trim(), $('diagTarget').value.trim()); },
+  ansBox:'diagAnswer', ansBody:'diagAnswerBody', needKey:true
+});
+$('diagPrompt').onclick=()=>{ if(!$('diagR').value.trim()) return toast('请粘贴答题记录'); copyText(buildDiag($('diagR').value.trim(),$('diagTarget').value.trim()).user); };
+
+/* 复制答案 */
+document.querySelectorAll('.copy').forEach(b=>b.onclick=()=>{
+  const t=$(b.dataset.target).innerText; copyText(t);
+});
+
+/* 首屏提示 */
+console.log('华南文研 AI 助教已就绪：', N, '段知识库，', docs.reduce((a,d)=>a+d.text.length,0), '字');
+</script>
+</body>
+</html>
