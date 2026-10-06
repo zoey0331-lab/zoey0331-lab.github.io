@@ -1,0 +1,39 @@
+文件夹里共 4 个要上传的文件，做法一样，重复 4 次
+
+  resume.html      通用版简历（内容＝resume源码.txt）
+  resume-pm.html   产品经理版简历
+  resume-edu.html  教育内容版简历
+  index.html       网站首页（已更新简历弹窗里的数据与标题）
+
+
+【新建文件的做法】用于 resume.html / resume-pm.html / resume-edu.html
+
+1. 浏览器打开 github.com，登录，进入仓库：zoey0331-lab.github.io
+2. 点 Add file → Create new file
+3. 文件名填对应名字，例如 resume.html
+4. 打开本文件夹里对应的 .html 文件，复制里面的全部代码
+   （双击是网页预览，看不到代码；要右键 → 打开方式 → 文本编辑）
+   resume.html 的代码可以直接用 resume源码.txt 复制
+5. 回到 GitHub 的输入框，粘贴（Command+V）
+6. 页面拉到底，点绿色按钮 Commit changes
+
+
+【覆盖已有文件的做法】用于 index.html（仓库里已经有这个文件）
+
+1. 在仓库里点开 index.html
+2. 点右上角的铅笔图标（Edit this file）
+3. 在编辑框里全选（Command+A）→ 删除
+4. 打开本文件夹里的 index.html，复制全部代码 → 粘贴进去
+5. 拉到底，点 Commit changes
+
+
+检查
+
+· 简历页：https://zoey0331-lab.github.io/resume.html
+· 首页：https://zoey0331-lab.github.io/
+
+说明
+
+· 四个文件内容不同，文件名不能混。
+· 只想先上一个：只上 resume.html，网址 /resume.html 即可发给 HR。
+· 「旧版存档」文件夹是我改动前的备份，不要上传。
