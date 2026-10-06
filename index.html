@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="郭宇飞 · AI产品经理 · 从0到1做过知识付费产品的文科产品人，懂内容、懂教育、也懂AI">
-<title>郭宇飞 · AI 产品经理</title>
+<meta name="description" content="郭宇飞 · 产品经理 · 从0到1做过知识付费产品的文科产品人，懂内容、懂教育、也懂AI">
+<title>郭宇飞 · 产品经理</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23BC563D'/><text x='16' y='22' font-size='17' fill='%23F7F2E9' text-anchor='middle' font-family='serif'>飞</text></svg>">
 <style>
 :root{
@@ -100,7 +100,8 @@ h1{font-size:58px;letter-spacing:.3em;line-height:1.2}
   h1{font-size:42px}
 }
 
-.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;margin-top:44px}
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:44px}
+@media(max-width:980px){.stats{grid-template-columns:repeat(3,1fr)}}
 .stat{background:var(--card);border:1px solid var(--hair);padding:20px 14px;text-align:center}
 .stat b{display:block;font-family:"Kaiti SC","STKaiti",serif;font-size:29px;color:var(--terra);font-weight:600}
 .stat span{font-size:12px;color:var(--ink3);letter-spacing:.1em}
@@ -137,6 +138,8 @@ h1{font-size:58px;letter-spacing:.3em;line-height:1.2}
 .work .img.cv-app::before{background-image:url('assets/covers/cv_app.jpg')}
 .work .img.cv-data::before{background-image:url('assets/covers/cv_data.png')}
 .work .img.cv-paper::before{background-image:url('assets/covers/cv_paper.jpg')}
+.work .img.cv-rag::before{background-image:url('assets/covers/cv_ai.jpg')}
+.work .img.cv-dash::before{background-image:linear-gradient(135deg,#3F5C4B 0%,#6F8F7D 55%,#A9BCB0 100%)}
 .work .img>*{position:relative;z-index:1}
 .work .wtitle{position:absolute;left:22px;bottom:36px;font-family:"Kaiti SC","STKaiti",serif;font-size:26px;font-weight:600;letter-spacing:.18em;color:var(--ink)}
 .work .wsub{position:absolute;left:23px;bottom:14px;font-size:11px;letter-spacing:.24em;color:var(--ink3)}
@@ -333,6 +336,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
     <a href="#works">个人作品</a>
     <a href="#skills">技能与爱好</a>
     <a href="#honors" class="lbl">荣誉印记</a>
+    <a href="resume.html" class="lbl">简历</a>
   </div>
 </nav>
 
@@ -393,19 +397,19 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
   </div>
   <div class="wrap hero-inner">
     <div>
-      <p class="kicker">文艺学硕士 · 内容产品实践者</p>
+      <p class="kicker">文艺学硕士 · AI 产品实践者</p>
       <h1>郭 宇 飞</h1>
-      <p class="role"><b>AI 产品经理</b> · 从 0 到 1 做过知识付费产品的文科产品人</p>
+      <p class="role"><b>产品经理</b> · 从 0 到 1 做过付费产品与 AI 应用的文科产品人</p>
       <p class="tagline">懂内容 · 懂教育 · 也懂 AI</p>
       <div class="meta">
         <span>22 岁</span>
         <span>杭州 · 上海 · 深圳</span>
         <span>可立即到岗</span>
-        <span><b>可实习三个月以上</b></span>
+        <span><b>每周 5 天以上</b></span>
       </div>
       <div class="chips">
-        <span>内容型产品落地</span><span>AIGC 工具链</span><span>数据驱动迭代</span>
-        <span>知识付费 0→1</span><span>文学理论纵深</span><span>Vibe Coding</span>
+        <span>内容型产品 0→1</span><span>RAG 应用落地</span><span>数据看板与埋点</span>
+        <span>AI 成本优化</span><span>AIGC 工具链</span><span>文学理论纵深</span><span>Vibe Coding</span>
       </div>
       <div class="cta">
         <button class="btn primary" onclick="openResume()">一键查看简历</button>
@@ -434,21 +438,24 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
       <div class="reveal">
         <p>我是把「内容」当产品来做的人。从校园新媒体到知识付费 IP，完整跑通过「需求调研 — MVP 上线 — 数据迭代 — 商业转化」的全流程；硕士阶段的学术训练，让我在生成式 AI 时代既懂模型能做什么，也懂用户为何被打动。</p>
         <p>对 AI 产品的理解：好的 AI 产品不是「工具 + 内容」的简单拼装，而是重新理解人如何学习、如何被内容触动——这正是我的内容能力、教育经验与 AI 工具实践能交汇的地方。</p>
+        <p>近一年我把重心放到 AI 落地上：独立做了 RAG 答疑原型（555 段知识库、检索可溯源）、埋点与数据看板（留存／转化／ARPU），并把两个月的 10.9 亿 token 用量做成成本分析——从"会用 AI"走到"能用 AI 交付产品"。</p>
         <div class="about-quote">知识是被品尝的，产品是被使用的。</div>
       </div>
       <ul class="about-list reveal">
-        <li><b>内容产品</b>从 0 搭建小红书考研知识付费 IP，总收益额约达 3.5W+</li>
-        <li><b>教育实战</b>辅导学生 15+，上岸率 85%，新东方签约考研讲师</li>
-        <li><b>数据习惯</b>Excel + SQL + AIGC 复盘内容数据，点赞量提升 50%</li>
-        <li><b>AI 纵深</b>文艺学硕士，关注 AI 时代审美判断与内容生产伦理</li>
-        <li><b>执行力</b>零基础自学 Vibe Coding，把简历「聊」成上线网站，独立跑通需求到交付</li>
+        <li><b>0→1 产品</b>独立设计并上线「华南文研」知识付费 App，累计收入 3.5W+，单APP净收入500</li>
+        <li><b>AI 应用</b>独立完成 RAG 答疑原型（555 段知识库 / 16.5 万字），答案可溯源</li>
+        <li><b>数据与成本</b>设计埋点与看板；分析 10.9 亿 token 用量，单次请求成本优化到 ¥0.015</li>
+        <li><b>内容运营</b>真题导向内容方法论，笔记赞藏 2,800+，辅导学员 20 人左右</li>
+        <li><b>执行力</b>零基础用 Vibe Coding 把简历「聊」成上线网站，独立跑通需求到交付</li>
+        <li><b>学术纵深</b>文艺学硕士，关注 AI 时代审美判断与内容生产伦理</li>
       </ul>
     </div>
     <div class="stats reveal">
-      <div class="stat"><b>400+</b><span>全网粉丝</span></div>
-      <div class="stat"><b>3.5W+</b><span>总收益额</span></div>
-      <div class="stat"><b>4000+</b><span>赞与收藏</span></div>
-      <div class="stat"><b>22.7万</b><span>公众号内容浏览</span></div>
+      <div class="stat"><b>3.5W+</b><span>知识付费收入</span></div>
+      <div class="stat"><b>2,800+</b><span>笔记赞藏</span></div>
+      <div class="stat"><b>10.9亿</b><span>token 用量</span></div>
+      <div class="stat"><b>98.7%</b><span>缓存命中率</span></div>
+      <div class="stat"><b>1,214</b><span>题 App 题库</span></div>
       <div class="stat"><b>85%</b><span>学员上岸率</span></div>
     </div>
   </div>
@@ -489,7 +496,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
         <h3>汉语言文学 · 学士</h3>
         <p class="sch">长春理工大学</p>
         <ul>
-          <li>GPA 3.85，专业前 7%</li>
+          <li>GPA 3.85/5.0，专业前 8%</li>
           <li>国家级、校级奖学金共 7 次（校 1%—10%）</li>
           <li>省级、校级学科竞赛奖 4 次；主修文学理论、新闻采访与写作</li>
         </ul>
@@ -514,7 +521,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
         <span class="date">2025.07 — 至今</span>
         <h3>小红书考研知识付费 IP「Zoey快去学习」· 内容运营</h3>
         <p class="sub">垂直定位 · 选题即答案 · 数据迭代 · 私域转化</p>
-        <p>锚定华南师大文学考研窄垂类，以真题导向建立「考点—语料—答题」内容闭环，结合文学史案例形成差异化壁垒；建立统一新中式视觉体系，A/B 测试标题、封面与发布时间，累计赞藏 4000+、点赞量提升 50%；跑通「内容引流 → 私域承接 → 定制转化 → 预付复购」全链路，总收益额约达 3.5W+，辅导 15+ 人、上岸率 85%，现任新东方签约考研讲师。</p>
+        <p>锚定华南师大文学考研窄垂类，以真题导向建立「考点—语料—答题」内容闭环，结合文学史案例形成差异化壁垒；建立统一新中式视觉体系，A/B 测试标题、封面与发布时间，累计赞藏 2,800+、点赞量提升 50%；跑通「内容引流 → 私域承接 → 定制转化 → 预付复购」全链路，总收益额约达 3.5W+，辅导学员 20 人左右、上岸率约 70%，现任新东方签约考研讲师。</p>
         <div class="tag"><span>垂直定位</span><span>爆款方法论</span><span>数据复盘</span><span>私域转化</span></div>
       </div>
       <div class="tl reveal">
@@ -555,7 +562,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
       </div>
       <div class="mcard reveal">
         <h4>获客逻辑 · 垂类精准</h4>
-        <p>用经验贴与真题解析锚定华师文学考研人群，用免费资料做钩子，私域承接转化。不做泛流量，只做「高意向、强刚需」的精准用户；辅导 15+ 人、上岸率 85%，全部来自内容自带的信任。</p>
+        <p>用经验贴与真题解析锚定华师文学考研人群，用免费资料做钩子，私域承接转化。不做泛流量，只做「高意向、强刚需」的精准用户；辅导学员 20 人左右、上岸率约 70%，全部来自内容自带的信任。</p>
       </div>
       <div class="mcard reveal">
         <h4>投流逻辑 · 数据先行</h4>
@@ -614,7 +621,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
         </div>
         <div class="body">
           <h3>小红书考研知识付费 IP</h3>
-          <p class="desc">「Zoey快去学习」：真题导向内容方法论 + 新中式视觉体系，累计赞藏 4000+、总收益额约达 3.5W+；跑通「引流—定制—预订」三阶段，辅导 15+ 人、上岸率 85%，现任新东方签约讲师。</p>
+          <p class="desc">「Zoey快去学习」：真题导向内容方法论 + 新中式视觉体系，累计赞藏 2,800+、总收益额约达 3.5W+；跑通「引流—定制—预订」三阶段，辅导学员 20 人左右、上岸率约 70%，现任新东方签约讲师。</p>
           <div class="links"><a href="https://xhslink.cn/m/26ns7ZVJVzB" target="_blank">主页链接 ↗</a></div>
         </div>
       </div>
@@ -627,19 +634,43 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
         <div class="body">
           <h3>「华南文研」知识付费 App</h3>
           <p class="desc">把考研 IP 产品化：历年真题（2022—2026 全题型）、三科复习思路、考前模拟（限时自测＋答题要点）、题目闯关小游戏（30 关自动存档），内置 Zoey 联系通道。</p>
-          <p class="desc" style="font-family:'PingFang SC','STHeiti','Heiti SC',sans-serif;color:#6b6458;margin-top:6px">App 成本仅 20 元，定价 99（活动价 66），单 App 净利润约 500 元。</p>
+          <p class="desc" style="font-family:'PingFang SC','STHeiti','Heiti SC',sans-serif;color:#6b6458;margin-top:6px">App 成本仅 20 元，定价 99（活动价 66），单APP净收入500。</p>
           <div class="links"><a href="华南文研/index.html" target="_blank">打开 App ↗</a><a href="assets/files/华南文研_产品方案.pdf" target="_blank">产品方案 ↗</a></div>
+        </div>
+      </div>
+      <div class="work reveal">
+                <div class="img cv-rag">
+          <span class="tagv">AI 应用</span>
+          <div class="wtitle">AI 助教</div>
+          <div class="wsub">RAG 答疑 · 555 段知识库 · 答案可溯源</div>
+        </div>
+        <div class="body">
+          <h3>「华南文研」AI 助教 · RAG 答疑原型</h3>
+          <p class="desc">把 133 页教材笔记、1,214 道题与六年真题清洗切分为 555 段（16.5 万字）知识库，用 BM25＋字符 bigram 检索；按名词解释/简答/论述/材料分析四类题型约束输出结构，强制标注来源，低置信度直接兜底不作答。配套 30 题评测集，衡量检索命中率、忠实度与结构合规率。</p>
+          <div class="links"><a href="javascript:void(0)" onclick="openResume()">预约演示 ↗</a></div>
+        </div>
+      </div>
+      <div class="work reveal">
+                <div class="img cv-dash">
+          <span class="tagv">数据能力</span>
+          <div class="wtitle">数据看板</div>
+          <div class="wsub">埋点方案 · 留存 / 转化 / ARPU</div>
+        </div>
+        <div class="body">
+          <h3>数据看板与埋点方案</h3>
+          <p class="desc">定义北极星指标与指标树，梳理 18 个核心事件、用户与内容属性，产出留存／转化／ARPU 三屏看板与四张数据表结构，并给出上线检查清单。把"感觉"变成可迭代的指标，支撑产品与内容决策。</p>
+          <div class="links"><a href="javascript:void(0)" onclick="openResume()">预约演示 ↗</a></div>
         </div>
       </div>
       <div class="work reveal">
                 <div class="img cv-data">
           <span class="tagv">数据分析</span>
-          <div class="wtitle">Codex 用量分析</div>
-          <div class="wsub">token · 请求 · 成本</div>
+          <div class="wtitle">大模型成本分析</div>
+          <div class="wsub">5,950 次 · 10.9 亿 token · ¥111.75</div>
         </div>
         <div class="body">
-          <h3>数据分析作品 · DeepSeek 用量洞察</h3>
-          <p class="desc">基于本人 4186 次 DeepSeek v4-flash API 调用的完整分析：6.68 亿输入 token、98.6% 缓存命中率、总成本 ¥60.56——用数据说明长会话深迭代的成本杠杆，附产品经理能力学习路径。</p>
+          <h3>数据分析作品 · 大模型用量与成本洞察</h3>
+          <p class="desc">基于 8—9 月 5,950 次 DeepSeek API 调用的完整分析：10.9 亿 token、98.7% 缓存命中率、总成本 ¥111.75。定位"缓存命中率是最大成本杠杆"（命中单价约为未命中的 1/50），并提出 pro／flash 模型路由建议；含按日／按模型／按 API Key 三张透视表与趋势图。</p>
           <div class="links"><a href="assets/files/用量数据分析与产品经理学习路径.pdf" target="_blank">查看分析 ↗</a></div>
         </div>
       </div>
@@ -708,7 +739,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
         <div class="think-card">
           <span class="tno">03</span>
           <h5>需求验证</h5>
-          <p>小红书真题笔记 4000+ 赞藏，评论区高频「求带」；15+ 定制学员反馈驱动迭代。</p>
+          <p>小红书真题笔记 2,800+ 赞藏，评论区高频「求带」；20 人左右定制学员反馈驱动迭代。</p>
         </div>
         <div class="think-card">
           <span class="tno">04</span>
@@ -843,7 +874,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
     <a href="tel:19058141302">190 5814 1302</a>
     <a href="https://xhslink.cn/m/26ns7ZVJVzB" target="_blank">小红书 @Zoey快去学习</a>
   </div>
-  <p class="copy">郭宇飞 · AI 产品经理 · 2026 ｜ Vibe Coding · Codex ｜ 空山新雨后，天气晚来秋</p>
+  <p class="copy">郭宇飞 · 产品经理 · 2026 ｜ Vibe Coding · Codex ｜ 空山新雨后，天气晚来秋</p>
 </footer>
 
 <div class="modal" id="resumeModal">
@@ -851,28 +882,32 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
     <span class="close" onclick="closeResume()">×</span>
     <div class="mhead">
       <h3>郭宇飞</h3>
-      <p>AI 产品经理 ｜ 杭州 · 上海 · 深圳 ｜ 22 岁 · 可立即到岗 · 可实习三个月以上 ｜ 190 5814 1302</p>
+      <p>产品经理 / 产品运营 ｜ 杭州 · 上海 · 深圳 ｜ 22 岁 · 可立即到岗 · 每周 5 天以上 ｜ 190 5814 1302 ｜ g13844524609@163.com</p>
     </div>
     <h4>核心优势</h4>
-    <div class="mrow">从 0 到 1 的产品落地：校园快递代取项目，需求调研 → 模式创新 → 10 人团队 → 校内覆盖率 40%、月利润 5k+。<br>
-    内容型产品实战：小红书考研知识付费 IP，完成「引流—定制—预订」三阶段迭代，总收益额约达 3.5W+，辅导 15+ 人、上岸率 85%。<br>
-    数据驱动迭代：Excel + SQL + AIGC 分析后台数据，优化发布时间与标题封面，点赞量提升 50%。<br>
-    AI 时代理论纵深：文艺学硕士，关注 AI 时代审美判断、内容生产与人的发展，熟悉 AIGC 生产的逻辑与边界。</div>
+    <div class="mrow"><b>有真实付费用户的 0→1 经验</b>：独立设计并上线「华南文研」知识付费 App，累计知识付费收入 3.5W+，单APP净收入500。<br>
+    <b>能把 AI 能力落成产品</b>：独立完成 RAG 答疑原型（555 段知识库 / 16.5 万字、BM25 检索、提示词工程、30 题评测集），答案可溯源。<br>
+    <b>具备数据与成本意识</b>：设计埋点方案与留存/转化/ARPU 看板；分析 5,950 次大模型调用、10.9 亿 token，把单次请求成本优化到 ¥0.015。<br>
+    <b>内容与教育纵深</b>：文艺学硕士；新东方签约考研课程讲师；小红书 IP 学员转化率 80%，累计辅导学员 20 人左右。</div>
     <h4>教育背景</h4>
     <div class="mrow"><b>浙江师范大学</b> · 文艺学学术型硕士（2025.09—2028.06）｜ 研究方向：中国文论与身体美学、AI 时代内容生产的审美与伦理<br>
-    <b>长春理工大学</b> · 汉语言文学学士（2021.09—2025.06）｜ GPA 3.85（前 7%），奖学金 7 次，学科竞赛奖 4 次</div>
-    <h4>实习与项目经历</h4>
-    <div class="mrow">    <b>小红书考研知识付费 IP「Zoey快去学习」</b> · 产品运营（2025.07—至今）｜ 需求调研、MVP、三阶段迭代、数据优化、商业闭环；现任新东方签约考研讲师<br>
-    <b>文学院党委与理论宣传中心</b> · 主任/内容运营（2023.08—2024.08）｜ 公众号粉丝 3260+，内容浏览 22.75 万+，互动 5.04 万+，单篇最高点赞 1104<br>
-    <b>校园快递代取项目</b> · 联合创始人/产品运营（2022.04—2022.07）｜ 10 人团队、覆盖率 40%、月利润 5k+<br>
-    <b>紫薇应用文杂志社新媒体运营部</b> · 负责人（2021.09—2023.05）｜ 稿件 100+、单场活动参与 500+ 人</div>
+    <b>长春理工大学</b> · 汉语言文学学士（2021.09—2025.06）｜ GPA 3.85/5.0（专业前 8%），奖学金 7 次，学科竞赛奖 4 次</div>
+    <h4>项目经历</h4>
+    <div class="mrow"><b>华南文研 · 考研知识付费 App</b> · 产品负责人（独立，2025.07—至今）｜ 访谈 15+ 付费学员；六年真题＋五论四坐标思路＋仿真模拟＋1,214 题闯关；成本 ¥20、定价 99／活动价 66、单APP净收入500<br>
+    <b>华南文研 AI 助教（RAG 答疑原型）</b> · 产品设计＋语料工程（2026.09）｜ 555 段知识库、BM25 检索、四类题型结构约束、强制标注来源；配套 30 题评测集<br>
+    <b>数据看板与埋点方案</b> · 指标设计（2026.09）｜ 指标树＋18 个核心事件＋留存／转化／ARPU 三屏看板与四张数据表结构<br>
+    <b>大模型用量与成本分析</b> · 数据分析（2026.08—09）｜ 5,950 次请求、10.9 亿 token、¥111.75；缓存命中 98.7%，单次请求成本 ¥0.015<br>
+    <b>小红书考研知识付费 IP「Zoey快去学习」</b> · 产品运营（2025.07—至今）｜ 跑通「内容引流—私域承接—定制转化—复购」闭环；现任新东方签约讲师<br>
+    <b>文学院党委与理论宣传中心</b> · 主任／内容运营（2023.08—2024.08）｜ 公众号粉丝 3260+，浏览 22.75 万+，单篇最高点赞 1104</div>
     <h4>作品集</h4>
-    <div class="mrow">个人网站（Vibe Coding · Codex）｜ AI 观念短剧《女性的解放》（三时代 · 缠足→放足→高跟鞋）｜ 华南文研 App（真题 / 思路 / 模拟 / 闯关）｜ 山水摄影｜ 论文《味从身出》</div>
+    <div class="mrow">华南文研 App（真题／思路／模拟／闯关）｜ AI 助教（RAG 答疑原型）｜ 数据看板与埋点方案｜ 大模型用量与成本分析｜ 个人网站（Vibe Coding）｜ 论文《味从身出》｜ 山水摄影<br>
+    <a href="assets/files/郭宇飞-AI产品作品集.pdf" target="_blank">📄 下载 AI 产品作品集（PDF）↗</a></div>
     <h4>技能与证书</h4>
-    <div class="mrow">内容创作（文案/排版/海报/短视频）｜ 数据分析（Excel、基础 SQL）｜ AIGC 工具链（Codex/Claude/Coze/即梦）｜ 英语四六级 · 普通话二甲（90.4）· 高中语文教师资格证 · C1 驾照</div>
+    <div class="mrow">AI 工具链（Claude Code / OpenAI Codex / Coze / Dify / 即梦；可独立完成网页与小程序原型）｜ 数据能力（Excel 透视与看板、基础 SQL、埋点设计、成本与用量分析）｜ 内容运营（小红书／公众号选题—生产—复盘，文案与短视频）｜ 英语四六级 · 普通话二甲（90.4）· 高中语文教师资格证 · C1 驾照</div>
     <div class="mtools">
       <button class="btn primary" onclick="window.print()">打印 / 存为 PDF</button>
       <button class="btn ghost" onclick="closeResume()">返回</button>
+      <a class="btn ghost" href="resume.html" target="_blank" rel="noopener">在新页面打开 ↗</a>
     </div>
   </div>
 </div>
@@ -919,36 +954,6 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape'){ closeResume(
 
 const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } }), {threshold:.12});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
-<div id="pwMask" style="display:none;position:fixed;inset:0;background:#F7F3EA;z-index:99999;flex-direction:column;align-items:center;justify-content:center;padding:40px;">
-  <div style="color:#BC563D;font-size:15px;letter-spacing:3px;font-weight:700;">Zoey 印</div>
-  <div style="font-size:24px;font-weight:700;margin-top:16px;color:#2F2B26;">私人领地</div>
-  <div style="font-size:14px;color:#8A8578;margin-top:10px;letter-spacing:1px;">请输入访问密码</div>
-  <input id="pwInput" type="password" placeholder="访问密码"
-    style="margin-top:22px;width:320px;max-width:80%;padding:14px 18px;font-size:16px;border:1px solid #E4DECD;border-radius:10px;background:#FBF9F2;color:#2F2B26;text-align:center;outline:none;">
-  <button id="pwBtn"
-    style="margin-top:16px;background:#3F5C4B;color:#FBF9F2;border:none;border-radius:10px;padding:14px 46px;font-size:15px;letter-spacing:2px;">进入</button>
-  <div id="pwErr" style="font-size:13px;color:#BC563D;margin-top:14px;">&nbsp;</div>
-</div>
-<script>
-(function(){
-  var HS_PASSWORD = '0331970016';
-  var unlocked = false;
-  try { unlocked = localStorage.getItem('hs_unlock') === '1'; } catch (e) {}
-  if (!unlocked) {
-    var mask = document.getElementById('pwMask');
-    mask.style.display = 'flex';
-    document.getElementById('pwBtn').addEventListener('click', function () {
-      var v = (document.getElementById('pwInput').value || '').trim();
-      if (v === HS_PASSWORD) {
-        try { localStorage.setItem('hs_unlock', '1'); } catch (e) {}
-        mask.style.display = 'none';
-      } else {
-        document.getElementById('pwErr').textContent = '密码不对，请联系 Zoey';
-      }
-    });
-  }
-})();
 </script>
 </body>
 </html>
