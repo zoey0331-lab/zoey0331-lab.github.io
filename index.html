@@ -235,7 +235,9 @@ h1{font-size:58px;letter-spacing:.3em;line-height:1.2}
 .think-card h5{font-family:"Kaiti SC","STKaiti",serif;font-size:17px;color:var(--sage);letter-spacing:.12em;margin-bottom:10px}
 .think-card p{font-size:13px;color:#4a463f;line-height:2}
 .think-card.wide{grid-column:1/-1;border-top-color:var(--sage);background:linear-gradient(180deg,#fffdf8,#f7f1e3)}
-@media(max-width:820px){.method{grid-template-columns:repeat(2,1fr);padding:30px 0 24px}.method .m-item{border-left:none;padding:0 8px}.method .m-item:nth-child(5){grid-column:1/-1}.method .m-item.summary{max-width:100%;margin-top:22px;padding:22px 8px 0}.think-grid{grid-template-columns:1fr}.think-card.wide{grid-column:auto}}
+.think-grid.chain{grid-template-columns:repeat(3,1fr);gap:20px}
+.think-grid.chain .think-card{padding:30px 26px 26px}
+@media(max-width:820px){.method{grid-template-columns:repeat(2,1fr);padding:30px 0 24px}.method .m-item{border-left:none;padding:0 8px}.method .m-item:nth-child(5){grid-column:1/-1}.method .m-item.summary{max-width:100%;margin-top:22px;padding:22px 8px 0}.think-grid{grid-template-columns:1fr}.think-grid.chain{grid-template-columns:1fr}.think-card.wide{grid-column:auto}}
 @media(max-width:520px){.method{grid-template-columns:1fr}}
 
 .hint{font-size:12.5px;color:var(--gray);text-align:center;margin-top:16px;letter-spacing:.1em}
@@ -295,6 +297,21 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .lightbox .lb-nav.prev{left:20px}.lightbox .lb-nav.next{right:20px}
 .lightbox .lb-nav:hover{background:rgba(188,86,61,.55)}
 
+.logic-float{position:fixed;right:26px;bottom:28px;z-index:130;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none}
+.logic-float:active{cursor:grabbing}
+.logic-float .mascot{width:62px;height:62px;display:block;filter:drop-shadow(0 8px 18px rgba(188,86,61,.35));transition:transform .3s;pointer-events:none}
+.logic-float:hover .mascot{transform:translateY(-3px) scale(1.05)}
+.logic-float .lf-label{font-size:11px;letter-spacing:.14em;color:var(--terra);background:rgba(251,248,241,.94);border:1px solid var(--line);padding:3px 11px;border-radius:999px;white-space:nowrap;box-shadow:0 4px 12px rgba(43,42,38,.08);pointer-events:none}
+.logic-modal{position:fixed;inset:0;z-index:160;background:rgba(24,22,18,.78);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:24px}
+.logic-modal.open{display:flex}
+.logic-card{background:var(--paper);max-width:960px;width:100%;max-height:88vh;overflow:auto;padding:44px 46px 40px;border-radius:12px;border:1px solid var(--line);position:relative;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.logic-card .close{position:absolute;top:16px;right:22px;font-size:28px;color:var(--gray);cursor:pointer;line-height:1;z-index:2}
+.logic-card .close:hover{color:var(--terra)}
+.lm-head{text-align:center;margin-bottom:34px}
+.lm-head .no{display:inline-block;font-size:12px;letter-spacing:.3em;color:var(--sage);border:1px solid var(--jade);padding:2px 12px;border-radius:2px;margin-bottom:14px}
+.lm-head h2{font-size:26px;letter-spacing:.1em;font-family:"Kaiti SC","STKaiti",serif}
+.lm-head .poem{margin-top:8px;font-size:13px;color:var(--mist);letter-spacing:.2em}
+@media(max-width:720px){.logic-card{padding:34px 20px 28px}.lm-head h2{font-size:21px}.logic-float{right:16px;bottom:18px}.logic-float .mascot{width:54px;height:54px}}
 @media print{
   nav,footer,.cta,.mtools,.modal .close,.hint{display:none!important}
   body{background:#fff}
@@ -337,7 +354,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
     <a href="#works">个人作品</a>
     <a href="#skills">技能与爱好</a>
     <a href="#honors" class="lbl">荣誉印记</a>
-    <a href="resume.html" class="lbl">简历</a>
   </div>
 </nav>
 
@@ -522,7 +538,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
         <span class="date">2025.07 — 至今</span>
         <h3>小红书考研知识付费 IP「Zoey快去学习」· 内容运营</h3>
         <p class="sub">垂直定位 · 选题即答案 · 数据迭代 · 私域转化</p>
-        <p>锚定华南师大文学考研窄垂类，以真题导向建立「考点—语料—答题」内容闭环，结合文学史案例形成差异化壁垒；建立统一新中式视觉体系，A/B 测试标题、封面与发布时间，累计赞藏 5,000+、点赞量提升 50%；跑通「内容引流 → 私域承接 → 定制转化 → 预付复购」全链路，总收益额约达 4 万元+，辅导学员 20 人左右、上岸率约 70%，现任新东方签约考研讲师。</p>
+        <p>锚定华南师大文学考研窄垂类，以真题导向建立「考点—语料—答题」内容闭环，结合文学史案例形成差异化壁垒；建立统一新中式视觉体系，A/B 测试标题、封面与发布时间，累计赞藏 5,000+、点赞量提升 50%；跑通「内容引流 → 私域承接 → 定制转化 → 预付复购」全链路，总收益额约达 4 万元+，辅导学员 20 人左右、上岸率约 85%，现任新东方签约考研讲师。</p>
         <div class="tag"><span>垂直定位</span><span>爆款方法论</span><span>数据复盘</span><span>私域转化</span></div>
       </div>
       <div class="tl reveal">
@@ -563,7 +579,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
       </div>
       <div class="mcard reveal">
         <h4>获客逻辑 · 垂类精准</h4>
-        <p>用经验贴与真题解析锚定华师文学考研人群，用免费资料做钩子，私域承接转化。不做泛流量，只做「高意向、强刚需」的精准用户；辅导学员 20 人左右、上岸率约 70%，全部来自内容自带的信任。</p>
+        <p>用经验贴与真题解析锚定华师文学考研人群，用免费资料做钩子，私域承接转化。不做泛流量，只做「高意向、强刚需」的精准用户；辅导学员 20 人左右、上岸率约 85%，全部来自内容自带的信任。</p>
       </div>
       <div class="mcard reveal">
         <h4>投流逻辑 · 数据先行</h4>
@@ -622,7 +638,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
         </div>
         <div class="body">
           <h3>小红书考研知识付费 IP</h3>
-          <p class="desc">「Zoey快去学习」：真题导向内容方法论 + 新中式视觉体系，累计赞藏 5,000+、总收益额约达 4 万元+；跑通「引流—定制—预订」三阶段，辅导学员 20 人左右、上岸率约 70%，现任新东方签约讲师。</p>
+          <p class="desc">「Zoey快去学习」：真题导向内容方法论 + 新中式视觉体系，累计赞藏 5,000+、总收益额约达 4 万元+；跑通「引流—定制—预订」三阶段，辅导学员 20 人左右、上岸率约 85%，现任新东方签约讲师。</p>
           <div class="links"><a href="https://xhslink.cn/m/26ns7ZVJVzB" target="_blank">主页链接 ↗</a></div>
         </div>
       </div>
@@ -634,7 +650,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
         </div>
         <div class="body">
           <h3>「华南文研」知识付费 App</h3>
-          <p class="desc">把考研 IP 产品化：历年真题（2022—2026 全题型）、三科复习思路、考前模拟（限时自测＋答题要点）、题目闯关小游戏（30 关自动存档），内置 Zoey 联系通道。</p>
+          <p class="desc">跑通「运营 IP → App 引流 → 私域转化」闭环：小红书 IP 获客，App 低价承接，私域定制变现。App 内含历年真题（2022—2026 全题型）、三科复习思路、考前模拟、题目闯关，内置 Zoey 联系通道；全程 Vibe Coding，用 Codex 以自然语言完成从需求到上线。</p>
           <p class="desc" style="font-family:'PingFang SC','STHeiti','Heiti SC',sans-serif;color:#6b6458;margin-top:6px">App成本约20元，定价99（活动价66），五天内业务收入约600元。</p>
           <div class="links"><a href="华南文研/index.html" target="_blank">打开 App ↗</a><a href="assets/files/华南文研_产品方案.pdf" target="_blank">产品方案 ↗</a></div>
         </div>
@@ -839,6 +855,57 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 
 
 
+<div class="logic-float" id="logicFloat" role="button" aria-label="核心项目完整逻辑链">
+  <svg class="mascot" viewBox="0 0 64 64" aria-hidden="true">
+    <circle cx="32" cy="32" r="30" fill="#BC563D"/>
+    <circle cx="32" cy="32" r="25" fill="#FBF8F1"/>
+    <circle cx="32" cy="28" r="13" fill="#FBF8F1" stroke="#E3D9C8"/>
+    <path d="M19 26 a13 13 0 0 1 26 0 Z" fill="#3F5C4B"/>
+    <circle cx="32" cy="12" r="3.4" fill="#3F5C4B"/>
+    <circle cx="27" cy="28" r="1.8" fill="#2B2A26"/>
+    <circle cx="37" cy="28" r="1.8" fill="#2B2A26"/>
+    <circle cx="25.3" cy="32" r="1.5" fill="#E8A99B"/>
+    <circle cx="38.7" cy="32" r="1.5" fill="#E8A99B"/>
+    <path d="M27.5 32.5 Q32 36.5 36.5 32.5" fill="none" stroke="#BC563D" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M17 42 Q32 49 47 42" fill="none" stroke="#4E6B58" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M44 9 l1.4 3.2 3.2 1.4 -3.2 1.4 -1.4 3.2 -1.4 -3.2 -3.2 -1.4 3.2 -1.4 Z" fill="#B99A5A"/>
+  </svg>
+  <span class="lf-label">核心项目完整逻辑链</span>
+</div>
+
+<div class="logic-modal" id="logicModal">
+  <div class="logic-card">
+    <span class="close" onclick="closeLogic()">×</span>
+    <div class="lm-head">
+      <span class="no">核心项目完整逻辑链</span>
+      <h2>运营 IP → App 引流 → 私域转化</h2>
+      <p class="poem">一个知识付费产品从获客到变现的完整思考</p>
+    </div>
+    <div class="think-grid chain">
+      <div class="think-card">
+        <span class="tno">01</span>
+        <h5>运营 IP · 内容获客</h5>
+        <p>小红书考研 IP「Zoey快去学习」，真题导向内容 + 新中式视觉体系，累计赞藏 5,000+、全网粉丝 400+，总收益额约 4 万元+。AI 提效内容生产：用 Codex / 即梦批量生成封面与拆书笔记、整理真题解析，我负责选题判断与语料把关，AI 负责结构、视觉与排版。</p>
+      </div>
+      <div class="think-card">
+        <span class="tno">02</span>
+        <h5>App 引流 · 产品承接</h5>
+        <p>把人工服务流程产品化为「华南文研」App：真题 / 思路 / 模拟 / 闯关四模块，成本约 20 元，定价 99（活动价 66），MVP 上线 5 天收入约 600 元。全程 Vibe Coding，用 Codex 以自然语言「聊」出 App 与本网站，从需求到上线零手写代码。</p>
+      </div>
+      <div class="think-card">
+        <span class="tno">03</span>
+        <h5>私域转化 · 服务变现</h5>
+        <p>App 内置 Zoey 联系通道 → 添加微信，从平台关系转为私人关系；答疑、规划、批改反馈在私域沉淀信任。卖方法不卖知识，授人以渔：低价 App 是信任入口与筛选器，高客单定制辅导在私域完成，辅导学员 20 人左右、上岸率约 85%，现任新东方签约讲师。</p>
+      </div>
+      <div class="think-card wide">
+        <span class="tno">AI</span>
+        <h5>AI 工具 · Vibe Coding 的心得与踩坑</h5>
+        <p><b style="color:var(--sage)">心得</b>：AI 是我的放大器，不是替代品——我提供教育判断与个人语感，AI 承担结构、视觉、代码，把内容能力规模化。<br><b style="color:var(--sage)">踩坑</b>：需求说不清时 AI 会自由发挥，学会拆成小步、给示例再迭代；多轮迭代后易风格漂移、上下文丢失，用固定视觉规范兜底；生成内容 AI 味重，必须喂个人语感、坚持真实数字；部署类工程问题（GitHub 推送、密码门）要自己兜底验证。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
     <div class="land" aria-hidden="true">
       <svg class="l-far" viewBox="0 0 1440 160" preserveAspectRatio="none"><use href="#mnt-far"/></svg>
@@ -924,7 +991,33 @@ function toggleContact(e){ e.stopPropagation(); document.getElementById('contact
 document.addEventListener('click', function(e){ var p=document.getElementById('contactPop'); if(p && !p.contains(e.target)) p.classList.remove('open'); });
 function openResume(){ document.getElementById('resumeModal').classList.add('open'); }
 function closeResume(){ document.getElementById('resumeModal').classList.remove('open'); }
-document.addEventListener('keydown', e => { if(e.key === 'Escape'){ closeResume(); } });
+function openLogic(){ document.getElementById('logicModal').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeLogic(){ document.getElementById('logicModal').classList.remove('open'); document.body.style.overflow=''; }
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ closeResume(); closeLogic(); } });
+document.getElementById('logicModal').addEventListener('click', e => { if(e.target === document.getElementById('logicModal')) closeLogic(); });
+
+(function(){
+  var f = document.getElementById('logicFloat');
+  var ox=0, oy=0, dragging=false, moved=false;
+  f.addEventListener('pointerdown', function(e){
+    dragging = true; moved = false;
+    var r = f.getBoundingClientRect();
+    ox = e.clientX - r.left; oy = e.clientY - r.top;
+    if(f.setPointerCapture){ try{ f.setPointerCapture(e.pointerId); }catch(_){} }
+  });
+  f.addEventListener('pointermove', function(e){
+    if(!dragging) return;
+    var x = e.clientX - ox, y = e.clientY - oy;
+    var w = f.offsetWidth, h = f.offsetHeight;
+    x = Math.max(8, Math.min(x, window.innerWidth - w - 8));
+    y = Math.max(8, Math.min(y, window.innerHeight - h - 8));
+    if(Math.abs(x - f.offsetLeft) + Math.abs(y - f.offsetTop) > 4) moved = true;
+    f.style.left = x + 'px'; f.style.top = y + 'px';
+    f.style.right = 'auto'; f.style.bottom = 'auto';
+  });
+  f.addEventListener('pointerup', function(){ dragging = false; });
+  f.addEventListener('click', function(e){ if(moved){ e.preventDefault(); moved = false; } else { openLogic(); } });
+})();
 
 const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } }), {threshold:.12});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
