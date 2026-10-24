@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>华南文研 App · 产品需求文档（PRD）</title>
+<style>
+:root{--paper:#FBF8F1;--paper2:#F2EDE0;--card:#FFFDF8;--ink:#2B2A26;--ink2:#4A463F;--ink3:#6B6458;--terra:#BC563D;--sage:#3F5C4B;--line:#E3D9C8;--gold:#B99A5A;--jade:#A9BCB0;--mist:#8FA39B}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:"PingFang SC","STHeiti",sans-serif;line-height:1.9;padding:40px 20px}
+.wrap{max-width:860px;margin:0 auto}
+.head{border-bottom:2px solid var(--line);padding-bottom:22px;margin-bottom:30px}
+.head .no{display:inline-block;font-size:12px;letter-spacing:.3em;color:var(--sage);border:1px solid var(--jade);padding:2px 12px;border-radius:2px;margin-bottom:12px}
+h1{font-family:"Kaiti SC","STKaiti",serif;font-size:30px;letter-spacing:.1em}
+.meta{margin-top:12px;font-size:13px;color:var(--ink3);letter-spacing:.05em}
+h2{font-family:"Kaiti SC","STKaiti",serif;font-size:20px;color:var(--sage);margin:34px 0 14px;letter-spacing:.06em;border-left:3px solid var(--terra);padding-left:12px}
+h3{font-size:15.5px;color:var(--ink);margin:18px 0 8px}
+p,li{font-size:14px;color:var(--ink2)}
+ul{margin:6px 0 6px 22px}
+li{margin:4px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left}
+th{background:var(--paper2);color:var(--sage);font-weight:700}
+td{color:var(--ink2)}
+.note{background:var(--paper2);border-left:3px solid var(--terra);padding:12px 14px;border-radius:0 8px 8px 0;font-size:13.5px;color:var(--ink2);margin:14px 0}
+.back{display:inline-block;margin-bottom:18px;font-size:13px;color:var(--terra);text-decoration:none;border-bottom:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← 返回网站</a>
+  <div class="head">
+    <span class="no">PRD</span>
+    <h1>华南文研 App · 产品需求文档</h1>
+    <p class="meta">版本 v1.0 ｜ 郭宇飞（Zoey） ｜ 2026-10-23</p>
+  </div>
+
+  <h2>1. 产品概述</h2>
+  <p>华南师大文学考研是窄垂类、强刚需场景：考生信息过载、复习路径缺失，需要的不只是资料，而是一条「真题导向的确定性路径」。App 是把已验证的「内容引流 → 私域承接 → 定制转化」人工服务流程产品化、可复制的载体。</p>
+  <h3>产品定位</h3>
+  <p>知识付费 + AI 助教工具：App 管「练」与「坚持」，AI 助教管「检索与答疑」，真人批改管「对错与方向」。一句话：卖方法，不卖知识。</p>
+
+  <h2>2. 目标与北极星指标</h2>
+  <ul>
+    <li>北极星指标：付费学员的周学习完成数（衡量「真的在用」）。</li>
+    <li>过程指标：新增付费、7 日留存、真题/闯关完读率、AI 答疑次数、私域添加率。</li>
+    <li>商业指标：GMV、单客成本、续费率。</li>
+  </ul>
+
+  <h2>3. 用户画像与核心场景</h2>
+  <table>
+    <tr><th>画像</th><th>特征</th><th>核心诉求</th></tr>
+    <tr><td>一战应届</td><td>时间紧、信息差大</td><td>快速知道「考什么、怎么复习」</td></tr>
+    <tr><td>二战/跨考</td><td>有过失败经验、决策重</td><td>要确定性、要路径、要反馈</td></tr>
+    <tr><td>在职/碎片化</td><td>碎片时间学习</td><td>低成本启动、可坚持的节奏</td></tr>
+  </table>
+
+  <h2>4. 功能总览</h2>
+  <table>
+    <tr><th>模块</th><th>优先级</th><th>说明</th></tr>
+    <tr><td>历年真题</td><td>P0</td><td>2022—2026 全题型 + 其他年份合集</td></tr>
+    <tr><td>复习思路</td><td>P0</td><td>马工程底本 · 三版本教材 · 中西文论材料</td></tr>
+    <tr><td>考前模拟</td><td>P0</td><td>150 分 / 3 小时限时 + 答题要点</td></tr>
+    <tr><td>题目闯关</td><td>P0</td><td>章节刷题 1200+ · 30 关 · 连击加分 · 错题本</td></tr>
+    <tr><td>AI 助教</td><td>P0</td><td>RAG 答疑，答案可溯源、低置信度兜底</td></tr>
+    <tr><td>规划指导</td><td>P1</td><td>初试规划 / 模拟面试 / 调剂指导 / 上岸情况</td></tr>
+    <tr><td>我的 · 错题总结</td><td>P1</td><td>错题自动汇总与回顾</td></tr>
+    <tr><td>续费</td><td>P0</td><td>36.6/月、年卡 180/年，二维码收款</td></tr>
+    <tr><td>经验分享</td><td>P1</td><td>用户经验社区，参考小红书</td></tr>
+  </table>
+
+  <h2>5. 功能详述</h2>
+  <h3>5.1 首页与四大模块</h3>
+  <p>首页含到期提醒与 Zoey 联系通道；真题按题型/年份检索并标注「考点—语料—答题」；思路为三科体系化；模拟为限时自测；闯关为 30 关自动存档，错题自动进错题本。</p>
+  <h3>5.2 AI 助教（RAG 答疑）</h3>
+  <p>133 页笔记 + 1,214 题 + 六年真题 → 555 段（16.5 万字）知识库；BM25 + 字符 bigram 检索；输出按四类题型做结构约束并强制标注来源；低置信度直接「不作答」，引导真人答疑。</p>
+  <h3>5.3 规划指导 / 5.4 我的错题 / 5.5 续费 / 5.6 分享</h3>
+  <p>规划指导跳转对应笔记或私域；错题按知识点归类回顾；续费含到期文案与收款二维码；分享沉淀 UGC 与信任。</p>
+
+  <h2>6. AI 能力与边界</h2>
+  <ul>
+    <li>适用：检索、结构化、初稿、答疑、视觉生成、代码（Vibe Coding）。</li>
+    <li>不适用：真题给分、复习路径拍板、批改结论等「对结果负责」的确定性判断。</li>
+    <li>提示词：先给边界、再给示例、强制来源、低置信度兜底；改动用 30 题评测集验证。</li>
+    <li>分工：Codex/Claude 开发与内容、Dify/Coze 编排 Agent、即梦视觉、DeepSeek 推理。</li>
+    <li>成本：缓存命中率 98.7% 为核心成本杠杆，单次请求 ¥0.015，pro／flash 模型路由。</li>
+  </ul>
+
+  <h2>7. 数据埋点方案</h2>
+  <p>启动、进入模块、真题/思路/模拟/闯关完成、AI 提问、私域添加、续费点击、分享发布；留存/转化/ARPU 三屏看板，18 个核心事件，四张数据表结构。</p>
+
+  <h2>8. 商业模式</h2>
+  <p>App 成本约 20 元，定价 99（活动价 66），MVP 上线 5 天收入约 600 元；续费 36.6/月、180/年；私域高客单定制辅导，App 是信任入口与筛选器。</p>
+
+  <h2>9. 非功能需求</h2>
+  <ul>
+    <li>兼容 iOS / Android WebView，页面加载 &lt; 2s。</li>
+    <li>安全：内容防盗（密码门可选）、合规收款、隐私最小化。</li>
+    <li>可用性：学习路径一键可达，核心功能 ≤ 3 次点击。</li>
+  </ul>
+
+  <h2>10. 路线图</h2>
+  <ul>
+    <li>已上线：真题 / 思路 / 模拟 / 闯关 + 私域通道。</li>
+    <li>进行中：AI 助教 RAG、规划指导、错题总结、分享社区。</li>
+    <li>规划：付费订阅、拼团、AI 个性化规划、Web/小程序多端。</li>
+  </ul>
+
+  <h2>11. 验收标准</h2>
+  <ul>
+    <li>新用户 3 分钟内完成「打开 → 刷题 → 闯关」核心闭环。</li>
+    <li>AI 助教答案 100% 标注来源，低置信度 100% 兜底不作答。</li>
+    <li>续费入口与二维码可正常拉起，到期文案正确。</li>
+  </ul>
+</div>
+</body>
+</html>

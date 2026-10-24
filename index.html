@@ -33,7 +33,7 @@ section{padding:var(--s6) 0 72px;position:relative}
 .sec-head .poem{margin-top:8px;font-size:13.5px;color:var(--mist);letter-spacing:.22em}
 .sec-head .en{font-size:11px;color:var(--gray);letter-spacing:.4em;margin-top:2px;text-transform:uppercase}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(251,248,241,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{position:fixed;top:0;left:0;right:0;z-index:90;background:rgba(251,248,241,.98);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;align-items:center;height:60px;gap:26px}
 nav .brand{font-family:"Kaiti SC","STKaiti",serif;font-size:18px;letter-spacing:.2em;margin-right:auto}
 nav .brand i{display:inline-block;width:22px;height:22px;background:var(--terra);color:var(--paper);font-style:normal;font-size:12px;text-align:center;line-height:22px;border-radius:3px;margin-right:8px;vertical-align:2px}
@@ -55,9 +55,9 @@ nav a:hover{color:var(--terra)}
 .land{position:absolute;left:0;right:0;bottom:0;height:0;pointer-events:none;z-index:0}
 section .wrap{position:relative;z-index:1}
 .land svg{position:absolute;left:0;width:100%;display:block}
-.land .l-far{bottom:0;height:120px;opacity:.6;filter:blur(2.2px)}
-.land .l-mid{bottom:-6px;height:132px;opacity:.72;filter:blur(1.4px)}
-.land .l-near{bottom:-14px;height:148px;opacity:.85;filter:blur(.7px)}
+.land .l-far{bottom:0;height:120px;opacity:.55;transform:translateZ(0)}
+.land .l-mid{bottom:-6px;height:132px;opacity:.7;transform:translateZ(0)}
+.land .l-near{bottom:-14px;height:148px;opacity:.82;transform:translateZ(0)}
 .land .l-moon{left:auto;right:7%;bottom:122px;width:76px;height:76px}
 .land .l-birds{left:10%;bottom:152px;width:104px;height:42px}
 .land.softer{opacity:.38}
@@ -158,6 +158,10 @@ h1{font-size:58px;letter-spacing:.3em;line-height:1.2}
 .work:hover .img img{transform:scale(1.04)}
 .work .img .tagv{position:absolute;left:0;top:0;background:var(--terra);color:var(--paper);font-size:11px;letter-spacing:.14em;padding:3px 12px}
 .work .body{padding:17px 20px 20px;display:flex;flex-direction:column;flex:1}
+.work.featured{border:1px solid var(--sage);box-shadow:0 12px 28px rgba(78,107,88,.16)}
+.work.featured::after{content:"核心项目";position:absolute;top:0;right:0;background:var(--ink);color:var(--paper);font-size:11px;letter-spacing:.16em;padding:4px 13px;z-index:3}
+.work.flash{animation:workFlash 1.6s ease}
+@keyframes workFlash{0%,100%{box-shadow:0 12px 28px rgba(78,107,88,.16)}50%{box-shadow:0 0 0 6px rgba(78,107,88,.35)}}
 .work h3{font-size:16.5px;letter-spacing:.05em}
 .work .desc{font-size:13px;color:var(--ink3);margin-top:8px;flex:1}
 .work .links{margin-top:13px;display:flex;gap:14px;flex-wrap:wrap}
@@ -311,6 +315,15 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .lm-head .no{display:inline-block;font-size:12px;letter-spacing:.3em;color:var(--sage);border:1px solid var(--jade);padding:2px 12px;border-radius:2px;margin-bottom:14px}
 .lm-head h2{font-size:26px;letter-spacing:.1em;font-family:"Kaiti SC","STKaiti",serif}
 .lm-head .poem{margin-top:8px;font-size:13px;color:var(--mist);letter-spacing:.2em}
+.lm-tabs{display:flex;justify-content:center;gap:10px;margin:0 0 26px}
+.lm-tab{font-family:"Kaiti SC","STKaiti",serif;font-size:14px;letter-spacing:.14em;color:var(--ink3);background:transparent;border:1px solid var(--line);padding:7px 20px;border-radius:999px;cursor:pointer;transition:all .25s}
+.lm-tab.on{background:var(--terra);border-color:var(--terra);color:#fbf8f1}
+.lm-panel{display:none}
+.lm-panel.on{display:block}
+.lm-jump{position:relative;display:flex;align-items:center;justify-content:center;width:100%;margin:0 auto 24px;overflow:hidden;font-family:"Kaiti SC","STKaiti",serif;font-size:14px;letter-spacing:.16em;color:var(--sage);background:rgba(78,107,88,.06);border:1px solid var(--sage);padding:12px 20px;border-radius:12px;cursor:pointer;transition:transform .25s,background .25s}
+.lm-jump:hover{background:rgba(78,107,88,.12);transform:translateY(-1px)}
+.lm-jump .jump-bg{position:absolute;left:0;right:0;bottom:0;width:100%;height:100%;opacity:.15;pointer-events:none}
+.lm-jump span{position:relative;z-index:1}
 @media(max-width:720px){.logic-card{padding:34px 20px 28px}.lm-head h2{font-size:21px}.logic-float{right:16px;bottom:18px}.logic-float .mascot{width:54px;height:54px}}
 @media print{
   nav,footer,.cta,.mtools,.modal .close,.hint{display:none!important}
@@ -642,7 +655,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
           <div class="links"><a href="https://xhslink.cn/m/26ns7ZVJVzB" target="_blank">主页链接 ↗</a></div>
         </div>
       </div>
-      <div class="work reveal">
+      <div class="work reveal featured" id="work-huashi">
                 <div class="img cv-app">
           <span class="tagv">产品 App</span>
           <div class="wtitle">华南文研</div>
@@ -652,7 +665,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
           <h3>「华南文研」知识付费 App</h3>
           <p class="desc">跑通「运营 IP → App 引流 → 私域转化」闭环：小红书 IP 获客，App 低价承接，私域定制变现。App 内含历年真题（2022—2026 全题型）、三科复习思路、考前模拟、题目闯关，内置 Zoey 联系通道；全程 Vibe Coding，用 Codex 以自然语言完成从需求到上线。</p>
           <p class="desc" style="font-family:'PingFang SC','STHeiti','Heiti SC',sans-serif;color:#6b6458;margin-top:6px">App成本约20元，定价99（活动价66），五天内业务收入约600元。</p>
-          <div class="links"><a href="华南文研/index.html" target="_blank">打开 App ↗</a><a href="assets/files/华南文研_产品方案.pdf" target="_blank">产品方案 ↗</a></div>
+          <div class="links"><a href="华南文研/index.html" target="_blank">打开 App ↗</a><a href="华南文研-原型.html" target="_blank">原型 ↗</a><a href="华南文研-PRD.html" target="_blank">PRD ↗</a><a href="assets/files/华南文研_产品方案.pdf" target="_blank">产品方案 ↗</a></div>
         </div>
       </div>
       <div class="work reveal">
@@ -756,6 +769,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
         </div>
       </div>
     </div>
+
 </section>
 <section id="skills" style="background:var(--paper2)">
     <div class="land" aria-hidden="true">
@@ -881,6 +895,19 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
       <h2>运营 IP → App 引流 → 私域转化</h2>
       <p class="poem">一个知识付费产品从获客到变现的完整思考</p>
     </div>
+    <div class="lm-tabs">
+      <button class="lm-tab on" data-tab="chain">完整逻辑链</button>
+      <button class="lm-tab" data-tab="sense">AI 产品 Sense</button>
+      <button class="lm-tab" data-tab="journey">心路历程</button>
+    </div>
+    <button class="lm-jump" onclick="jumpToProject()">
+      <svg class="jump-bg" viewBox="0 0 200 64" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 64 L34 28 L58 46 L84 16 L110 44 L140 10 L166 40 L200 26 L200 64 Z" fill="#4E6B58" opacity=".35"/>
+        <path d="M0 64 L42 48 L78 58 L118 38 L156 52 L200 42 L200 64 Z" fill="#4E6B58" opacity=".55"/>
+      </svg>
+      <span>直达华南文研项目 ↗</span>
+    </button>
+    <div class="lm-panel on" id="panel-chain">
     <div class="think-grid chain">
       <div class="think-card">
         <span class="tno">01</span>
@@ -901,6 +928,85 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
         <span class="tno">AI</span>
         <h5>AI 工具 · Vibe Coding 的心得与踩坑</h5>
         <p><b style="color:var(--sage)">心得</b>：AI 是我的放大器，不是替代品——我提供教育判断与个人语感，AI 承担结构、视觉、代码，把内容能力规模化。<br><b style="color:var(--sage)">踩坑</b>：需求说不清时 AI 会自由发挥，学会拆成小步、给示例再迭代；多轮迭代后易风格漂移、上下文丢失，用固定视觉规范兜底；生成内容 AI 味重，必须喂个人语感、坚持真实数字；部署类工程问题（GitHub 推送、密码门）要自己兜底验证。</p>
+      </div>
+    </div>
+    </div>
+    <div class="lm-panel" id="panel-sense">
+      <div class="think-grid">
+        <div class="think-card">
+          <span class="tno">01</span>
+          <h5>产品认知 · LLM 的适用与不适用</h5>
+          <p>模型强在检索、结构化、初稿与答疑，弱在确定性判断与多跳推理。先判断「什么不交给模型」：真题给分、复习路径拍板、批改结论——这些要对结果负责的环节，模型只做检索与整理，低置信度直接兜底不作答。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">02</span>
+          <h5>技术栈 · 工具与分工</h5>
+          <p>Codex / Claude 负责开发与内容生成，Dify / Coze 搭 Agent 与工作流，即梦做视觉，DeepSeek 做推理。按「能力边界」分工而不是堆模型：生成、检索、编排、视觉各归其位，哪个模型适合干什么就派它干什么。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">03</span>
+          <h5>提示词工程 · 调试与迭代</h5>
+          <p>用结构约束对抗幻觉：按名词解释/简答/论述/材料分析四类题型限定输出格式，强制标注来源。调试是迭代——先给边界、再给示例、看输出再收紧，把「说不清的需求」翻译成「可执行的约束」，改动用评测集验证而不是凭感觉。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">04</span>
+          <h5>SKILL 封装 · 把经验沉淀成工作流</h5>
+          <p>把反复要做的事封装成可复用的 Skill 与提示词模板：新中式视觉规范、拆书与笔记生产流程、简历与网站交付标准。一次踩坑、永久复用，既降低 token 损耗，也保证每次输出风格统一、质量稳定。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">05</span>
+          <h5>需求洞察 · 从真需求出发</h5>
+          <p>40+ 用户访谈 + 小红书真题笔记 5,000+ 赞藏 + 评论区高频「求带」，验证的结论不是「缺资料」，而是「缺一条真题导向的确定性路径」。先验证再动手，不做臆想功能。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">06</span>
+          <h5>模型评估 · 可评测、可优化</h5>
+          <p>配套 30 题评测集，衡量检索命中率、忠实度、结构合规率。基于 5,950 次调用、10.9 亿 token 定位缓存命中为最大成本杠杆，单次请求成本降至 ¥0.015，并提出 pro／flash 模型路由。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">07</span>
+          <h5>产品设计 · 0→1 到 MVP</h5>
+          <p>把人工服务流程产品化为「华南文研」App：真题 / 思路 / 模拟 / 闯关四模块，成本约 20 元、定价 99（活动价 66），MVP 上线 5 天收入约 600 元；再把沉淀的服务流程结构化为 AI Agent，全程 Vibe Coding。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">08</span>
+          <h5>技术理解 · RAG 的引入与限制</h5>
+          <p>迭代中给 App 接入 AI 助教：133 页笔记 + 1,214 题 + 六年真题清洗成 555 段（16.5 万字）知识库，BM25＋bigram 检索。RAG 解决知识外置与溯源、降幻觉，但检索质量决定上限、多跳推理弱，所以低置信度兜底不作答；高频固定知识走 RAG，个性化规划留给人。</p>
+        </div>
+        <div class="think-card wide">
+          <span class="tno">结论</span>
+          <h5>AI 贯穿全链路</h5>
+          <p>从内容获客到产品交付，生成、检索、编排、评测、封装每一步都有明确的能力边界，也都沉淀成可复用的方法——这就是我的 AI 应用能力。</p>
+        </div>
+      </div>
+    </div>
+    <div class="lm-panel" id="panel-journey">
+      <div class="think-grid">
+        <div class="think-card">
+          <span class="tno">01</span>
+          <h5>起步 · 一个人就是一支队伍</h5>
+          <p>从 0 开始做 IP：没有团队、没有流量，只有一个人。最初是焦虑和自我怀疑——「我做的对不对、有没有人买单」。后来想通：先给价值、再谈付费，把注意力从「证明自己」转向「解决问题」。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">02</span>
+          <h5>遇坑 · 不会写代码的文科生</h5>
+          <p>零代码基础做 App，遇到的最大障碍是「说不清需求」：说得越模糊，AI 越自由发挥；多轮迭代后风格漂移；GitHub 部署反复报错。解决办法是拆小步、给示例、建立固定视觉规范兜底，工程问题自己逐个验证。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">03</span>
+          <h5>突破 · 先上线，再变好</h5>
+          <p>接受「不完美先上线」：MVP 五天上架，用真实用户的反馈和收入验证，而不是等「准备好」。数据说话——收藏率、咨询量、转化率决定下一步，把情绪和猜测换成指标。</p>
+        </div>
+        <div class="think-card">
+          <span class="tno">04</span>
+          <h5>现在 · 卖方法，不卖知识</h5>
+          <p>从「会做内容」走到「能把能力产品化」。AI 是放大器不是替代品：我负责教育判断、选题与语感，AI 负责结构、视觉、代码。心态也从「想被认可」变成「持续交付、授人以渔」。</p>
+        </div>
+        <div class="think-card wide">
+          <span class="tno">结语</span>
+          <h5>从焦虑到笃定</h5>
+          <p>真正的自信不是「我什么都会」，而是「遇到问题我知道怎么拆、怎么找解法」。AI 时代，文科生也可以一个人跑通从内容到产品的完整闭环。</p>
+        </div>
       </div>
     </div>
   </div>
@@ -993,8 +1099,23 @@ function openResume(){ document.getElementById('resumeModal').classList.add('ope
 function closeResume(){ document.getElementById('resumeModal').classList.remove('open'); }
 function openLogic(){ document.getElementById('logicModal').classList.add('open'); document.body.style.overflow='hidden'; }
 function closeLogic(){ document.getElementById('logicModal').classList.remove('open'); document.body.style.overflow=''; }
+function jumpToProject(){
+  closeLogic();
+  setTimeout(function(){
+    var el = document.getElementById('work-huashi');
+    if(el){ el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('flash'); setTimeout(function(){ el.classList.remove('flash'); }, 1700); }
+  }, 120);
+}
 document.addEventListener('keydown', e => { if(e.key === 'Escape'){ closeResume(); closeLogic(); } });
 document.getElementById('logicModal').addEventListener('click', e => { if(e.target === document.getElementById('logicModal')) closeLogic(); });
+document.querySelectorAll('.lm-tab').forEach(t => {
+  t.addEventListener('click', function(){
+    document.querySelectorAll('.lm-tab').forEach(x => x.classList.remove('on'));
+    this.classList.add('on');
+    document.querySelectorAll('.lm-panel').forEach(p => p.classList.remove('on'));
+    document.getElementById('panel-' + this.dataset.tab).classList.add('on');
+  });
+});
 
 (function(){
   var f = document.getElementById('logicFloat');
